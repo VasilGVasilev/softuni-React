@@ -47,7 +47,7 @@ In React, components are functions (capitalized and with angle brackets <>):
     const app = document.getElementById("app")
 
     function Header() {
-        return (<h1>Develop. Preview. Ship. 🚀</h1>)
+        return (<h1>Develop. Preview. Ship. 🚀</h1>) //A component is a function that returns UI elements. Inside the return statement of the function, you can write JSX
     }
 
 
@@ -57,7 +57,7 @@ In React, components are functions (capitalized and with angle brackets <>):
 Nesting:
  
     function Header() {
-        return <h1>Develop. Preview. Ship. 🚀</h1>; 
+        return <h1>Develop. Preview. Ship. 🚀</h1>; //directly return without ()
     }
 
     function HomePage() {
