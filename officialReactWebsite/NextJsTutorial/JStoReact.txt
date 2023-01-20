@@ -150,3 +150,17 @@ function HomePage() {
 
 State
 see /state
+
+
+You can use state to store and increment the number of times a user has clicked the like button. 
+In fact, this is what the React hook to manage state is called: useState()
+
+    function HomePage() {
+    const [likes, setLikes] = React.useState(0);
+    }
+first arg is state value, second arg is function to update value, (0) denotes the initial value
+
+state variable is set, thus, you can use it, see how we add it in /state/index.html:
+    <button onClick={handleClick}>Like({likes})</button> 
+
+this whole logic reminds me of closures, likes is top-level var for current component, and is used via 'entering JS land', the same is for the handling function, with one nesting hendleClick(){setLikes()} 
