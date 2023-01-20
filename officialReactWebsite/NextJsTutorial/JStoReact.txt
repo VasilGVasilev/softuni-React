@@ -108,3 +108,40 @@ Or ternary operators.
     return <h1>{title ? title : 'Default Title'}</h1>;
     }
 
+
+
+Iterating through lists:
+
+    function HomePage() {
+    const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+    return (
+        <div>
+        <Header title="Develop. Preview. Ship. 🚀" />
+        <ul>
+            {names.map((name) => (
+            <li>{name}</li>
+            ))}
+        </ul>
+        </div>
+    );
+    }
+
+BUT - If you run this code, React will give us a warning about a missing key prop. 
+This is because React needs something to uniquely identify items in an array 
+so it knows which elements to update in the DOM.
+
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship. 🚀" />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li> // better use itemId in practice
+        ))}
+      </ul>
+    </div>
+  );
+}
