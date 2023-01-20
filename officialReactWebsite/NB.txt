@@ -4,3 +4,7 @@ production-ready JSX setup
     npm init -y
     npm install babel-cli@6 babel-preset-react-app@3
 
+Create a folder called src and run this terminal command:
+    npx babel --watch src --out-dir . --presets react-app/prod
+    Don’t wait for it to finish — this command starts an automated watcher for JSX.
+

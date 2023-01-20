@@ -1,0 +1,76 @@
+DOM is updated HTML via javascript script
+    If you look at the DOM elements inside your browser developer tools, 
+    you will notice the DOM includes the <h1> element. 
+    The DOM of the page is different from the source code - or in other words, 
+    the original HTML file you created.
+    This is because the HTML represents the initial page content, 
+    whereas the DOM represents the updated page content which was changed 
+    by the JavaScript code you wrote.
+
+    the JS code:
+    <!-- index.html -->
+    <script type="text/javascript">
+    const app = document.getElementById('app');
+    const header = document.createElement('h1');
+    const headerContent = document.createTextNode('Develop. Preview. Ship. 🚀');
+    header.appendChild(headerContent);
+    app.appendChild(header);
+    </script>
+
+That above is imperative programming.
+Imperative programming is like giving a chef step-by-step instructions on how to make a pizza.
+Declarative programming is like ordering a pizza without being concerned about the steps it takes to make the pizza. 
+
+    <html>
+    <body>
+        <div id="app"></div>
+
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+        <script type="text/javascript">
+        const app = document.getElementById('app');
+        ReactDOM.render(<h1>Develop. Preview. Ship. 🚀</h1>, app);
+        </script>
+    </body>
+    </html>
+
+But if you try to run this code in the browser, you will get a syntax error
+Note that browsers don’t understand JSX out of the box, so you’ll need a JavaScript compiler, such as a Babel, to transform your JSX code into regular JavaScript.
+
+React has three core concepts:    Components Props State
+
+In React, components are functions (capitalized and with angle brackets <>): 
+
+    <script type="text/jsx">
+
+    const app = document.getElementById("app")
+
+    function Header() {
+        return (<h1>Develop. Preview. Ship. 🚀</h1>)
+    }
+
+
+    ReactDOM.render(<Header />, app)
+    </script>
+
+Nesting:
+ 
+    function Header() {
+        return <h1>Develop. Preview. Ship. 🚀</h1>; 
+    }
+
+    function HomePage() {
+        return (
+            <div>
+            <Header />
+            </div>
+        );
+    }
+
+    ReactDOM.render(<HomePage />, app);
+
+Props - like attributes for HTML elements
+    -> Similar to a JavaScript function, you can design components that accept custom arguments 
+    (or props) that change the component’s behavior (state can be passed as props, too - from parent to child component)
+see /testingProps, notice little lag when rendering title
