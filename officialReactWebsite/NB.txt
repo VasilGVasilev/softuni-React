@@ -1,0 +1,6 @@
+production-ready JSX setup
+    Essentially, adding JSX is a lot like adding a CSS preprocessor. 
+    The only requirement is to have Node.js installed on your computer.
+    npm init -y
+    npm install babel-cli@6 babel-preset-react-app@3
+
