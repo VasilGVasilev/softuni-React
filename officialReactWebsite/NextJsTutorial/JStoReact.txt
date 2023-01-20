@@ -63,7 +63,7 @@ Nesting:
     function HomePage() {
         return (
             <div>
-            <Header />
+            <Header /> //good practice is nesting the components
             </div>
         );
     }
