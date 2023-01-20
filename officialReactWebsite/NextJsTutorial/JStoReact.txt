@@ -163,4 +163,12 @@ first arg is state value, second arg is function to update value, (0) denotes th
 state variable is set, thus, you can use it, see how we add it in /state/index.html:
     <button onClick={handleClick}>Like({likes})</button> 
 
-this whole logic reminds me of closures, likes is top-level var for current component, and is used via 'entering JS land', the same is for the handling function, with one nesting hendleClick(){setLikes()} 
+this whole logic reminds me of closures, likes is top-level var for current component, and is used via 'entering JS land', 
+the same is for the handling function, with one nesting hendleClick(){setLikes()}
+
+NB
+Unlike props which are passed to components as the first function parameter, 
+the state is initiated and stored within a component. 
+You can pass the state information to children components as props, 
+but the logic for updating the state should be kept within the component 
+where state was initially created.
