@@ -73,7 +73,9 @@ Nesting:
 Props - like attributes for HTML elements
     -> Similar to a JavaScript function, you can design components that accept custom arguments 
     (or props) that change the component’s behavior (state can be passed as props, too - from parent to child component)
-see /testingProps, notice little lag when rendering title
+
+-> see /props, notice little lag when rendering title
+
 You can think of curly braces as a way to enter "JavaScript land" while you are in "JSX land".
 
 An object property with dot notation.
@@ -145,3 +147,6 @@ function HomePage() {
     </div>
   );
 }
+
+State
+see /state
