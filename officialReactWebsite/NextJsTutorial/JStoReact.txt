@@ -74,3 +74,37 @@ Props - like attributes for HTML elements
     -> Similar to a JavaScript function, you can design components that accept custom arguments 
     (or props) that change the component’s behavior (state can be passed as props, too - from parent to child component)
 see /testingProps, notice little lag when rendering title
+You can think of curly braces as a way to enter "JavaScript land" while you are in "JSX land".
+
+An object property with dot notation.
+
+    function Header(props) {
+    return <h1>{props.title}</h1>;
+    }
+
+A template literal:
+
+    function Header({ title }) {
+    return <h1>{`Cool ${title}`}</h1>;
+    }
+
+The returned value of a function.
+
+    function createTitle(title) {
+    if (title) {
+        return title;
+    } else {
+        return 'Default title';
+    }
+    }
+
+    function Header({ title }) {
+    return <h1>{createTitle(title)}</h1>;
+    }
+
+Or ternary operators.
+
+    function Header({ title }) {
+    return <h1>{title ? title : 'Default Title'}</h1>;
+    }
+
