@@ -27,12 +27,14 @@
 <!-- props is an object so { title: "React 💙"}, thus, DECONSTRUCT it -->
 <!-- passing in simply title makes React think you are intending to render plain string -->
 <!-- denote to React that this is a JavaScript variable using {} - a special JSX syntax that allows you to write regular JavaScript directly inside your JSX markup. -->
+
     function Header({title}) {
         console.log(title);
         return <h1>{title}</h1>;
     }
 
 <!-- pass in html el-like attribute in <Header> also known as props -->
+  
     function HomePage() {  
         return (
             <div>
