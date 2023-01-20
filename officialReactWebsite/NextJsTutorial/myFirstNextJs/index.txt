@@ -1,0 +1,64 @@
+<html>
+  <body>
+    <div id="app"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/jsx">
+      const app = document.getElementById("app")
+
+      function Header({ title }) {
+        return <h1>{title ? title : "Default title"}</h1>
+      }
+
+      function HomePage() {
+        const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"]
+
+        const [likes, setLikes] = React.useState(0)
+
+        function handleClick() {
+          setLikes(likes + 1)
+        }
+
+        return (
+          <div>
+            <Header title="Develop. Preview. Ship. 🚀" />
+            <ul>
+              {names.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+
+            <button onClick={handleClick}>Like ({likes})</button>
+          </div>
+        )
+      }
+
+      ReactDOM.render(<HomePage />, app)
+    </script>
+  </body>
+</html>
+
+
+after installing dependencies
+
+Jumping back to the index.html file, you can delete the following code:
+
+    The react and react-dom scripts since you’ve installed them with NPM.
+    The <html> and <body> tags because Next.js will create these for you.
+    The code that interacts with app element and ReactDom.render() method.
+    The Babel script because Next.js has a compiler that transforms JSX into valid JavaScript browsers can understand.
+    The <script type="text/jsx"> tag.
+    The React. part of the React.useState(0) function
+
+After deleting the lines above, add import { useState } from "react" to the top of your file.
+The only code left in the HTML file is JSX, so you can change the file type from .html to .js or .jsx.
+Now, there are three more things you need to do to fully transition to a Next.js app:
+
+    Move the index.js file to a new folder called pages (more on this later).
+    Add default export to your main React component to help Next.js distinguish which component to render as the main component of this page.
+    Add a script to your package.json file to run the Next.js development server while you develop
+
+adding "dev": "next dev" to scripts is like nodemon + server running
