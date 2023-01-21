@@ -75,6 +75,7 @@ Props - like attributes for HTML elements
     (or props) that change the component’s behavior (state can be passed as props, too - from parent to child component)
 
 -> see /props, notice little lag when rendering title
+!Since JSX is closer to JavaScript than to HTML, React DOM uses camelCase property naming convention instead of HTML attribute names.
 
 You can think of curly brackets as a way to enter "JavaScript land" while you are in "JSX land".
 
