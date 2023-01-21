@@ -76,7 +76,7 @@ Props - like attributes for HTML elements
 
 -> see /props, notice little lag when rendering title
 
-You can think of curly braces as a way to enter "JavaScript land" while you are in "JSX land".
+You can think of curly brackets as a way to enter "JavaScript land" while you are in "JSX land".
 
 An object property with dot notation.
 
