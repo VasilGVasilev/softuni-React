@@ -77,3 +77,6 @@ Impure functions change their inputs
 Only state  allows React components to change their output over time in response to user actions, network responses, and anything else, without violating this rule.
 
 STATE AND LIFECYCLE
+
+State is similar to props, but it is private and fully controlled by the component.
+
