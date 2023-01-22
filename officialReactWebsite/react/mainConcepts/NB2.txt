@@ -1,5 +1,118 @@
-Event handling
+EVENT HANDLING:
     
     React events are named using camelCase, rather than lowercase.
     You must call preventDefault explicitly.
     React events do not work exactly the same as native events. See the SyntheticEvent reference guide to learn more.
+    No need to addEventListener to a newy created DOM element, just add a listener function:
+
+        class Toggle extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {isToggleOn: true};
+
+                // In JavaScript, class methods are not bound by default. this will be undefined when the function is actually called if not explcicitly not bound
+                this.handleClick = this.handleClick.bind(this);  
+            }
+
+            handleClick() {    
+                this.setState(prevState => ({      prevState holds is the value of state before the setState was triggered by React; 
+                    isToggleOn: !prevState.isToggleOn    //Since setState does batching, its sometimes important to know what the previous state was 
+                }));   //when you want to update the new state based on the previous state value.
+            }
+
+            render() {
+                return (
+                    <button onClick={this.handleClick}>        
+                        {this.state.isToggleOn ? 'ON' : 'OFF'}
+                </button>
+                );
+            }
+        }
+    
+    Instead of explicitly bidning this to this.handleClick, you can use public class fields syntax:
+    - handleClick function is made into an arrow funciton:
+        handleClick = () => {    
+            this.setState(prevState => ({      
+                isToggleOn: !prevState.isToggleOn    
+            }));   
+        }
+    - handleClick callback is made into an arrow function:
+        <button onClick={() => this.handleClick()}>
+
+    PROBLEM: The problem with this syntax is that a different callback is created each time the LoggingButton renders.
+
+
+
+CONDITIONAL RENDERING:
+
+        class LoginControl extends React.Component {
+            constructor(props) {
+                super(props);
+                this.handleLoginClick = this.handleLoginClick.bind(this);
+                this.handleLogoutClick = this.handleLogoutClick.bind(this);
+                this.state = {isLoggedIn: false};
+            }
+
+            handleLoginClick() {
+                this.setState({isLoggedIn: true});
+            }
+
+            handleLogoutClick() {
+                this.setState({isLoggedIn: false});
+            }
+
+            render() {
+                const isLoggedIn = this.state.isLoggedIn;
+                let button;
+                if (isLoggedIn) {      
+                    button = <LogoutButton onClick={this.handleLogoutClick} />;    
+                } else {      
+                    button = <LoginButton onClick={this.handleLoginClick} />;    
+                }
+                return (
+                    <div>
+                        <Greeting isLoggedIn={isLoggedIn} />        
+                        {button}      
+                    </div>
+                );
+            }
+        }
+
+    const root = ReactDOM.createRoot(document.getElementById('root')); 
+    root.render(<LoginControl />);
+
+    shorter sytnax trick in React:
+    - In JavaScript, true && expression always evaluates to expression, and false && expression always evaluates to false.
+
+        function Mailbox(props) {
+        const unreadMessages = props.unreadMessages;
+        return (
+            <div>
+            <h1>Hello!</h1>
+            {unreadMessages.length > 0 &&        
+                <h2>          
+                    You have {unreadMessages.length} unread messages.        
+                </h2>      
+            }    
+            </div>
+        );
+        }
+
+        const messages = ['React', 'Re: React', 'Re:Re: React'];
+
+        const root = ReactDOM.createRoot(document.getElementById('root')); 
+        root.render(<Mailbox unreadMessages={messages} />);
+    NB note that if false, element will be skipped but it qill still return falsy expressio
+
+    - ternary operator
+
+        render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        return (
+                <div>
+                    The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.    
+                </div>
+            );
+        }
+
+    - Returning null from a component’s render method does not affect the firing of the component’s lifecycle methods. For instance componentDidUpdate will still be called.
