@@ -1,0 +1,5 @@
+Event handling
+    
+    React events are named using camelCase, rather than lowercase.
+    You must call preventDefault explicitly.
+    React events do not work exactly the same as native events. See the SyntheticEvent reference guide to learn more.
