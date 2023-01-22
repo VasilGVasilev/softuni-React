@@ -147,8 +147,8 @@ Adding lifecycle method to class:
 
     class Clock extends React.Component {
         constructor(props){
-            super(props);
-            this.state = {date: new Date()}
+            super(props); //you should call super(props) before any other statement. Otherwise, this.props will be undefined in the constructor
+            this.state = {date: new Date()} // Initializing local state by assigning an object to this.state.
         }
 
         
@@ -194,10 +194,77 @@ Adding lifecycle method to class:
     Inside it, the Clock component asks the browser to set up a timer to call the component’s tick() method once a second.
 
     4) Every second the browser calls the tick() method. Inside it, the Clock component schedules a UI update 
-    by calling setState() with an object containing the current time. Thanks to the setState() call, 
+    by calling setState() with an object containing the current time. Tick calls this.setState() which tells React that 
+    this component and its children need to be re-rendered with the updated state. Thanks to the setState() call, 
     React knows the state has changed, and calls the render() method again to learn what should be on the screen. 
     This time, this.state.date in the render() method will be different, 
     and so the render output will include the updated time. React updates the DOM accordingly.
 
+
     5) If the Clock component is ever removed from the DOM, React calls the componentWillUnmount() lifecycle method 
     so the timer is stopped.
+
+Summary:
+- Clock is passed into root, React calls the component constructor and its lifecycle begins and mounting, updating and unmouting ensues:
+- first the constructor is called which  the written by us this.state (has special meaning, while this.props is there per se due to React)
+- then render() is called(), it examines this.props and this.state and return -> React element, namely, update DOM to match; keep render pure: do not modify component state, rether use componentDidMount()
+- componentDidMount() is triggered by mounting immediately, moutning is inserting into the DOM tree
+- inside componentDidMount(), you mount all subscriptions, in this case only tick(), by using setInterval(), tick is called every second;
+- inside tick(), the state this.state is updated via this.setState() special function with new object composed of current to the setting date
+- using this.setState() tells React that render has to be called again, since setInterval is eternal loop, the process continues perpetually
+- componentDidMount() is re-rendered until componentWillUnmount() is triggered, note that using this.setState() doesnt work since the component is unmounted
+
+Notes:
+- Constructor is the only place where you should assign this.state directly. In all other methods, you need to use this.setState() instead.
+    Thus, this.state and this.setState() are like using hooks in NextJsTutorial/state/index.html:
+      const [likes, setLikes] = React.useState(0);
+      
+      function handleClick() {
+        setLikes(likes + 1);
+      }
+
+- Mounting methods seem to be a service on the side that empowers rendering. They control the set up and subsequent dismount of any subscriptions.(componentDidMount()/componentWillUnmount())
+    this.setState is only possible during the duration of the mount, it is like a virtual software that you manipulate and then it renders a result on DOM, if there is no mounting, not data is sent to browser to render
+
+    On state:
+        1) Do not update state directly: 
+            this.state.comment = 'Hello';
+        Use setState():
+            this.setState({comment: 'Hello'});
+
+        2) State updates may be async, instead of updating with object, update with function:
+        wrong
+            this.setState({
+                counter: this.state.counter + this.props.increment,
+            });
+        correct
+            this.setState((state, props) => ({
+                counter: state.counter + props.increment
+            }));
+
+        3) The merging is shallow, so this.setState({comments}) leaves this.state.posts intact, but completely replaces this.state.comments.
+
+        4) Data flows down, perfect encapsulation (This is commonly called a “top-down” or “unidirectional” data flow.):
+
+            A component may choose to pass its state down as props to its child components:
+
+            <FormattedDate date={this.state.date} />
+
+            The FormattedDate component would receive the date in its props and wouldn’t know whether it came from the Clock’s state, from the Clock’s props, or was typed by hand:
+
+            function FormattedDate(props) {
+                return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
+            }
+
+
+- props and state:
+    this.props contains the props that were defined by the caller of this component. 
+        function Welcome(props) {  
+            return <h1>Hello, {props.name}</h1>;
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        const element = <Welcome name="Sara" />;
+        root.render(element);
+
+    The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
