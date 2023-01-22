@@ -116,3 +116,10 @@ CONDITIONAL RENDERING:
         }
 
     - Returning null from a component’s render method does not affect the firing of the component’s lifecycle methods. For instance componentDidUpdate will still be called.
+
+
+LISTS AND KEYS
+    
+    - elements inside the map() call need keys
+    - Keys used within arrays should be unique among their siblings. However, they don’t need to be globally unique. 
+
