@@ -228,3 +228,13 @@ FORMS
            - Formik
                 If you’re looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, 
                 Formik is one of the popular choices. 
+
+SHARING STATE
+    In React, sharing state is accomplished by moving it up to the closest common ancestor of the components that need it. This is called “lifting state up”.
+    see TempConvert; Calculator State is the parent state, which is passed onto children, it's like a markup/template
+    to use in TemperatureInput components to be displayed, in reality, all calc happen in Calculator via tryConvert
+    this.handleChange -> this.props.onTemperatureChange(e.target.value) -> onTemperatureChange={this.handleCelsiusChange} /> -> handleCelsiusChange(temperature) {this.setState({scale: 'c', temperature});}
+
+    Instead of trying to sync the state between different components, you should rely on the top-down data flow.
+
+ONE SOURCE OF TRUTH TO RULE THEM ALL
