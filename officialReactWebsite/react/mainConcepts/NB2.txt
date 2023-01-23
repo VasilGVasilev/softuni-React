@@ -123,3 +123,46 @@ LISTS AND KEYS
     - elements inside the map() call need keys
     - Keys used within arrays should be unique among their siblings. However, they don’t need to be globally unique. 
 
+FORMS
+    - Controlled components handle the submission of the form and have access to the data that the user entered into the form
+    
+    With a controlled component, the input’s value is always driven by the React state. 
+
+        class NameForm extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {value: ''};
+                this.handleChange = this.handleChange.bind(this);
+                this.handleSubmit = this.handleSubmit.bind(this);
+            }
+
+            handleChange(event) {    
+                this.setState({value: event.target.value});  
+                }
+
+            handleSubmit(event) {
+                alert('A name was submitted: ' + this.state.value);
+                event.preventDefault();
+            }
+
+            render() {
+                return (
+                <form onSubmit={this.handleSubmit}>        
+                    <label>
+                        Name:
+                        <input type="text" value={this.state.value} onChange={this.handleChange} />        
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+                );
+            }
+        }
+    
+    why we take the value via event.target.value -> target is always attached to the element that addEventListener is attached to
+    Remember that NameForm is actually sort of a virtual element that using like a robotic hand to manipulate actual DOM, thus, 
+    you have a seperate state, you say render this separate state, stored in my script:
+        <input type="text" value={this.state.value} onChange={this.handleChange} />  
+    and this rendering sort of makes the template and sends it to be diplayed to the client
+    then we use script to snoop for changes -> onChange; here we need to adhere to the DOM rules, so we use event.target to extract value 
+
+    NB handleChange runs on every keystroke to update the React state, the displayed value will update as the user types
