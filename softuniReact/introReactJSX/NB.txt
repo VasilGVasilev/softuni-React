@@ -65,3 +65,10 @@ create-react-app
     npm run eject
         Removes this tool and copies build dependencies, configuration files  
         and scripts into the app directory. If you do this, you can’t go back!
+
+Composition over Inheritance
+    see Footer in c-r-a, 
+        react uses ES modules export/import, node.js uses CommonJS module.exports/require
+        with only difference is that React's export is like CommonJS require('Footer') =>
+        DOES NOT need extension 'Footer.js' due to not being vanilla module system, Webpack and Babel configure it
+        <Footer></Footer> or <Footer />, first if there are children <Footer>Something</Footer>
