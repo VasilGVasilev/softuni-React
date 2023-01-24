@@ -1,1 +1,32 @@
+prior to v18, 
+    needed to continue passing the container into the render,
+    although it never changes:
+        
+        import ReactDOM from 'react-dom';
+        import App from 'App';
+
+        const container = document.getElementById('root');
+
+        //Initial render
+        ReactDOM.render(<App name="Saeloun blog" />, container);
+
+        // During an update, React would access the root of the DOM element
+        ReactDOM.render(<App name="Saeloun testimonials" />, container)
+    
+from v18 onwards:
+    new root API
+        import ReactDOM from "react-dom";
+        import App from 'App';
+
+        const container = document.getElementById('root');
+
+        // Create a root.
+        const root = ReactDOM.createRoot(container);
+
+        // Initial render
+        root.render(<App name="Saeloun blog" />);
+
+        // During an update, there is no need to pass the container again
+        root.render(<App name="Saeloun testimonials" />);
+
 2:46:00
