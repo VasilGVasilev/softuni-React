@@ -29,4 +29,15 @@ from v18 onwards:
         // During an update, there is no need to pass the container again
         root.render(<App name="Saeloun testimonials" />);
 
+config
 ctrl + , -> emmet -> langueages -> javascript : javascriptreact to write JSX in .js file without the need of .jsx
+
+hot reloading - in DEVELOPMENT
+    when the whole page is re-rendered to relfect on code change, but you are already in a modal
+    that will mean you have to reselect the whole chain to open the modal
+    Solution: Hot Module Replacement via Webpack and create-react-app, changes to code do no refresh page
+    
+    in PRODUCTION
+    HOWEVER, this is not to be mistaken with the automatic re-rendering done by ReactDOM so that only the clock date changes
+    The techinque is about the script written in React re-rendering browser in production, while the above is in development.
+    React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
