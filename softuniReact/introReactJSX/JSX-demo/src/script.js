@@ -16,7 +16,8 @@ const reactElement = (
         <h1>Hello from JSX!!!</h1>
         <h2>React slogan</h2>
     </header>
-);
+); //we do we have () - standart JS syntax for less prone to bugy code with return + sexier code
+
 // NB, you need Babel transpiler for JSX, either as a CDN or npm install and npx 
 // note the npx "babel": "npx babel --watch src --out-dir build --presets react-app/prod"
 // HOW IT WORKS
