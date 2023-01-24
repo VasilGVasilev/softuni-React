@@ -72,3 +72,5 @@ Composition over Inheritance
         with only difference is that React's export is like CommonJS require('Footer') =>
         DOES NOT need extension 'Footer.js' due to not being vanilla module system, Webpack and Babel configure it
         <Footer></Footer> or <Footer />, first if there are children <Footer>Something</Footer>
+
+Component - function that creates a React element
