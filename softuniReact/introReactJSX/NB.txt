@@ -41,3 +41,27 @@ hot reloading - in DEVELOPMENT
     HOWEVER, this is not to be mistaken with the automatic re-rendering done by ReactDOM so that only the clock date changes
     The techinque is about the script written in React re-rendering browser in production, while the above is in development.
     React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
+
+create-react-app
+    why npx create-react-app .
+    . is current directory
+
+    npx, because it is not only a package, but a toolchain,
+        also bad practice to have global install, instead
+        node modules encapusaltes project for ver control, virtual env, containerization
+        but this is done with npm, why npx:
+        NPX adds them to the user’s PATH and thus they can easily be directly invoked,
+        which is necessary for packages containing executable commands
+        Without an additional tool for invoking these executables, developers would need 
+        to dig through their project’s node_modules directory to find the right file.
+        
+    scripts
+    npm start
+        Starts the development server.
+    npm run build
+        Bundles the app into static files for production.
+    npm test
+        Starts the test runner.
+    npm run eject
+        Removes this tool and copies build dependencies, configuration files  
+        and scripts into the app directory. If you do this, you can’t go back!
