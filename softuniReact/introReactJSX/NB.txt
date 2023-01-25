@@ -74,3 +74,24 @@ Composition over Inheritance
         <Footer></Footer> or <Footer />, first if there are children <Footer>Something</Footer>
 
 Component - function that creates a React element
+    see how we abstract NewsBox as a separate module NewsBox.js to use as a template/component
+    to reuse for three instances in News.js 
+
+Tricks: 
+    - holding CTRL + D selects all instances to then change,
+        -> also, by doing the above you can later click end to add ' />'
+
+    - you have to update closing tag for React, className from class, etc.
+
+    - each component must return a single element -  div, section, etc:
+        export const News = () => {
+            return (
+                <section className="news_section layout_padding">
+                    ...
+                </section>
+            );
+        }
+    
+    - hr, br or Iframe tags complicate html so delete,
+
+    - img, input are not self-closing tags in html

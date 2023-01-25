@@ -15,6 +15,8 @@ export const News = () => {
                         There are many variations of passages of Lorem Ipsum available, but the majority
                     </p>
                 </div>
+                {/* Nested component News boxes differ only in src for image */}
+                {/* Component provides reusability, so NewsBox will be template */}
                 <div className="row">
                     <div className="col-md-4">
                         <NewsBox src="images/n-1.jpg" />
