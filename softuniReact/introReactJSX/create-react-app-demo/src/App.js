@@ -6,7 +6,7 @@ import { Header } from './Header';
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header text='This shows how hot module replacement works without full reload' />
       <Footer/>
     </div>
   );
