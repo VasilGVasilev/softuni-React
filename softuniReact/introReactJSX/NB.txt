@@ -78,6 +78,20 @@ Component - function that creates a React element
     to reuse for three instances in News.js 
 
 Tricks: 
+    - https://reactjs.org/docs/dom-elements.html for all HTML to REACT:
+        checked 
+        className
+        dangerouslySetInnerHTML
+        htmlFor
+        onChange
+        selected
+        style
+        suppressContentEditableWarning
+        suppressHydrationWarning
+        value 
+
+    - CTRL + shift + K deletes row without copying like CTRL + X  
+
     - holding CTRL + D selects all instances to then change,
         -> also, by doing the above you can later click end to add ' />'
 
