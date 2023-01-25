@@ -1,0 +1,18 @@
+on the class components vs function components (state in particular):
+
+    - class components do not have hooks, rather lifecycle methods:
+        render()
+        componentDidMount()
+        componentDidUpdate()
+        componentWillUnmount()
+        shouldComponentUpdate()
+        static getDerivedStateFromProps()
+        getSnapshotBeforeUpdate()
+
+    - function components depend on hooks:
+        import React, { useState } from 'react';
+
+        function Example(){
+            const [count, setCount] = useState(0);
+            return()
+        }
