@@ -1,3 +1,118 @@
-Props get passed to the component -> like function params
-State is managed within the component -> like local variables
+Component: basic idea Presentation Fundamental points
 
+    Props
+        Props get passed to the component -> like function params
+        State is managed within the component -> like local variables
+
+        Components cannot change their own props
+
+        Use children property to access information between opening and closing tags:
+
+            const BookList = () => {
+                return (
+                    <ul>
+                        <Book>
+                            <span>
+                                Some value
+                            </span>
+                        </Book>
+                    </ul>
+                )
+            }
+
+            const Book = (props) => {
+                return (
+                    <li className = 'book'>
+                        <div>{props.children}</div>
+                    </li>
+                )
+            }
+
+        
+    State Hook - using useState() will preserve this state between re-renders
+
+        useState() overwrite, this.setState merges
+        
+            useState() is different from this.setState in not merging old and new state together:
+            
+                this.setState({ selected: { id: 1, name: 'Foobar' } });  
+
+            Then if you update the state:
+
+                this.setState({ selected: { name: 'Barfoo' }});
+
+            - this.setState will merge:
+
+                { selected: { id: 1, name: 'Barfoo' } }; 
+            
+            - useState() will overwrite:
+
+                { selected: { name: 'Barfoo' } }; 
+            
+            !THE REASON -> this.setState uses object, useState() does not by default, but it can
+        
+        Handling events
+
+            Revisiting an old issue with class components:
+
+                ?Why is it necessary to bind 'this' in the following code?
+
+                    class Toggle extends React.Component {
+                        constructor(props) {
+                            super(props);
+                            this.state = {isToggleOn: true};
+
+                            // This binding is necessary to make `this` work in the callback    <--- ?????
+                            this.handleClick = this.handleClick.bind(this);  
+                        }
+
+                        handleClick() {    
+                            this.setState(prevState => ({      
+                                isToggleOn: !prevState.isToggleOn    
+                            }));  
+                        }
+                        render() {
+                            return (
+                                <button onClick={this.handleClick}>        
+                                    {this.state.isToggleOn ? 'ON' : 'OFF'}
+                                </button>
+                            );
+                        }
+                    }
+
+
+                The problem is that we do not invoke handleClick in <button onClick={this.handleClick'()'}> directly
+                When the app executes the handleClick (wihtout'()') it sort of takes a shallow template of the function
+                This shallow template refers to this, which wihtout attached context (via bind()) is practically outside
+                the context we define in contructor. Thus, this refers to global object, it has no property setState.
+
+                This is a rule in JS - class methods do not bind by default with context:
+
+                    this.x = 9; // 'this' refers to the global object (e.g. 'window') in non-strict mode
+
+                    const module = {
+                        x: 81,
+                        getX() {
+                            return this.x;
+                        }
+                    };
+
+                    console.log(module.getX()); // 81 Ex.1
+
+                    const retrieveX = module.getX;
+                    console.log(retrieveX()); // 9; Ex.2
+
+                    const boundGetX = retrieveX.bind(module);
+                    console.log(boundGetX()); // 81 Ex.3
+                
+                !!!! It is crucial where the function gets invoked:
+                    -Ex.1, we directly trigger the module to execute its methods
+                    -Ex.2, we abstract a reference/path to the shallow template of the a method of a class, but
+                    if we store it in a variable and execute it, this shallow template is shallow and it does not
+                    carry the context of its original class, all it knows it is that:
+                        -it returns this.x 
+                        -it is invoked in the global scope
+                    the resulting behaviour is that it searches for this.x value in the context of execution -> global
+                    -Ex.3, we bind a context to the shallow template of the method of a class, so that wherever this
+                    shallow template is invoked, it has a wrapper function that represents the framework of its scope,
+                    this never goes outside this wrapper to rely on the global context by taking the value of this.x = 9;
