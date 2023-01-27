@@ -92,7 +92,7 @@ Component: basic idea Presentation Fundamental points
 
                     const module = {
                         x: 81,
-                        getX() {
+                        getX() {                 //getX: function() is the same but more accessible if necessary
                             return this.x;
                         }
                     };
@@ -116,3 +116,65 @@ Component: basic idea Presentation Fundamental points
                     -Ex.3, we bind a context to the shallow template of the method of a class, so that wherever this
                     shallow template is invoked, it has a wrapper function that represents the framework of its scope,
                     this never goes outside this wrapper to rely on the global context by taking the value of this.x = 9;
+
+            Passing arguments to event handlers:
+                -arrow functrions:
+                    <button onClick={(e)=>this.deleteRow(id,e)} />
+                -using bind:
+                    <button onClick={this.deleteRow.bind(this, id)} />
+                    
+            Chat OpenAI explanation:
+
+            Arrow functions in JavaScript have a lexical this binding, which means that they inherit the this 
+            context from the surrounding scope, rather than creating a new this context or using the global 
+            this. In the case of the functional component, the arrow function is defined inside the 
+            component's function body, and therefore inherits the this context of the component. This 
+            allows the function to access any properties or methods on the component that are declared 
+            with the this keyword.
+
+            Without the arrow function, the this keyword inside the callback function would refer to the
+            global object or undefined in strict mode, and the component's method would not be accessible, 
+            resulting in an error. The use of the arrow function ensures that the this context inside 
+            the callback function is the same as the this context outside of it, thus allowing the 
+            component's method to be accessed and executed properly.
+
+            In summary:
+                this inside a callback, typically, is undefined which automatically (in non-strict mode) renders
+                the value of this to be the Global Object. Thus, we have two options:
+                - use an arrow function which has lexical binding -> here, component context
+                - use bind() to bind the context;
+                so problem of callback rendering this to be undefined -> Global Obj is solved with arrow function or bind()
+            
+            My explanation on bind:
+
+            So why using bind ->   CLASS METHODS DO NOT BIND WITH CONTEXT BY DEFAULT and in reality,
+            after return, the execution of the function is stopped and JSX elements are after the return,
+            thus, they do not carry the context and when we call on a method, the method has no context to
+            to properties unless .bind() is used
+
+                function m() {
+                    this.x = 6
+                    return x
+                }
+                x will refer to global Object not the in m() defined 6
+            
+            view return as a crucial point of ending the functional scope of m();
+            !!!!!! 'this' is just made this way, to always refer to the context and if not -> to global object;
+                    this and callbacks
+
+                    this (for normal functions) is determined when a function is called based 
+                    on how the function is called. The runtime looks at the reference used to 
+                    call the function to see what object is to be used for the value of this
+                    When you pass a function to another function as a callback, that function 
+                    isn't getting called right away. You're giving up control of the call to 
+                    that other function. But when that function gets your function, it gets 
+                    it as a single function reference, not as a combination of an object and 
+                    a function to call from that object.
+            
+            if we had a normal variable that stores a value, it would be different:
+
+                function m() {
+                    x = 6
+                    return x
+                }
+                x will 6
