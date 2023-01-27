@@ -86,7 +86,7 @@ Component: basic idea Presentation Fundamental points
                 This shallow template refers to this, which wihtout attached context (via bind()) is practically outside
                 the context we define in contructor. Thus, this refers to global object, it has no property setState.
 
-                This is a rule in JS - class methods do not bind by default with context:
+                This is a rule in JS - class methods do not bind with context by default: see end for explanation of Rule
 
                     this.x = 9; // 'this' refers to the global object (e.g. 'window') in non-strict mode
 
@@ -137,7 +137,22 @@ Component: basic idea Presentation Fundamental points
             resulting in an error. The use of the arrow function ensures that the this context inside 
             the callback function is the same as the this context outside of it, thus allowing the 
             component's method to be accessed and executed properly.
-
+            
+            NB 
+                - why lexical (bad wording) -> When you define a function and use a variable inside of it, 
+                it checks if the variable has been defined in its scope. If it is, it uses it! 
+                If not, it checks the enclosing scope for that variable definition. It keeps checking 
+                enclosing scopes until it finds the variable or reaches global scope. 
+                Now, function definitions that are not arrow functions define this for you, implicitly. 
+                Thus, they will never check an enclosing scope when you try to use this in their scope 
+                (because they find it in their own scope!). Arrow functions do NOT define their own this, 
+                so they go to the enclosing scope and look for it just as they would with any variable 
+                you try to use in their scope. 
+                
+                -the lexical approach was introduced in ECMAscript 6 so that you can have functions whose 
+                context is determined by WHERE it is defined, not how it was called -> see again initial example
+                of module.getX(), but mainly, imnagine using callbacks and refering to this
+                
             In summary:
                 this inside a callback, typically, is undefined which automatically (in non-strict mode) renders
                 the value of this to be the Global Object. Thus, we have two options:
@@ -178,3 +193,69 @@ Component: basic idea Presentation Fundamental points
                     return x
                 }
                 x will 6
+
+Why class methods are not bound to context by default?
+Because methods are bound by defualt to the instance of the class
+or manually by using bind() or arrow function.
+
+Here is an example to illustrate the reason class methods do not 
+bind with context by default:
+
+        class Example {
+            constructor(name) {
+                this.name = name;
+            }   
+            sayName() {
+                console.log(`My name is ${this.name}`);
+            }
+        }
+
+        const example1 = new Example('John');
+        const example2 = new Example('Jane');
+
+        // The sayName method is called on the example1 instance of the class
+        // and the this keyword inside the method refers to the example1 instance
+        example1.sayName(); // Output: My name is John
+        example2.sayName(); // Output: My name is Jane
+
+        // Assign the sayName method to a variable
+        const sayName = example1.sayName;
+
+        // The sayName method is no longer being called on an instance of the class
+        // and the this keyword inside the method no longer refers to the class instance
+        // In this case, the value of this will be window or undefined in strict mode
+        sayName(); // Output: My name is undefined
+
+    As you can see in the above example, when the sayName() method is called on 
+    the example1 instance of the class, the this keyword inside the method refers 
+    to the example1 instance, and it outputs the correct name. However, when the 
+    sayName method is assigned to a variable and called on its own, it is no longer 
+    being called on an instance of the class and the this keyword inside the method 
+    no longer refers to the class instance, so the output is undefined.
+
+    This illustrates that when class methods are defined using the prototype property, 
+    which is a static property of the class constructor, they do not bind with context 
+    by default. This means that when a class method is passed as a callback or assigned 
+    to a variable, the this keyword inside the method will no longer refer to the class instance.
+
+    To fix the problem, you can use the bind method to explicitly bind the class 
+    method to the class instance, like this:
+
+        const sayName = example1.sayName.bind(example1);
+        sayName(); // Output: My name is John
+
+    Or you can use an arrow function in the class methods that needs to be passed 
+    as callbacks, since arrow functions have lexical this binding and maintain the 
+    correct context even when passed as callbacks or assigned to variables, like this:
+
+        class Example {
+            constructor(name) {
+                this.name = name;
+            }
+            sayName = () => {
+                console.log(`My name is ${this.name}`);
+            }
+        }
+
+    In this way, the correct context is maintained even when passed as callbacks 
+    or assigned to variables.
