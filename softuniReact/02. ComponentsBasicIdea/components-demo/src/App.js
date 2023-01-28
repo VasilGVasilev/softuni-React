@@ -33,7 +33,7 @@ function App() {
 
                 <Timer start={1} />
 
-                <BookList books={books}/>
+                <BookList books={books} />
 
                 <img src={logo} className="App-logo" alt="logo" />
             </header>

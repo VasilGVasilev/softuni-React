@@ -1,0 +1,16 @@
+React component
+    is a function that returns a React element, only one element, 
+    it may be a wrapper element that has others inside, but still only one
+
+ident using spaces 
+    -> validate with Alt + Shift + fancy
+
+stylisation
+    each component has a specific css in a dir that relates to that component
+
+architecture 
+    not a good idea to have a middelware with components that with set in App.js
+
+
+3:12:00
+ 
