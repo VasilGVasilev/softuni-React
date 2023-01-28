@@ -26,3 +26,5 @@ export const Clicker = () => {
         </div>
     );
 }
+
+// {dangerClicks && <h1>Danger Clicks</h1>} is dangerClicks is true && makes the <h1></h1> be true too, thus, shows it
