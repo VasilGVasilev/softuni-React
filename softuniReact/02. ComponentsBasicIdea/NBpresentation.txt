@@ -75,3 +75,11 @@ React philosophy is declarative functional components
 
 
 
+React functional component is with capital letter due to convention of older class component with capital
+
+React main advantage 
+    is the optimised and effective way to manipulate elements in virtual DOM that are then very precisely 
+    transfered to the actual DOM without actually re-rendering whole DOM tree in browser
+
+Props get passed to the component -> like function params
+State is managed within the component -> like local variables
