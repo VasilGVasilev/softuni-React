@@ -91,3 +91,8 @@ Props can only be given from parent to child directly only, also props are immua
 Children is an alternative way to pass in data from parent to child
     <Header>Library</Header>
     const reactElement = <h1>{props.children}</h1>
+
+React not only visualizes, but also manages state and data:
+Rendering happens initially and when we change state -> re-render happens
+    in class -> render() and if changes -> componentDidMount and other methods
+    in functions -> return is rendered and if chnages -> hooks setState(for local to component values) (and setEffect for externals API, DB, etc)
