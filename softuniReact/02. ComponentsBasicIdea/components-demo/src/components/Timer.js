@@ -17,3 +17,6 @@ export const Timer = (props) => {
         </div>
     );
 };
+
+// initial render, setTimeout changes setTimeout, this updates the state, so re-render is triggered
+// after 1 second, setTimeout triggers state update again and re-render once more happens

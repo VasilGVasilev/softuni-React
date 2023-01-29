@@ -96,3 +96,6 @@ React not only visualizes, but also manages state and data:
 Rendering happens initially and when we change state -> re-render happens
     in class -> render() and if changes -> componentDidMount and other methods
     in functions -> return is rendered and if chnages -> hooks setState(for local to component values) (and setEffect for externals API, DB, etc)
+
+React.useState uses closure under the hood to store initial state, so [state, setState()] are in closure and the function updates the state
+1:53:00
