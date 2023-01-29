@@ -12,5 +12,10 @@ architecture
     not a good idea to have a middelware with components that with set in App.js
 
 
-3:12:00
- 
+fragments
+    <Fragment>, often used via <>...</> syntax, lets you group elements without a wrapper node
+    unlike, a <div></div> that will show on the DOM as an element
+        <>
+        <OneChild />
+        <AnotherChild />
+        </>
