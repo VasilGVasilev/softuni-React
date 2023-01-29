@@ -26,6 +26,7 @@ function App() {
                 <Header>
                     <span className='fancy-font'>Book</span> Library
                 </Header>
+                {/* you can have html <span> for example and it will be part of children */}
 
                 <Counter />
 
