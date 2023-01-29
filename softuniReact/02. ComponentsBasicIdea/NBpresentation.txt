@@ -83,3 +83,11 @@ React main advantage
 
 Props get passed to the component -> like function params
 State is managed within the component -> like local variables
+
+Props can only be given from parent to child directly only, also props are immuatble, cannot change props inside a component
+    <Header title='Library' />
+    const reactElement = <h1>{props.title}</h1>
+
+Children is an alternative way to pass in data from parent to child
+    <Header>Library</Header>
+    const reactElement = <h1>{props.children}</h1>
