@@ -16,6 +16,62 @@ fragments
     <Fragment>, often used via <>...</> syntax, lets you group elements without a wrapper node
     unlike, a <div></div> that will show on the DOM as an element
         <>
-        <OneChild />
-        <AnotherChild />
+            <OneChild />
+            <AnotherChild />
         </>
+
+React philosophy is declarative functional components
+    so in practice there is full transition to it from imperative class components (see Angular)
+
+    declarative is calling the pizza place for a pizza
+    impertative is creating your own pizza step by step
+
+    So what are the declarative functional component rules:
+
+    - Difference between pure and impure functions in JS?
+        A pure function is a function that only manipulates its input variables and does not have any side effects.
+        An impure function has side effects, like changing state or vars outside its scope, also may return different outputs
+
+            let globalCounter = 0;
+
+            function impureFunction() {
+            globalCounter++;
+            return globalCounter;
+            }
+
+            console.log(impureFunction()); // 1
+            console.log(impureFunction()); // 2
+            console.log(impureFunction()); // 3
+    
+    - higher-order functions and function composition are techniques used to make code more resuable and modular
+        these often create impure functions, tho:
+
+        .map():
+            function map(fn, array) {
+                let newArray = []
+                for (let i = 0; i < array.length; i++) {
+                    newArray.push(fn(array[i]))
+                }
+                return newArray
+            }    
+
+        currying:
+            const add = x => y => x + y;
+
+            currying uses closures under the hood:
+                when you call 'const addTwo = add(2)', JS creates a closure for the 
+                returned function 'y => x + y' that captures the value of x as 2
+
+                A closure is a function that has access to variables in its enclosing scope, 
+                even after the outer function has returned, those are stored in heap. 
+
+                In this case, the inner function y => x + y has access to the variable x 
+                which is 2, even after the outer function x => y => x + y has returned.
+
+                When you call 'addTwo(3)', it returns '2 + 3' which is '5'. 
+                The function looks up the value of 'x' in the closure, which is 2, 
+                and applies the operation 'x + y' with the argument '3' passed to 'addTwo(3)', 
+                resulting in '2 + 3 = 5'
+
+
+
