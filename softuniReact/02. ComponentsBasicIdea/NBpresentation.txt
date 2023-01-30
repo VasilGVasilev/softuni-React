@@ -180,3 +180,5 @@ Counter creates a closure, or a combination of a function adn the lexical env,
 wihtin which that function was declared, thus, here, the inner handleClick function has
 access to the outer or enclosing functional variables such as count and setCount,
 setCount is a function stored in the variable setCount, making it first-class function.
+
+GraphQL -> solves lack of typisation if Back-End and React
