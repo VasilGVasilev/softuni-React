@@ -97,5 +97,13 @@ Rendering happens initially and when we change state -> re-render happens
     in class -> render() and if changes -> componentDidMount and other methods
     in functions -> return is rendered and if chnages -> hooks setState(for local to component values) (and setEffect for externals API, DB, etc)
 
+1:52:00
+
+STATE
+
 React.useState uses closure under the hood to store initial state, so [state, setState()] are in closure and the function updates the state
-1:53:00
+    the state can be anything serialised -> let [state, setState] = useState({canBeObjectToo})
+
+Passing in number via props -> <Timer start={1} /> {here, it is JSland}
+
+If parent element changes something via props -> App changes 1 to 2 in <Timer start={1} />, the change will tigger re-rendering
