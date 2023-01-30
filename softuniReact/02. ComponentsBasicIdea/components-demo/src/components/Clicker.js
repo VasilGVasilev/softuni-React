@@ -16,6 +16,7 @@ export const Clicker = () => {
     return (
         <div>
             <div>
+                {/* expressions inside {} right, statements inside {} wrong */}
                 {dangerClicks && <h1>Danger Clicks</h1>}
                 {clicks > 10
                     ? <h2>Medium Clicks</h2>

@@ -153,3 +153,4 @@ fixed rules and configs for the whole set up of your dev env
 If, else is a statment
 Ternary operator is an expression
 see ternaryOperatorExplained
+Why do we choose ternary over if in Clicker.js -> {} inside we can write only JS expressions, not statements
