@@ -146,3 +146,6 @@ Clicker has:
         3. a => a + 1 will receive 44 as the pending state and return 45 as the next state.
 
 
+Js is a library, not a framework, it provides a few solutions for better code writing when
+making UI dynamic, or more efficient DOM manipulation, but it does not become dogmatic with
+fixed rules and configs for the whole set up of your dev env
