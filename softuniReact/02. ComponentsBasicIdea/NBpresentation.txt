@@ -149,3 +149,7 @@ Clicker has:
 Js is a library, not a framework, it provides a few solutions for better code writing when
 making UI dynamic, or more efficient DOM manipulation, but it does not become dogmatic with
 fixed rules and configs for the whole set up of your dev env
+
+If, else is a statment
+Ternary operator is an expression
+see ternaryOperatorExplained
