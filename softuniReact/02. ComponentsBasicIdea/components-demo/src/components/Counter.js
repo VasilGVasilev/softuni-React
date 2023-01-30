@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export const Counter = (props) => {
+    // useState(props.start || 0) to catch if props is undefined
     const [count, setCount] = useState(props.start || 0);
     const [direction, setDirection] = useState('None');
 

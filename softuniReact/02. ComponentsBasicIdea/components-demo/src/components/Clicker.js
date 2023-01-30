@@ -29,5 +29,7 @@ export const Clicker = () => {
         </div>
     );
 }
-
+// how is it that setClicks can be called inside clickHandler
+// setClicks is within the same scope, infact, we have a closure
+// handleClick calls on an argument defined above itself, but within the limited scope of Clicker()
 // {dangerClicks && <h1>Danger Clicks</h1>} is dangerClicks is true && makes the <h1></h1> be true too, thus, shows it

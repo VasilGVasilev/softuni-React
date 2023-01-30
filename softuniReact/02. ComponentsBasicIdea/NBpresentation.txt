@@ -156,3 +156,27 @@ see ternaryOperatorExplained
 Why do we choose ternary over if in Clicker.js -> {} inside we can write only JS expressions, not statements
 
 1:00:00
+
+catch undefined
+    // useState(props.start || 0) to catch if props is undefined
+
+How is it that handle functions can call setState function of useState within themselves without passing them as arguments
+    import { useState } from 'react';
+
+    export default function Counter() {
+        const [count, setCount] = useState(0);
+
+        function handleClick() {
+            setCount(count + 1);
+        }
+
+        return (
+            <button onClick={handleClick}>
+            You pressed me {count} times
+            </button>
+        );
+    }
+Counter creates a closure, or a combination of a function adn the lexical env,
+wihtin which that function was declared, thus, here, the inner handleClick function has
+access to the outer or enclosing functional variables such as count and setCount,
+setCount is a function stored in the variable setCount, making it first-class function.
