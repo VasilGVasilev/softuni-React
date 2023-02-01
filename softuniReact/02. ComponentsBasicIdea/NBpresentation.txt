@@ -108,42 +108,50 @@ Passing in number via props -> <Timer start={1} /> {here, it is JSland}
 
 If parent element changes something via props -> App changes 1 to 2 in <Timer start={1} />, the change will tigger re-rendering
 
-Clicker has:
-    const clickHandler = (e) => {
-        setClicks(oldClicks => oldClicks + 1);
-    }
+Special Updater Function inside setState 
+    Use: 
+        We want to update the state on each method trigger!
+    Definition: 
+        It must be pure, should take the pending state as its only argument, 
+        and should return the next state. React will put your updater function 
+        in a queue and re-render your component.
 
-    why not:
-    const clickHandler = (e) => {
-        setClicks(clicks + 1);
-    }
-
-    Because -> race conditions -> if eventHandler function clickHandler is so fast click state is still not updated
-
-    Suppose the age is 42. This handler calls setAge(age + 1) three times:
-
-        function handleClick() {
-            setAge(age + 1); // setAge(42 + 1)
-            setAge(age + 1); // setAge(42 + 1)
-            setAge(age + 1); // setAge(42 + 1)
+    Clicker has:
+        const clickHandler = (e) => {
+            setClicks(oldClicks => oldClicks + 1);
         }
-    
-    However, after one click, age will only be 43 rather than 45! 
-    This is because CALLING THE SET FUNCTION DOES NOT UPDATE the age STATE variable IN THE ALREADY RUNNING CODE.
-    To solve this problem, you may pass an UPDATER FUNCTION to setAge instead of the next state:
 
-        function handleClick() {
-            setAge(a => a + 1); // setAge(42 => 43)
-            setAge(a => a + 1); // setAge(43 => 44)
-            setAge(a => a + 1); // setAge(44 => 45)
+        why not:
+        const clickHandler = (e) => {
+            setClicks(clicks + 1);
         }
-    
-    React puts your updater functions in a queue. 
-    Then, during the next render, it will call them in the same order:
 
-        1. a => a + 1 will receive 42 as the pending state and return 43 as the next state.
-        2. a => a + 1 will receive 43 as the pending state and return 44 as the next state.
-        3. a => a + 1 will receive 44 as the pending state and return 45 as the next state.
+        Because -> race conditions -> if eventHandler function clickHandler is so fast click state is still not updated
+
+        Suppose the age is 42. This handler calls setAge(age + 1) three times:
+
+            function handleClick() {
+                setAge(age + 1); // setAge(42 + 1)
+                setAge(age + 1); // setAge(42 + 1)
+                setAge(age + 1); // setAge(42 + 1)
+            }
+        
+        However, after one click, age will only be 43 rather than 45! 
+        This is because CALLING THE SET FUNCTION DOES NOT UPDATE the age STATE variable IN THE ALREADY RUNNING CODE.
+        To solve this problem, you may pass an UPDATER FUNCTION into setAge:
+
+            function handleClick() {
+                setAge(a => a + 1); // setAge(42 => 43)
+                setAge(a => a + 1); // setAge(43 => 44)
+                setAge(a => a + 1); // setAge(44 => 45)
+            }
+        
+        React puts your updater functions in a queue. 
+        Then, during the next render, it will call them in the same order:
+
+            1. a => a + 1 will receive 42 as the pending state and return 43 as the next state.
+            2. a => a + 1 will receive 43 as the pending state and return 44 as the next state.
+            3. a => a + 1 will receive 44 as the pending state and return 45 as the next state.
 
 
 Js is a library, not a framework, it provides a few solutions for better code writing when
@@ -159,26 +167,30 @@ Why do we choose ternary over if in Clicker.js -> {} inside we can write only JS
 
 catch undefined
     // useState(props.start || 0) to catch if props is undefined
+typical toggle
+    // setHighlighted(state => !state)
 
-How is it that handle functions can call setState function of useState within themselves without passing them as arguments
-    import { useState } from 'react';
+    
+setState is a closure under the hood:
+    How is it that handle functions can call setState function of useState within themselves without passing them as arguments
+        import { useState } from 'react';
 
-    export default function Counter() {
-        const [count, setCount] = useState(0);
+        export default function Counter() {
+            const [count, setCount] = useState(0);
 
-        function handleClick() {
-            setCount(count + 1);
+            function handleClick() {
+                setCount(count + 1);
+            }
+
+            return (
+                <button onClick={handleClick}>
+                You pressed me {count} times
+                </button>
+            );
         }
-
-        return (
-            <button onClick={handleClick}>
-            You pressed me {count} times
-            </button>
-        );
-    }
-Counter creates a closure, or a combination of a function adn the lexical env,
-wihtin which that function was declared, thus, here, the inner handleClick function has
-access to the outer or enclosing functional variables such as count and setCount,
-setCount is a function stored in the variable setCount, making it first-class function.
+    Counter creates a closure, or a combination of a function adn the lexical env,
+    wihtin which that function was declared, thus, here, the inner handleClick function has
+    access to the outer or enclosing functional variables such as count and setCount,
+    setCount is a function stored in the variable setCount, making it first-class function.
 
 GraphQL -> solves lack of typisation if Back-End and React

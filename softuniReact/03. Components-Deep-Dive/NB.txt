@@ -13,6 +13,13 @@ About Keys and Lists
 
     each key is has to be unique but just in comparison to other siblings in list
 
+
+catch undefined
+    // useState(props.start || 0) to catch if props is undefined
+typical toggle
+    // setHighlighted(state => !state)
+
+
 useEffect():
     How long the component is attached to the DOM:
         in class -> lifecycle methods
