@@ -29,3 +29,36 @@ useEffect():
         component's useEffect() to be rendered within that very component
 
 2:44:50
+
+useEffect():
+    see my-demos/useEffect
+    useEffect(setup, dependencies?)
+    the hook has:
+        setup, a function that is executed
+        dependencies, an array that show which dependencies are to be executed
+            there are three cases:
+
+            - no dependency -> useEffect executes each render:
+                useEffect(()=>{
+                    console.log('render')
+                })
+
+            - empty dependency -> useEffect executes once on initial render, so to speak it mounts:
+                useEffect(()=>{
+                    console.log('render')
+                }, [])
+
+            - specific dependency -> useEffect executes at each change of state of the specified dependency:
+                useEffect(()=>{
+                    console.log('render')
+                })
+    USE CASE:
+
+        the last use case is prevalent, because, by setting an array after callback function,
+        we MOUNT useEffect() and it then 'watches' for changes of state of the listed states/dependencies
+
+    React Beta definition:
+        useEffect(setup, dependencies?)
+            - setup: The function with your Effect’s logic. When your component is first added to the DOM, React will run your setup function.
+            - dependencies: The list of all reactive values referenced inside of the setup code. Reactive values include props, state, and all 
+            the variables and functions declared directly inside your component body.If you don’t specify the dependencies at all, your Effect will re-run after every re-render of the component.

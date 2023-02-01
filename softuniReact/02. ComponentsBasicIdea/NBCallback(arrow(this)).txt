@@ -120,6 +120,7 @@ Component: basic idea Presentation Fundamental points
             Passing arguments to event handlers:
                 -arrow functrions:
                     <button onClick={(e)=>this.deleteRow(id,e)} />
+                    RULE: With JSX you pass a function as the event handler, rather than a string.
                 -using bind:
                     <button onClick={this.deleteRow.bind(this, id)} />
                     
