@@ -1,0 +1,8 @@
+About Keys and Lists
+    React vDOM is optimises the DOM very efficiently and if
+    we attach <li>s to a <ul> using a for loop, when vDOM transfer
+    info to DOM, it will lose this capability of specific update,
+    no entire re-render.
+    That is why we use keys that React uses to map elements/nodes onto
+    the vDOM and if necessary update just the specific <li> via its
+    specific key.
