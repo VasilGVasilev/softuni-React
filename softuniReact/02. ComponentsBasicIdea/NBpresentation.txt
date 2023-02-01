@@ -3,7 +3,7 @@ React component
     it may be a wrapper element that has others inside, but still only one
 
 ident using spaces 
-    -> validate with Alt + Shift + fancy
+    -> validate with Alt + Shift + f
 
 stylisation
     each component has a specific css in a dir that relates to that component
