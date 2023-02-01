@@ -27,3 +27,5 @@ useEffect():
 
     Example: when we have to render a component, we want the data that comes via this
         component's useEffect() to be rendered within that very component
+
+2:44:50
