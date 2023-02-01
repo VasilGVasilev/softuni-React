@@ -1,8 +1,12 @@
 on the class components vs function components (state in particular):
 
+    How long the component is attached to the DOM:
+        in class -> lifecycle methods
+        in function -> hooks: useEffect()
+
     - class components do not have hooks, rather lifecycle methods:
         render() <------ obligatory
-        componentDidMount()
+        componentDidMount()   
         componentDidUpdate()
         componentWillUnmount()
         shouldComponentUpdate()
@@ -16,6 +20,7 @@ on the class components vs function components (state in particular):
             const [count, setCount] = useState(0);
             return()
         }
+
 
 
 The now somewhat outdated but still official docs of React prompts the use of
