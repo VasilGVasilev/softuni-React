@@ -6,3 +6,9 @@ About Keys and Lists
     That is why we use keys that React uses to map elements/nodes onto
     the vDOM and if necessary update just the specific <li> via its
     specific key.
+
+    
+    React understands arrays, even if we did not have <li>s, React will understand 
+    the array made via .map() and render it as a list
+
+    each key is has to be unique but just in comparison to other siblings in list
