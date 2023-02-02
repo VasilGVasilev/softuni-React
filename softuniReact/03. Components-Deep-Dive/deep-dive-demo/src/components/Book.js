@@ -41,6 +41,7 @@ export const Book = (props) => {
     }
     return (
         // <li style={style} className={styles['book-item']}>
+        // possible <li style={{backgroundColor: highlighted ? 'green' : 'none'}}>
         <li style={style}>
             <article>
                 <h2>{props.title}</h2>

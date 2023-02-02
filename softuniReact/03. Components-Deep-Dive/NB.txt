@@ -62,3 +62,51 @@ useEffect():
             - setup: The function with your Effect’s logic. When your component is first added to the DOM, React will run your setup function.
             - dependencies: The list of all reactive values referenced inside of the setup code. Reactive values include props, state, and all 
             the variables and functions declared directly inside your component body.If you don’t specify the dependencies at all, your Effect will re-run after every re-render of the component.
+
+Side Notes:
+
+    Using curly braces is 'A window into JSland':
+
+        -pass in simple VARIABLE:
+
+            export default function TodoList() {
+                const name = 'Gregorio Y. Zara';
+                return (
+                    <h1>{name}'s To Do List</h1>
+                );
+            }
+
+        -pass in a FUNCTION that RETURNS:
+
+            const today = new Date();
+
+            function formatDate(date) {
+                return new Intl.DateTimeFormat(
+                    'en-US',
+                    { weekday: 'long' }
+                ).format(date);
+            }
+
+            export default function TodoList() {
+                return (
+                    <h1>To Do List for {formatDate(today)}</h1>
+                );
+            }
+
+    Using “double curlies” is for CSS and other OBJECTS in JSX:
+
+        export default function TodoList() {
+            return (
+                <ul style={{
+                    backgroundColor: 'black',
+                    color: 'pink'
+                }}>
+                    <li>Improve the videophone</li>
+                    <li>Prepare aeronautics lectures</li>
+                    <li>Work on the alcohol-fuelled engine</li>
+                </ul>
+            );
+        }
+    THUS, in deep-dive-demo/src/components/Book.js the possible <li style={{backgroundColor: highlighted ? 'green' : 'none'}}>
+    is simply an object with key backgroundColor and value ternary operator
+    it is dynamic and it has neat syntax
