@@ -10,7 +10,7 @@ export const Book = (props) => {
     const [highlighted, setHighlighted] = useState(false);
     const [deleted, setDeleted] = useState(false);
 
-
+// there is an error requesting props to be passed into the depenedency array of useEffect, but it does not stop the functionality
     useEffect(() => {
         console.log('Mounting: ' + props.title);
     }, [])
