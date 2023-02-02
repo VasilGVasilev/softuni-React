@@ -3,6 +3,7 @@
     // choose node.js
     // add configuration -> Chrome Launch
     // change url to habve valid port
+    // RUN the actual app with npm run
     // set debugger dot and run by 
     // clicking the |> icon with Launch in the upper left corner
     "version": "0.2.0",
