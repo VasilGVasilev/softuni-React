@@ -110,3 +110,7 @@ Side Notes:
     THUS, in deep-dive-demo/src/components/Book.js the possible <li style={{backgroundColor: highlighted ? 'green' : 'none'}}>
     is simply an object with key backgroundColor and value ternary operator
     it is dynamic and it has neat syntax
+
+    You can import Book.css in Book.js -> webpack know that css file is no js file, it bundles it in one big css file and 
+    Webpack manages the configuration (this happens when writing script: run build BUILD IS THE FINAL PRODUCT ASSEMBLED BY WEBPACK)
+    Problem -> css will be part of one big css file, so the css will be valid for whole app
