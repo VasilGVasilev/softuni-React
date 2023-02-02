@@ -1,0 +1,19 @@
+{
+    // click on debugger
+    // choose node.js
+    // add configuration -> Chrome Launch
+    // change url to habve valid port
+    // set debugger dot and run by 
+    // clicking the |> icon with Launch in the upper left corner
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
+        }
+
+    ]
+}
