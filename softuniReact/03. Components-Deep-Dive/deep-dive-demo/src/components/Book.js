@@ -1,24 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+// using useEffect:
+// we have a button that triggers the execution of a handling function
+// the handling function sets a new state
+// useEffect watches for changes in state -> highlighted specifically
+// an if else changes a variable in return -> object style
 
 export const Book = (props) => {
-    const [highlighted, setHighlighted] = useState(false)
+    const [highlighted, setHighlighted] = useState(false);
+    const [deleted, setDeleted] = useState(false);
+
+
+    useEffect(() => {
+        console.log('Mounting: ' + props.title);
+    }, [])
+
+    useEffect(() => {
+        console.log('Updating: ' + props.title);
+    }, [highlighted])
+
 
     const clickHandler = () => {
         setHighlighted(state => !state) //we want an update on each click, thus, updater function, no mere setting to true once -> setHighlighted(true)
+    }
+    const deleteHandler = () => {
+        setDeleted(true)
     }
 
     let style = {}
     if (highlighted){
         style.backgroundColor = 'green';
+        
+    }
+
+    if(deleted) {
+        return <h2>Deleted</h2>
     }
     return (
         // <li style={style} className={styles['book-item']}>
-        <li onClick={clickHandler} style={style}>
+        <li style={style}>
             <article>
                 <h2>{props.title}</h2>
                 <div>Year: {props.year}</div>
                 <div>Price: {props.price}$</div>
                 <footer>
+                    <button onClick={clickHandler}>Highlight</button>
+                    <button onClick={deleteHandler}>Delete</button>
+                    <span>Author: {props.author}</span>
                     {/* <button onClick={clickHandler}>Highlight</button>
                     <button onClick={deleteHandler}>Delete</button>
                     <span className={styles.author}>Author: {props.author}</span> */}
