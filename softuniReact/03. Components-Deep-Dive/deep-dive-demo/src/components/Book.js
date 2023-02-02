@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from './Book.module.css'
 
 // using useEffect:
 // we have a button that triggers the execution of a handling function
@@ -40,9 +41,9 @@ export const Book = (props) => {
         return <h2>Deleted</h2>
     }
     return (
-        // <li style={style} className={styles['book-item']}>
+        
         // possible <li style={{backgroundColor: highlighted ? 'green' : 'none'}}>
-        <li style={style}>
+        <li style={style} className={styles['book-item']}>
             <article>
                 <h2>{props.title}</h2>
                 <div>Year: {props.year}</div>
@@ -50,10 +51,7 @@ export const Book = (props) => {
                 <footer>
                     <button onClick={clickHandler}>Highlight</button>
                     <button onClick={deleteHandler}>Delete</button>
-                    <span>Author: {props.author}</span>
-                    {/* <button onClick={clickHandler}>Highlight</button>
-                    <button onClick={deleteHandler}>Delete</button>
-                    <span className={styles.author}>Author: {props.author}</span> */}
+                    <span className={styles.author}>Author: {props.author}</span>
                 </footer>
             </article>
         </li>

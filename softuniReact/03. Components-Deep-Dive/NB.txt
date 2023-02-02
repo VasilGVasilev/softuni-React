@@ -65,52 +65,57 @@ useEffect():
 
 Side Notes:
 
-    Using curly braces is 'A window into JSland':
+    Curly and double curly braces in JSX
+        Using curly braces is 'A window into JSland':
 
-        -pass in simple VARIABLE:
+            -pass in simple VARIABLE:
+
+                export default function TodoList() {
+                    const name = 'Gregorio Y. Zara';
+                    return (
+                        <h1>{name}'s To Do List</h1>
+                    );
+                }
+
+            -pass in a FUNCTION that RETURNS:
+
+                const today = new Date();
+
+                function formatDate(date) {
+                    return new Intl.DateTimeFormat(
+                        'en-US',
+                        { weekday: 'long' }
+                    ).format(date);
+                }
+
+                export default function TodoList() {
+                    return (
+                        <h1>To Do List for {formatDate(today)}</h1>
+                    );
+                }
+
+        Using “double curlies” is for CSS and other OBJECTS in JSX:
 
             export default function TodoList() {
-                const name = 'Gregorio Y. Zara';
                 return (
-                    <h1>{name}'s To Do List</h1>
+                    <ul style={{
+                        backgroundColor: 'black',
+                        color: 'pink'
+                    }}>
+                        <li>Improve the videophone</li>
+                        <li>Prepare aeronautics lectures</li>
+                        <li>Work on the alcohol-fuelled engine</li>
+                    </ul>
                 );
             }
+        THUS, in deep-dive-demo/src/components/Book.js the possible <li style={{backgroundColor: highlighted ? 'green' : 'none'}}>
+        is simply an object with key backgroundColor and value ternary operator
+        it is dynamic and it has neat syntax
 
-        -pass in a FUNCTION that RETURNS:
+    Webpack build directory
 
-            const today = new Date();
-
-            function formatDate(date) {
-                return new Intl.DateTimeFormat(
-                    'en-US',
-                    { weekday: 'long' }
-                ).format(date);
-            }
-
-            export default function TodoList() {
-                return (
-                    <h1>To Do List for {formatDate(today)}</h1>
-                );
-            }
-
-    Using “double curlies” is for CSS and other OBJECTS in JSX:
-
-        export default function TodoList() {
-            return (
-                <ul style={{
-                    backgroundColor: 'black',
-                    color: 'pink'
-                }}>
-                    <li>Improve the videophone</li>
-                    <li>Prepare aeronautics lectures</li>
-                    <li>Work on the alcohol-fuelled engine</li>
-                </ul>
-            );
-        }
-    THUS, in deep-dive-demo/src/components/Book.js the possible <li style={{backgroundColor: highlighted ? 'green' : 'none'}}>
-    is simply an object with key backgroundColor and value ternary operator
-    it is dynamic and it has neat syntax
-
-    You can import Book.css in Book.js -> webpack know that css file is no js file, it bundles it in one big css file and 
-    Webpack manages the configuration (this happens when writing script: run build BUILD IS THE FINAL PRODUCT ASSEMBLED BY WEBPACK)
-    Problem -> css will be part of one big css file, so the css will be valid for whole app
+        You can import Book.css in Book.js -> webpack know that css file is no js file, it bundles it in one big css file and 
+        Webpack manages the configuration (this happens when writing script: run build BUILD IS THE FINAL PRODUCT ASSEMBLED BY WEBPACK)
+        Problem -> css will be part of one big css file, so the css will be valid for whole ap
+        Easy solution -> make css into module Book.css => Book.module.css 
+        BUT how to import -> import as an object -> import styles from './Book.module.css'
