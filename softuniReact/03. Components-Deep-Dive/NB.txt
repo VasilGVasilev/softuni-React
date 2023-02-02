@@ -117,5 +117,8 @@ Side Notes:
         You can import Book.css in Book.js -> webpack know that css file is no js file, it bundles it in one big css file and 
         Webpack manages the configuration (this happens when writing script: run build BUILD IS THE FINAL PRODUCT ASSEMBLED BY WEBPACK)
         Problem -> css will be part of one big css file, so the css will be valid for whole ap
+
+    CSS Module
+    
         Easy solution -> make css into module Book.css => Book.module.css 
         BUT how to import -> import as an object -> import styles from './Book.module.css'
