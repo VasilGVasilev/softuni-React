@@ -33,6 +33,9 @@ export const Book = (props) => {
         
     }
 
+    // under the hood, the selected book is still there with key
+    // we are just patching a new element onto it
+    // to delete it, you have to unmount
     if(deleted) {
         return <h2>Deleted</h2>
     }
