@@ -124,3 +124,24 @@ Side Notes:
         BUT how to import -> import as an object -> import styles from './Book.module.css'
 
  1:35:40       
+
+    Optional chaining:
+        const adventurer = {
+            name: 'Alice',
+            cat: {
+                name: 'Dinah'
+            },
+            dog: {
+                name: 'Barky'
+            }
+        };
+
+        const dogName = adventurer.dog?.name;
+        console.log(dogName);
+        >> "Barky"
+
+        console.log(adventurer.someNonExistentMethod?.());
+        >> undefined
+
+        // best if undefined and awaiting fetch -> placeholder
+        console.log(adventurer.someNonExistentMethod?.() || 'Loading...')
