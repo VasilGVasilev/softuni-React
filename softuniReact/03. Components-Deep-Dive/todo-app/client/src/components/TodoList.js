@@ -12,6 +12,8 @@ export const TodoList = () => {
     }, []);
 
     const todoClickHandler = (todo) => {
+        // instead of only setting changes on component -> setTodos(oldTodos => oldTodos.map(todo => todo._id == modifiedTodo._id ? modifiedTodo : todo)); 
+        // update on DB and reflect these changes on app based on the response to this updated DB via put
         fetch(`http://localhost:3030/jsonstore/todos/${todo._id}`, {
             method: 'PUT',
             headers: {
