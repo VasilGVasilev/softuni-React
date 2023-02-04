@@ -23,6 +23,10 @@ export const TodoList = () => {
             .then(modifiedTodo => {
                 setTodos(oldTodos => oldTodos.map(todo => todo._id == modifiedTodo._id ? modifiedTodo : todo)); 
             })
+            // filter wont do because it updates the specfic todo but not all of the others
+            // .then(modifiedTodo => {
+            //     setTodos(oldTodos => oldTodos.filter(todo => todo._id == modifiedTodo._id)); 
+            // })
     };
     // put request updates one of todo objects with opposite isCompleted property
     // we use updater function to have access to old state values and .map() to update only a specific one
