@@ -121,7 +121,7 @@ Component: basic idea Presentation Fundamental points
                 -arrow functrions:
                     <button onClick={(e)=>this.deleteRow(id,e)} />
                     RULE: With JSX you pass a function as the event handler, rather than a string.
-                    why? the same reason why we pass a string in .addEventListener(click, function()) and not .addEventListener(click, function())
+                    why? the same reason why we pass a string in .addEventListener(click, function) and not .addEventListener(click, function())
                     to prevent from executing directly.
                     if we have <button onClick=deleteRow />, deleteRow will be executed immediately and will trigger render and subsequent faulty behaviour
                     see https://blog.devgenius.io/why-it-is-necessary-to-use-arrow-functions-with-react-event-handler-e0b278710310

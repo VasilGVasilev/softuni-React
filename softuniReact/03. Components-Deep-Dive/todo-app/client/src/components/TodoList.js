@@ -45,6 +45,7 @@ export const TodoList = () => {
             </thead>
             <tbody>
                 {todos.map(todo => <TodoItem key={todo._id} {...todo} onClick={todoClickHandler} />)}
+                {/* pass on Handling function to child that when clicked updates the parent */}
             </tbody>
         </table>
     );
