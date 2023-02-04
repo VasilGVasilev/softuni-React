@@ -200,3 +200,17 @@ Side Notes:
             }
 
 53:31
+
+Todo demo
+
+    How to pass in all object properties into a component to use as props, but not name them indiviaully
+
+    TodoList.js:
+
+        {todos.map(todo => <TodoItem key={todo._id} {...todo} onClick={todoClickHandler} />)}
+
+    {...todo} passes all properties of object 'todo' which are then accessed via props:
+
+    TodoItem.js:
+
+        export const TodoItem = (props) => {}

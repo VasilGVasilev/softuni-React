@@ -21,9 +21,14 @@ export const TodoList = () => {
         })
             .then(res => res.json())
             .then(modifiedTodo => {
-                setTodos(oldTodos => oldTodos.map(todo => todo._id == modifiedTodo._id ? modifiedTodo : todo));
+                setTodos(oldTodos => oldTodos.map(todo => todo._id == modifiedTodo._id ? modifiedTodo : todo)); 
             })
     };
+    // put request updates one of todo objects with opposite isCompleted property
+    // we use updater function to have access to old state values and .map() to update only a specific one
+    // we determine the specific pne by comparing the id of the modified with the id of the unmodified
+    // todos that dont match id with modified todo are just different todos so we set once again the old value
+    // the one todo that matches id with modified todo is the updated so we set the new value
 
     return (
         <table className="table">
