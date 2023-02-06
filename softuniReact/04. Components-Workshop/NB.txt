@@ -7,3 +7,8 @@ Why () after return - return():
 
 
 App.css instead of /css/styles.css to be global, it is global due to Webpack making it 
+
+Components have the advantage of being easily moved around directories -> React updates their imports automatically
+
+Dan Abramov architecture quote: “move files around until they feel right".
+
