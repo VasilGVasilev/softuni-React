@@ -1,0 +1,9 @@
+Why () after return - return():
+    In React functional components, the () after the return statement are used to wrap a 
+    block of JavaScript code that should be returned as a single value.
+    Without the parentheses, the return statement would only return the first expression 
+    that it encounters. However, by wrapping the code in parentheses, we can return 
+    multiple expressions, or even a block of code, as a single value.
+
+
+App.css instead of /css/styles.css to be global, it is global due to Webpack making it 
