@@ -12,3 +12,8 @@ Components have the advantage of being easily moved around directories -> React 
 
 Dan Abramov architecture quote: “move files around until they feel right".
 
+Ctrl + Shift + F to search word in all files in specified directory
+
+Kebab case for small letters -> user-item, user-list
+
+see papazov destrucutring instead of props to have more clarity what are the used props in the component right in the beginning
