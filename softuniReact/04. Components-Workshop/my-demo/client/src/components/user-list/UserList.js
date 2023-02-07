@@ -62,7 +62,12 @@ export const UserList = ({users}) => {
                 </thead>
                 <tbody>
                     {/* remember KEY, also it is ...user because we are mapping */}
-                    {users.map(user => <UserItem key={user._id} {...user}/>)}
+                    {users.map(user => 
+                    // key is always on the top element inside {} of user => {}
+                        <tr key={user._id}>
+                            <UserItem  {...user}/>
+                        </tr>
+                    )}
 
                 </tbody>
             </table>

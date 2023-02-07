@@ -17,3 +17,7 @@ Ctrl + Shift + F to search word in all files in specified directory
 Kebab case for small letters -> user-item, user-list
 
 see papazov destrucutring instead of props to have more clarity what are the used props in the component right in the beginning
+
+2:29:09
+<Fragment></Fragment> - does not show up on official HTML, but does play the role of wrapping element in a component's return see UserItem.js
+    in new versions of React <></> is a fragment without importing it excplicitly

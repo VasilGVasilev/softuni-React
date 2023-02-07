@@ -1,3 +1,4 @@
+// import { Fragment } from "react"
 export const UserItem = ({
     firstName,
     lastName,
@@ -8,7 +9,8 @@ export const UserItem = ({
 }) => {
     const blankProfileUrl = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'
     return (
-        <tr>
+        // <Fragment> or <>
+        <>
             <td> 
                 {/* cool if else */}
                 <img src={imageUrl || blankProfileUrl}
@@ -48,6 +50,7 @@ export const UserItem = ({
                     </svg>
                 </button>
             </td>
-        </tr>
+        </>
+        // </Fragment> or </>
     )
 }

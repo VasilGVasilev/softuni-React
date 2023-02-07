@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 const baseUrl = 'http://localhost:3005/api';
 
 function App() {
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState([]); // empty list so that .map() in UserList does not error
     useEffect(()=>{
         fetch(`${baseUrl}/users`)
             .then(res=>res.json())
