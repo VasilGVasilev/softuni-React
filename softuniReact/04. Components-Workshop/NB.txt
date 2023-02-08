@@ -21,3 +21,15 @@ see papazov destrucutring instead of props to have more clarity what are the use
 2:29:09
 <Fragment></Fragment> - does not show up on official HTML, but does play the role of wrapping element in a component's return see UserItem.js
     in new versions of React <></> is a fragment without importing it excplicitly
+
+userServices.getAll() Why resolve it with then? - async function's return is alwaus wrapped in a promise:
+
+    Even though you returned a number, the value is automatically wrapped in a promise, so we call
+    `then` on it to access the returned value.
+    
+        async function increment(num) {
+            return num + 1;
+        }
+        increment(3).then(num => console.log(num));
+        >> 4
+

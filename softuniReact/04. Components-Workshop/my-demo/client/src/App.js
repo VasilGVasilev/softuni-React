@@ -1,18 +1,20 @@
-import './App.css'
+import { useState, useEffect } from 'react';
+
+import * as userService from './service/userService'
+
 import { Header } from "./components/common/Header";
 import { Footer } from './components/common/Footer';
 import { Search } from './components/search/Search';
 import { UserList } from './components/user-list/UserList';
-import { useState, useEffect } from 'react';
+import './App.css'
 
-const baseUrl = 'http://localhost:3005/api';
+
 
 function App() {
     const [users, setUsers] = useState([]); // empty list so that .map() in UserList does not error
     useEffect(()=>{
-        fetch(`${baseUrl}/users`)
-            .then(res=>res.json())
-            .then(data => setUsers(data.users))
+        userService.getAll()
+            .then(users => setUsers(users)) //the getAll() is async function -> wrapped in promise => resolve with then here
     },[])
 
     return (
