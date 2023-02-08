@@ -26,10 +26,14 @@ userServices.getAll() Why resolve it with then? - async function's return is alw
 
     Even though you returned a number, the value is automatically wrapped in a promise, so we call
     `then` on it to access the returned value.
-    
+
         async function increment(num) {
             return num + 1;
         }
         increment(3).then(num => console.log(num));
         >> 4
 
+Parent Child communcation:
+    parent communicates with child by passing on argument (even functions) via props
+    child communicates with parent by passing in argument in a callback function (passed in initially from parent to child via props)
+    but that callback function is wrapped in an arrow function, thus, enabling passing of arguments stored in child closre up the stream to parent

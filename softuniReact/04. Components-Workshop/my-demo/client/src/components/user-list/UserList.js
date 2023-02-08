@@ -1,9 +1,24 @@
+import { useState } from "react"
+
+import * as userService from '../../service/userService'
+
+import { UserDetails } from "./user-details/UserDetails"
 import { UserItem } from "./user-item/UserItem"
 
 export const UserList = ({users}) => {
+
+    const [selectedUser, setSelectedUser] = useState(null) //for later logic wiith showing UserDetails
+
+    const detailsClickHandler = (userId) => {
+        userService.getOne(userId)
+            .then(user => setSelectedUser(user)) //This is not race condition! IT IS RESOLVING PROMISE
+    }
+
     return (
         <div className="table-wrapper">
 {/* overlapping components */}
+
+            {selectedUser && <UserDetails user={selectedUser} />}
 
             <table className="table">
                 <thead>
@@ -65,7 +80,7 @@ export const UserList = ({users}) => {
                     {users.map(user => 
                     // key is always on the top element inside {} of user => {}
                         <tr key={user._id}>
-                            <UserItem  {...user}/>
+                            <UserItem  user={user} onDetailsClick={detailsClickHandler}/>
                         </tr>
                     )}
 
