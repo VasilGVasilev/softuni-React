@@ -41,3 +41,8 @@ Parent Child communcation:
 On props basic -> what you pass in as name in nameOfFunc={someFunction}, you extract via destructuring in the child component ({nameOfFunc}):
     {selectedUser && <UserDetails user={selectedUser} >>>>onClose<<<<={closeClickHandler}/>}
     export const UserDetails = ({user, >>>>onClose<<<<}) => {
+
+
+BEST PRACTICE with several close enough states:
+    const [userAction, setUserAction] = useState({user: null, action: null})
+

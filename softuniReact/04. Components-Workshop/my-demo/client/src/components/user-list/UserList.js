@@ -5,24 +5,45 @@ import * as userService from '../../service/userService'
 import { UserDetails } from "./user-details/UserDetails"
 import { UserItem } from "./user-item/UserItem"
 
+const UserActions = {
+    Details: 'details',
+    Edit: 'edit',
+    Delete: 'delete'
+}
+
 export const UserList = ({users}) => {
 
-    const [selectedUser, setSelectedUser] = useState(null) //for later logic wiith showing UserDetails
+    // // state if user is selected
+    // const [selectedUser, setSelectedUser] = useState(null) //for later logic wiith showing UserDetails
+    // // state which action on user is selected
+    // const [userAction, setUserAction] = useState(null);
+    // BEST PRACTICE: do it in one object since logic is close
+
+    const [userAction, setUserAction] = useState({user: null, action: null})
 
     const detailsClickHandler = (userId) => {
         userService.getOne(userId)
-            .then(user => setSelectedUser(user)) //This is not race condition! IT IS RESOLVING PROMISE
+            .then(user => {
+                setUserAction({
+                    user, action: UserActions.Details
+                });
+            }) //This is not race condition! IT IS RESOLVING PROMISE
     }
 
     const closeClickHandler = () => {
-        setSelectedUser(null)
+        setUserAction({user: null})
     }
 
     return (
         <div className="table-wrapper">
 {/* overlapping components */}
 
-            {selectedUser && <UserDetails user={selectedUser} onClose={closeClickHandler}/>}
+            {userAction.action === UserActions.Details && 
+                <UserDetails 
+                    user={userAction.user} 
+                    onClose={closeClickHandler}
+                />
+            }
 
             <table className="table">
                 <thead>
