@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import * as userService from '../../service/userService'
 
@@ -8,9 +8,10 @@ import { UserDetails } from "./user-details/UserDetails"
 import { UserEdit } from "./user-edit/UserEdit"
 import { UserItem } from "./user-item/UserItem"
 import { UserDelete } from "./user-delete/UserDelete"
+import { UserCreate } from "./user-create/UserCreate"
 
 
-export const UserList = ({users}) => {
+export const UserList = () => {
 
     // // state if user is selected
     // const [selectedUser, setSelectedUser] = useState(null) //for later logic wiith showing UserDetails
@@ -19,6 +20,12 @@ export const UserList = ({users}) => {
     // BEST PRACTICE: do it in one object since logic is similar, several states scenario -> React sometimes batches them
 
     const [userAction, setUserAction] = useState({user: null, action: null})
+
+    const [users, setUsers] = useState([]); // empty list so that .map() in UserList does not error
+    useEffect(()=>{
+        userService.getAll()
+            .then(users => setUsers(users)) //the getAll() is async function -> wrapped in promise => resolve with then here
+    },[])
 
     const userActionClickHandler = (userId, actionType) => { //comes by deafult in the specific child component, better with .bind(), tho
         userService.getOne(userId)
@@ -31,6 +38,38 @@ export const UserList = ({users}) => {
 
     const closeClickHandler = () => {
         setUserAction({user: null, action: null})
+    }
+
+    const UserCreateHandler = (e) => {
+        e.preventDefault() // onSubmit in form will trigger reload, in SPA we dont want page reload, so it is a rare instance in React that we manipualte the DOM, directly
+
+        // store from form into variables
+        const formData = new FormData(e.target)
+        const {
+            firstName,
+            lastName,
+            email,
+            imageUrl,
+            phoneNumber,
+            ...address
+        } = Object.fromEntries(formData);
+
+        // create a new Object that adheres to server's validation rules that syncs with DB
+        const userData = {
+            firstName,
+            lastName,
+            email,
+            imageUrl,
+            phoneNumber,
+            address,
+        };
+
+        // execute service with this new Object
+        userService.create(userData)
+            .then(user => {
+                setUsers(oldUsers => [...oldUsers, user]); //state should always be modified to a new reference, thus, the array [], -...oldUsers- save them BUT, also -,user- add new one
+                closeClickHandler();
+            });
     }
 
     return (
@@ -57,6 +96,13 @@ export const UserList = ({users}) => {
                     <UserDelete 
                         user={userAction.user} 
                         onClose={closeClickHandler}
+                    />
+                }
+                
+                {userAction.action === UserActions.Add && 
+                    <UserCreate
+                        onClose={closeClickHandler}
+                        onUserCreate={UserCreateHandler}
                     />
                 }
 
@@ -128,7 +174,7 @@ export const UserList = ({users}) => {
                 </table>
             </div>
             
-            <button className="btn-add btn">Add new user</button>
+            <button className="btn-add btn" onClick={() => userActionClickHandler(null, UserActions.Add)}>Add new user</button>
         </>
     )
 }

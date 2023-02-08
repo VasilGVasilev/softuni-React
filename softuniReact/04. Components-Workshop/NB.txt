@@ -43,6 +43,11 @@ On props basic -> what you pass in as name in nameOfFunc={someFunction}, you ext
     export const UserDetails = ({user, >>>>onClose<<<<}) => {
 
 
-BEST PRACTICE with several close enough states:
-    const [userAction, setUserAction] = useState({user: null, action: null})
+BEST PRACTICE 
+    with several close enough states:
+        const [userAction, setUserAction] = useState({user: null, action: null})
+    state should always be modified to a new reference, thus, the array []:
+        setUsers(oldUsers => [...oldUsers, user]); 
 
+Adding editable value to input in React is done with a defaultValue:
+    <input id="phoneNumber" name="phoneNumber" type="text" defaultValue={user.phoneNumber}/>
