@@ -2,14 +2,12 @@ import { useState } from "react"
 
 import * as userService from '../../service/userService'
 
+import { UserActions } from "./UserListConstants"
+
 import { UserDetails } from "./user-details/UserDetails"
+import { UserEdit } from "./user-edit/UserEdit"
 import { UserItem } from "./user-item/UserItem"
 
-const UserActions = {
-    Details: 'details',
-    Edit: 'edit',
-    Delete: 'delete'
-}
 
 export const UserList = ({users}) => {
 
@@ -21,17 +19,17 @@ export const UserList = ({users}) => {
 
     const [userAction, setUserAction] = useState({user: null, action: null})
 
-    const detailsClickHandler = (userId) => {
+    const userActionClickHandler = (userId, actionType) => { //comes by deafult in the specific child component, better with .bind(), tho
         userService.getOne(userId)
             .then(user => {
                 setUserAction({
-                    user, action: UserActions.Details
+                    user, action: actionType
                 });
             }) //This is not race condition! IT IS RESOLVING PROMISE
     }
 
     const closeClickHandler = () => {
-        setUserAction({user: null})
+        setUserAction({user: null, action: null})
     }
 
     return (
@@ -40,6 +38,20 @@ export const UserList = ({users}) => {
 
             {userAction.action === UserActions.Details && 
                 <UserDetails 
+                    user={userAction.user} 
+                    onClose={closeClickHandler}
+                />
+            }
+            
+            {userAction.action === UserActions.Edit && 
+                <UserEdit 
+                    user={userAction.user} 
+                    onClose={closeClickHandler}
+                />
+            }
+
+            {userAction.action === UserActions.Edit && 
+                <UserDelete 
                     user={userAction.user} 
                     onClose={closeClickHandler}
                 />
@@ -105,7 +117,7 @@ export const UserList = ({users}) => {
                     {users.map(user => 
                     // key is always on the top element inside {} of user => {}
                         <tr key={user._id}>
-                            <UserItem  user={user} onDetailsClick={detailsClickHandler}/>
+                            <UserItem  user={user} onActionClick={userActionClickHandler}/>
                         </tr>
                     )}
 
