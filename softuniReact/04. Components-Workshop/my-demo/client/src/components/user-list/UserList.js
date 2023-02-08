@@ -7,6 +7,7 @@ import { UserActions } from "./UserListConstants"
 import { UserDetails } from "./user-details/UserDetails"
 import { UserEdit } from "./user-edit/UserEdit"
 import { UserItem } from "./user-item/UserItem"
+import { UserDelete } from "./user-delete/UserDelete"
 
 
 export const UserList = ({users}) => {
@@ -15,7 +16,7 @@ export const UserList = ({users}) => {
     // const [selectedUser, setSelectedUser] = useState(null) //for later logic wiith showing UserDetails
     // // state which action on user is selected
     // const [userAction, setUserAction] = useState(null);
-    // BEST PRACTICE: do it in one object since logic is close
+    // BEST PRACTICE: do it in one object since logic is similar, several states scenario -> React sometimes batches them
 
     const [userAction, setUserAction] = useState({user: null, action: null})
 
@@ -50,7 +51,7 @@ export const UserList = ({users}) => {
                 />
             }
 
-            {userAction.action === UserActions.Edit && 
+            {userAction.action === UserActions.Delete && 
                 <UserDelete 
                     user={userAction.user} 
                     onClose={closeClickHandler}
