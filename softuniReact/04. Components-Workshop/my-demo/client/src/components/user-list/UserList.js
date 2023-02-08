@@ -14,11 +14,15 @@ export const UserList = ({users}) => {
             .then(user => setSelectedUser(user)) //This is not race condition! IT IS RESOLVING PROMISE
     }
 
+    const closeClickHandler = () => {
+        setSelectedUser(null)
+    }
+
     return (
         <div className="table-wrapper">
 {/* overlapping components */}
 
-            {selectedUser && <UserDetails user={selectedUser} />}
+            {selectedUser && <UserDetails user={selectedUser} onClose={closeClickHandler}/>}
 
             <table className="table">
                 <thead>

@@ -37,3 +37,7 @@ Parent Child communcation:
     parent communicates with child by passing on argument (even functions) via props
     child communicates with parent by passing in argument in a callback function (passed in initially from parent to child via props)
     but that callback function is wrapped in an arrow function, thus, enabling passing of arguments stored in child closre up the stream to parent
+
+On props basic -> what you pass in as name in nameOfFunc={someFunction}, you extract via destructuring in the child component ({nameOfFunc}):
+    {selectedUser && <UserDetails user={selectedUser} >>>>onClose<<<<={closeClickHandler}/>}
+    export const UserDetails = ({user, >>>>onClose<<<<}) => {
