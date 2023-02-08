@@ -71,6 +71,37 @@ export const UserList = () => {
                 closeClickHandler();
             });
     }
+    const UserEditHandler = (e) => {
+        e.preventDefault() // onSubmit in form will trigger reload, in SPA we dont want page reload, so it is a rare instance in React that we manipualte the DOM, directly
+
+        // store from form into variables
+        const formData = new FormData(e.target)
+        const {
+            firstName,
+            lastName,
+            email,
+            imageUrl,
+            phoneNumber,
+            ...address
+        } = Object.fromEntries(formData);
+
+        // create a new Object that adheres to server's validation rules that syncs with DB
+        const userData = {
+            firstName,
+            lastName,
+            email,
+            imageUrl,
+            phoneNumber,
+            address,
+        };
+
+        // execute service with this new Object
+        userService.edit(userAction.user._id, userData)
+            .then(user => {
+                setUsers(oldUsers => [...oldUsers, user]); //state should always be modified to a new reference, thus, the array [], -...oldUsers- save them BUT, also -,user- add new one
+                closeClickHandler();
+            });
+    }
 
     return (
         <>
@@ -89,6 +120,7 @@ export const UserList = () => {
                     <UserEdit 
                         user={userAction.user} 
                         onClose={closeClickHandler}
+                        onUserEdit={UserEditHandler}
                     />
                 }
 
