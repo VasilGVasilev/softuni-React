@@ -1,0 +1,94 @@
+There are two types of forms - uncontrolled and controlled:
+
+    Uncontrolled 
+        (DOM controlls state)
+        uncontrolled forms are the standard HTML forms that React does not controlled
+        What does React not control tho?
+        The state:
+                    uncontrolled forms have a state (CONTROLLED BY browser DOM TREE), because when you write info into input field
+                    this info is stored somewhere(in this DOM form element) which you can access
+                    via const formData = new FormData(e.target) -> BUT this is not React handling, it is DOM manipulation via Event
+                    with other words, state is the current value stored in the DOM inputElement Object
+
+                    function App() {
+                        const submitHandler = (e) => {
+                            e.preventDefault();
+                            
+                            const formData = new FormData(e.currentTarget);
+                            const username = formData.get('username')
+                        }
+                        return (
+                            <div className="App">
+                                <header className="App-header">
+                                    <form onSubmit={submitHandler}>
+                                        <div>
+                                            <label htmlFor="username">Username:</label>
+                                            <input id="username" type="text" name="username" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="password">Password:</label>
+                                            <input id="password" type="password" name="password" />
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="Login" />
+                                        </div>
+                                    </form>
+                                </header>
+                            </div>
+                        );
+                    }
+        
+    Controlled
+        (React controlls state)
+            Basically, 
+                React attaches a mechanism that keeps track of changes in the browser DOm (change event watching every keystroke)
+                creates its own state in its component 
+                uses special value tag to signify that the changes in the input field are controlled by React
+                uses onChange tag to update state 
+                NB -> if you only use value tag and do not update the state with onChange, there will be no re-render for the user and input field will appear locked with the initially set value
+
+                    function App() {
+                        const [username, setUsername] = useState('');
+                        
+                        const submitHandler = (e) => {
+                            e.preventDefault();
+                            
+                        }
+                        const usernameChangeHandler = (e) => {
+                            setUsername(e.target.value) // each change in browser DOM is reflected by updating the React state, so that we have a state of the browser DOM form on our own virtual DOM 
+                        }
+                        return (
+                            <div className="App">
+                                <header className="App-header">
+                                    <form onSubmit={submitHandler}>
+                                        <div>
+                                            <label htmlFor="username">Username:</label>
+                                            <input 
+                                                id="username"
+                                                type="text" 
+                                                name="username"
+                                                value={username} //value shift the controll over the form to React
+                                                onChange={usernameChangeHandler} //onChange watches for each keystroke change in borwser DOM
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="password">Password:</label>
+                                            <input id="password" type="password" name="password" />
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="Login" />
+                                        </div>
+                                    </form>
+                                </header>
+                            </div>
+                        );
+                    }
+
+
+
+
+
+Side notes:
+    two types of submit buttons:
+        <input type="submit" value="Login" /> -
+        <button type="submit">Login</button> - in form by default type is submit, outside form by default type is button
