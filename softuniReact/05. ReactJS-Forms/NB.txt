@@ -45,6 +45,7 @@ There are two types of forms - uncontrolled and controlled:
                 creates its own state in its component 
                 uses special value tag to signify that the changes in the input field are controlled by React
                 uses onChange tag to update state 
+                chnage of state triggers re-rendering, so updated state is visualised to user
                 NB -> if you only use value tag and do not update the state with onChange, there will be no re-render for the user and input field will appear locked with the initially set value
 
                     function App() {
@@ -92,3 +93,6 @@ Side notes:
     two types of submit buttons:
         <input type="submit" value="Login" /> -
         <button type="submit">Login</button> - in form by default type is submit, outside form by default type is button
+
+
+3:10:35
