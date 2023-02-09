@@ -43,10 +43,10 @@ There are two types of forms - uncontrolled and controlled:
             Basically, 
                 React attaches a mechanism that keeps track of changes in the browser DOm (change event watching every keystroke)
                 creates its own state in its component 
-                uses special value tag to signify that the changes in the input field are controlled by React
-                uses onChange tag to update state 
+                uses special value prop to signify that the changes in the input field are controlled by React
+                uses onChange prop to update state 
                 chnage of state triggers re-rendering, so updated state is visualised to user
-                NB -> if you only use value tag and do not update the state with onChange, there will be no re-render for the user and input field will appear locked with the initially set value
+                NB -> if you only use value prop and do not update the state with onChange, there will be no re-render for the user and input field will appear locked with the initially set value
 
                     function App() {
                         const [username, setUsername] = useState('');
@@ -86,8 +86,33 @@ There are two types of forms - uncontrolled and controlled:
                     }
 
 
+Updating state based on the previous state:
+    If you are using forms, you will want to update current state, based on previous
+    since YOU WANT TO REDNER ONLY CHANGES THAT HAVE OCCURRED, NOT THE WHOLE FORM ONCE AGAIN:
+        const changeHandler = (e) => {
+            setValues(state => ({
+                ...state,
+                [e.target.name]: e.target.type == 'checkbox' ? e.target.checked : e.target.value
+            }));
+        };
 
+    so you use updater function -> to take old state and apply changes if they have occurred,
+    here, the state before => siginfies the old state and after the =>:
+        ...state signifies the unchanged state
+        the key:value propert signifies how to change each if change has occurred
 
+            setValues(state => ({
+                ...state,
+                [e.target.name]: e.target.type == 'checkbox' ? e.target.checked : e.target.value
+            })); 
+        
+        more on [e.target.name]: e.target.type == 'checkbox' ? e.target.checked : e.target.value
+        e.target.name is the identifier for the specific element
+        we put it in [] so that we access the actual property values of the element (to be able to update it)
+        we add : after [] -> []: to manipulate the specific values of the very element we targeted with [e.target.name]
+        summary: use one property name to identify element and then put it in [] to access the element's other properties
+                 take the value of e.target.name and use it as a property name (by putting it in []) like [username]: e.target.value
+                 we use the changed by user state via event to identify specific propety name whose props have to change
 
 Side notes:
     two types of submit buttons:
@@ -98,7 +123,7 @@ Side notes:
 3:10:35
 
     Checkbox
-    by default checked tag on input type="checkbox" button will:
+    by default checked prop on input type="checkbox" button will:
         if checked by user return tac = 'on' in state
         if unchecked by yser return '' in state (empty field)
             <div>
@@ -108,7 +133,7 @@ Side notes:
 
 
     Radio
-    on input type="radio" button we need to preselect one radio VIA state and checked tag that reflects on that state:
+    on input type="radio" button we need to preselect one radio VIA state and checked prop that reflects on that state:
             <div>
                 <label htmlFor="individual-user-type">Individual:</label>
                 <input type="radio" name="userType" value="individual" id="individual-user-type" onChange={changeHandler} checked={values.userType == 'individual'} />
@@ -116,9 +141,9 @@ Side notes:
                 <input type="radio" name="userType" value="corporate" id="corporate-user-type" onChange={changeHandler} checked={values.userType == 'corporate'}/>
             </div>
         NB -> each radio has a value that is set in the component element itself (value='individual') 
-              onChange tag sets new state coming from e.target.value
-              checked tag sets the check on the DOM element by comparing with state
-              With Radio The Value That Is In State Comes From The Value Hardcoded In Value Tag
+              onChange prop sets new state coming from e.target.value
+              checked prop sets the check on the DOM element by comparing with state
+              With Radio The Value That Is In State Comes From The Value Hardcoded In Value prop
               BECAUSE we want to differenatiate what to show depending on individual or corporate EGN or EIK
 
     Select/Option
