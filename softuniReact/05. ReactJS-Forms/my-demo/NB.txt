@@ -1,2 +1,28 @@
 CTRL + G -> search by code line
 Be careful for server validation ! you need to pass in valid data
+
+SPA validation:
+    - (1) add synthetic event handler example onBlur
+    - (2) set new state in this event handler if/else logic applied
+    - (3) render via && -> if the above state is updated, there will be a property of state errors errors.firstName and if errors.firstName && render validation warning
+
+        (1)
+            <div className="input-wrapper">
+                <span><i className="fa-solid fa-user"></i></span>
+                <input id="firstName" name="firstName" type="text" value={values.firstName} onChange={changeHandler} onBlur={(e) => minLength(e, 3)} />
+            </div>
+
+        (2)
+            const minLength = (e, bound) => {
+                setErrors(state => ({
+                    ...state,
+                    [e.target.name]: values[e.target.name].length < bound,
+                }));
+            }
+
+        (3)
+            {errors.firstName &&
+                <p className="form-error">
+                    First name should be at least 3 characters long!
+                </p>
+            }
