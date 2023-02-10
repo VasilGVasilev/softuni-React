@@ -1,5 +1,45 @@
+import { useState } from "react";
+
+// state is lowered into the actual component;
+// we use values and onChange to have controlled state and then submit data via callback 
+// directly in component that uses the callback functionality to upstream it to its parent 
+// where the actual userService is performed
+
 export const UserCreate = ({ onClose, onUserCreate }) => {
+    const [values, setValues] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        imageUrl: '',
+        country: '',
+        city: '',
+        street: '',
+        streetNumber: '',
+    });
+
+    const changeHandler = (e) => {
+        setValues(state => ({
+            ...state,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        // first store the nested in future address info in seprate variabales and rest in userData variable, namely, the object
+        // second attach a property address to userData and set values, the above stored in separate variables
+
+        const { country, city, street, streetNumber, ...userData } = values; //we pass in an object values, it could be const userData = values, but we cannot make the nested address that way
+        // country, city, street and street number are each in a same named variable
+        // userData is an object with the rest of values
+        userData.address = { country, city, street, streetNumber };
+        console.log(userData)
+        onUserCreate(userData);
+    };
+
     return (
+
         <div className="overlay">
             <div className="backdrop" onClick={onClose}></div>
             <div className="modal">
@@ -15,13 +55,13 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                             </svg>
                         </button>
                     </header>
-                    <form onSubmit={onUserCreate}>
+                    <form onSubmit={submitHandler}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" />
+                                    <input id="firstName" name="firstName" type="text" value={values.firstName} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">
                                     First name should be at least 3 characters long!
@@ -31,7 +71,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                                 <label htmlFor="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" />
+                                    <input id="lastName" name="lastName" type="text" value={values.lastName} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">
                                     Last name should be at least 3 characters long!
@@ -44,7 +84,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" />
+                                    <input id="email" name="email" type="text" value={values.email} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">Email is not valid!</p>
                             </div>
@@ -52,7 +92,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" />
+                                    <input id="phoneNumber" name="phoneNumber" type="text" value={values.phoneNumber} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">Phone number is not valid!</p>
                             </div>
@@ -62,7 +102,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" />
+                                <input id="imageUrl" name="imageUrl" type="text" value={values.imageUrl} onChange={changeHandler} />
                             </div>
                             <p className="form-error">ImageUrl is not valid!</p>
                         </div>
@@ -72,7 +112,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                                 <label htmlFor="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" />
+                                    <input id="country" name="country" type="text" value={values.country} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">
                                     Country should be at least 2 characters long!
@@ -82,7 +122,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" />
+                                    <input id="city" name="city" type="text" value={values.city} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">
                                     City should be at least 3 characters long!
@@ -95,7 +135,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" />
+                                    <input id="street" name="street" type="text" value={values.street} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">
                                     Street should be at least 3 characters long!
@@ -105,7 +145,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" />
+                                    <input id="streetNumber" name="streetNumber" type="text" value={values.streetNumber} onChange={changeHandler} />
                                 </div>
                                 <p className="form-error">
                                     Street number should be a positive number!

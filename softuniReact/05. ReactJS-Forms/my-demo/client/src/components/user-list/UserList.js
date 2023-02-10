@@ -40,30 +40,7 @@ export const UserList = () => {
         setUserAction({user: null, action: null})
     }
 
-    const UserCreateHandler = (e) => {
-        e.preventDefault() // onSubmit in form will trigger reload, in SPA we dont want page reload, so it is a rare instance in React that we manipualte the DOM, directly
-
-        // store from form into variables
-        const formData = new FormData(e.target)
-        const {
-            firstName,
-            lastName,
-            email,
-            imageUrl,
-            phoneNumber,
-            ...address
-        } = Object.fromEntries(formData);
-
-        // create a new Object that adheres to server's validation rules that syncs with DB
-        const userData = {
-            firstName,
-            lastName,
-            email,
-            imageUrl,
-            phoneNumber,
-            address,
-        };
-
+    const UserCreateHandler = (userData) => {
         // execute service with this new Object
         userService.create(userData)
             .then(user => {
