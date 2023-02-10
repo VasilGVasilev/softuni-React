@@ -19,7 +19,7 @@ function App() {
         if (values.username && values.age) {
             infoRef.current.value = `${values.username} - ${values.age}`;
         }
-    }, [values.username, values.age]);
+    }, [values.username, values.age]); //we need to keep track of changes of state -> username and age are dependencies
 
     const changeHandler = (e) => {
         setValues(state => ({
@@ -100,6 +100,7 @@ function App() {
                         {/* <button type="submit">Login</button> */}
                     </div>
 
+            {/* Uncontrolled element so no value/onChange, but with useRef we can still controll it */}
                     <div>
                         <label htmlFor="uncontrolled-input">Uncontrolled Input</label>
                         <input type="text" name="uncontrolled" id="uncontrolled-input" ref={infoRef} />

@@ -169,6 +169,28 @@ Why use controlled over uncontrolled form?
         Ex. 
         -> only by checking terms and conditions will allow you to click on register button
         -> if corporate selected -> input EIK; if individual selected -> input EGN
+
+useRef() hook - enables controlling a browser DOM element via reference, BUT this is bad practice -> Good practice is you manipulate virtual DOM and React manipulates browser DOM:
+ 
+        const infoRef = useRef(); // 1) store in value in component
+
+        useEffect(() => { // 3) use useEffect() to keep track of changes to desired states
+            if (values.username && values.age) {
+                infoRef.current.value = `${values.username} - ${values.age}`;
+            }
+        }, [values.username, values.age]);
+
+        return(
+            <div>
+                <label htmlFor="uncontrolled-input">Uncontrolled Input</label>
+                <input type="text" name="uncontrolled" id="uncontrolled-input" ref={infoRef} /> // 2) attach to element
+            </div>
+        )
+    Use case: 
+        import a video player and make useRef to attach to browser DOM click automatically 1.25 speed of video
+
+
+
 Side notes:
     two types of submit buttons:
         <input type="submit" value="Login" /> -
@@ -210,5 +232,9 @@ Side notes:
                     <option value="f">Female</option>
                 </select>
             </div>
+    pass an array to select multiple values:
+        <select multiple={true} value={['A', 'B', 'C']}
 
 2:26:00
+
+    useCallback() - deals with re-rendering of methods' definitions
