@@ -10,8 +10,8 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
         firstName: '',
         lastName: '',
         email: '',
-        phoneNumber: '',
         imageUrl: '',
+        phoneNumber: '',
         country: '',
         city: '',
         street: '',
@@ -34,7 +34,6 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
         // country, city, street and street number are each in a same named variable
         // userData is an object with the rest of values
         userData.address = { country, city, street, streetNumber };
-        console.log(userData)
         onUserCreate(userData);
     };
 

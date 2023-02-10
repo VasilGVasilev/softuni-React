@@ -36,6 +36,12 @@ export const UserList = () => {
             }) //This is not race condition! IT IS RESOLVING PROMISE
     }
 
+    const createUserOpenHandler = () => {
+        setUserAction({
+            action: UserActions.Add
+        });
+    }
+
     const closeClickHandler = () => {
         setUserAction({user: null, action: null})
     }
@@ -46,6 +52,9 @@ export const UserList = () => {
             .then(user => {
                 setUsers(oldUsers => [...oldUsers, user]); //state should always be modified to a new reference, thus, the array [], -...oldUsers- save them BUT, also -,user- add new one
                 closeClickHandler();
+            })
+            .catch(err => {
+                console.log(err);
             });
     }
     const UserEditHandler = (e) => {
@@ -183,7 +192,7 @@ export const UserList = () => {
                 </table>
             </div>
             
-            <button className="btn-add btn" onClick={() => userActionClickHandler(null, UserActions.Add)}>Add new user</button>
+            <button className="btn-add btn" onClick={createUserOpenHandler}>Add new user</button>
         </>
     )
 }
