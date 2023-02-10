@@ -41,7 +41,7 @@ There are two types of forms - uncontrolled and controlled:
     Controlled
         (React controlls state)
             Basically, 
-                React attaches a mechanism that keeps track of changes in the browser DOm (change event watching every keystroke)
+                React attaches a mechanism that keeps track of changes in the browser DOM (change event watching every keystroke)
                 creates its own state in its component 
                 uses special value prop to signify that the changes in the input field are controlled by React
                 uses onChange prop to update state 
@@ -113,7 +113,62 @@ Updating state based on the previous state:
         summary: use one property name to identify element and then put it in [] to access the element's other properties
                  take the value of e.target.name and use it as a property name (by putting it in []) like [username]: e.target.value
                  we use the changed by user state via event to identify specific propety name whose props have to change
+                
+Updating objects and arrays in state
 
+    You can put objects and arrays into state. In React, state is considered read-only, so you should 
+    REPLACE IT RATHER THAN MUTATE your existing objects + ADD UPDATED PROPERTY. For example, if you have a form object in 
+    state, don’t update it like this:
+
+            // 🚩 Don't mutate an object in state like this:
+
+            form.firstName = 'Taylor';
+
+    Instead, replace the whole object by creating a new one:
+
+            // ✅ Replace state with a new object:
+
+            setForm({
+                ...form,
+                firstName: 'Taylor'
+            });
+
+    The { ...form } spread syntax ensures that the state object is replaced rather than mutated.
+
+    EXAMPLE:
+        
+            import { useState } from 'react';
+
+            export default function Form() {
+            const [form, setForm] = useState({
+                email: 'bhepworth@sculpture.com',
+            });
+
+            return (
+                    <>
+                        <label>
+                            First name:
+                            <input
+                            value={form.firstName}
+                            onChange={e => {
+                                setForm({
+                                ...form,
+                                firstName: e.target.value
+                                });
+                            }}
+                            />
+                        <p>
+                            ({form.email})
+                        </p>
+                    </>
+                );
+            }
+
+Why use controlled over uncontrolled form?
+    the same reason why using React and creating SPA -> dynamic rendering 
+        Ex. 
+        -> only by checking terms and conditions will allow you to click on register button
+        -> if corporate selected -> input EIK; if individual selected -> input EGN
 Side notes:
     two types of submit buttons:
         <input type="submit" value="Login" /> -
