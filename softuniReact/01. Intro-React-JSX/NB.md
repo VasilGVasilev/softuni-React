@@ -46,15 +46,14 @@ create-react-app
     why npx create-react-app .
     . is current directory
 
-    npx, because it is not only a package, but a toolchain,
-        also bad practice to have global install, instead
-        node modules encapusaltes project for ver control, virtual env, containerization
-        but this is done with npm, why npx:
-        NPX adds them to the user’s PATH and thus they can easily be directly invoked,
-        which is necessary for packages containing executable commands
-        Without an additional tool for invoking these executables, developers would need 
-        to dig through their project’s node_modules directory to find the right file.
-        
+    NPX, because create-react-app is not only a package, but a toolchain,
+        toolchain of files and executable commands
+        so although NPM deals with the bad practice of global install and encapusaltes the project for version control, virtual env, containerization
+        it still does not deal with executbale commands
+        Thus, use NPX:
+            NPX adds packages to the user’s PATH and thus they can easily be directly invoked (executbale commands)
+
+            
     scripts
     npm start
         Starts the development server.

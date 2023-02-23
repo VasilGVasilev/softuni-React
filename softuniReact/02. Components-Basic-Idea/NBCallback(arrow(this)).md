@@ -80,11 +80,13 @@ Component: basic idea Presentation Fundamental points
                         }
                     }
 
+                Beccause via -this- in handleClick() as a cb, we can use all the context of this, namely, this.state
+
 
                 The problem is that we do not invoke handleClick in <button onClick={this.handleClick'()'}> directly
                 When the app executes the handleClick (wihtout'()') it sort of takes a shallow template of the function
-                This shallow template refers to this, which wihtout attached context (via bind()) is practically outside
-                the context we define in contructor. Thus, this refers to global object, it has no property setState.
+                This shallow template refers to -this-, which wihtout attached context (via bind()) is practically outside
+                the context we define in the contructor. Thus, this refers to global object, it has no property setState.
 
                 This is a rule in JS - class methods do not bind with context by default: see end for explanation of Rule
 
@@ -201,7 +203,7 @@ Component: basic idea Presentation Fundamental points
                 x will 6
 
 Why class methods are not bound to context by default?
-Because methods are bound by defualt to the instance of the class
+Because methods are bound by default to the instance of the class
 or manually by using bind() or arrow function.
 
 Here is an example to illustrate the reason class methods do not 

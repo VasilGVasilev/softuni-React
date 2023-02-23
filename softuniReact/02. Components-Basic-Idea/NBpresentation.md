@@ -56,7 +56,35 @@ React philosophy is declarative functional components
             }    
 
         currying:
+            instead of:
+
+                function sum(a, b, c) {
+                    return a + b + c;
+                }
+                sum(1,2,3); // 6
+
+            Currying:
+                function sum(a) {
+                    return (b) => {
+                        return (c) => {
+                            return a + b + c;
+                        }
+                    }
+                }
+                sum(1)(2)(3); //6
+
+            you can also separate it like this:
+                const sum1 = sum(1);
+                const sum2 = sum1(2);
+                const result = sum2(3);
+                console.log(result); // 6
+
+
+            EXPLAINED:
+
             const add = x => y => x + y;
+            const addTwo = add(2)
+            addTwo(3) // 5
 
             currying uses closures under the hood:
                 when you call 'const addTwo = add(2)', JS creates a closure for the 
@@ -72,6 +100,7 @@ React philosophy is declarative functional components
                 The function looks up the value of 'x' in the closure, which is 2, 
                 and applies the operation 'x + y' with the argument '3' passed to 'addTwo(3)', 
                 resulting in '2 + 3 = 5'
+
 
 
 
@@ -108,7 +137,7 @@ Passing in number via props -> <Timer start={1} /> {here, it is JSland}
 
 If parent element changes something via props -> App changes 1 to 2 in <Timer start={1} />, the change will tigger re-rendering
 
-Special Updater Function inside setState 
+Special UPDATER FUNCTION for updating state 
     Use: 
         We want to update the state on each method trigger!
     Definition: 
@@ -117,14 +146,16 @@ Special Updater Function inside setState
         in a queue and re-render your component.
 
     Clicker has:
+
         const clickHandler = (e) => {
             setClicks(oldClicks => oldClicks + 1);
         }
 
-        why not:
-        const clickHandler = (e) => {
-            setClicks(clicks + 1);
-        }
+            why not:
+            
+            const clickHandler = (e) => {
+                setClicks(clicks + 1);
+            }
 
         Because -> race conditions -> if eventHandler function clickHandler is so fast click state is still not updated
 
@@ -188,8 +219,8 @@ setState is a closure under the hood:
                 </button>
             );
         }
-    Counter creates a closure, or a combination of a function adn the lexical env,
-    wihtin which that function was declared, thus, here, the inner handleClick function has
+    Counter creates a closure, or a combination of a function and a lexical environment,
+    within which that function was declared, thus, here, the inner handleClick function has
     access to the outer or enclosing functional variables such as count and setCount,
     setCount is a function stored in the variable setCount, making it first-class function.
 
