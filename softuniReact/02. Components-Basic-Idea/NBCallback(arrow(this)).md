@@ -90,6 +90,8 @@ Component: basic idea Presentation Fundamental points
 
                 This is a rule in JS - class methods do not bind with context by default: see end for explanation of Rule
 
+                    GLOBAL Object and this keyword
+
                     this.x = 9; // 'this' refers to the global object (e.g. 'window') in non-strict mode
 
                     const module = {
@@ -108,21 +110,25 @@ Component: basic idea Presentation Fundamental points
                     console.log(boundGetX()); // 81 Ex.3
                 
                 !!!! It is crucial where the function gets invoked:
+
                     -Ex.1, we directly trigger the module to execute its methods
+
                     -Ex.2, we abstract a reference/path to the shallow template of the a method of a class, but
                     if we store it in a variable and execute it, this shallow template is shallow and it does not
                     carry the context of its original class, all it knows it is that:
                         -it returns this.x 
                         -it is invoked in the global scope
                     the resulting behaviour is that it searches for this.x value in the context of execution -> global
+
                     -Ex.3, we bind a context to the shallow template of the method of a class, so that wherever this
                     shallow template is invoked, it has a wrapper function that represents the framework of its scope,
                     this never goes outside this wrapper to rely on the global context by taking the value of this.x = 9;
 
             Passing arguments to event handlers:
-                -arrow functrions:
+
+                -arrow function:
                     <button onClick={(e)=>this.deleteRow(id,e)} />
-                    RULE: With JSX you pass a function as the event handler, rather than a string.
+                    RULE: With JSX you pass an arrow function as the event handler, rather than a string.
                     why? the same reason why we pass a string in .addEventListener(click, function) and not .addEventListener(click, function())
                     to prevent from executing directly.
                     if we have <button onClick=deleteRow />, deleteRow will be executed immediately and will trigger render and subsequent faulty behaviour
@@ -146,14 +152,17 @@ Component: basic idea Presentation Fundamental points
             the callback function is the same as the this context outside of it, thus allowing the 
             component's method to be accessed and executed properly.
             
-            NB 
+            NB lexical approach is about putting emphasis on where the function is defined, rather than how it is called reagrding its context,
+            arrow functions do not have their this keyword implicilty defined as function definitions so are more flexbible to manually have
+            their context be set or if not set, search up their enclosing environment upto global
+
                 - why lexical (bad wording) -> When you define a function and use a variable inside of it, 
                 it checks if the variable has been defined in its scope. If it is, it uses it! 
                 If not, it checks the enclosing scope for that variable definition. It keeps checking 
                 enclosing scopes until it finds the variable or reaches global scope. 
-                Now, function definitions that are not arrow functions define this for you, implicitly. 
-                Thus, they will never check an enclosing scope when you try to use this in their scope 
-                (because they find it in their own scope!). Arrow functions do NOT define their own this, 
+                Now, function definitions that are not arrow functions define this keyword for you, implicitly. 
+                Thus, they will never check an enclosing scope when you try to use this keyword in their scope 
+                (because they find it in their own scope!). Arrow functions do NOT define their own this keyword, 
                 so they go to the enclosing scope and look for it just as they would with any variable 
                 you try to use in their scope. 
                 
@@ -162,8 +171,8 @@ Component: basic idea Presentation Fundamental points
                 of module.getX(), but mainly, imnagine using callbacks and refering to this
                 
             In summary:
-                this inside a callback, typically, is undefined which automatically (in non-strict mode) renders
-                the value of this to be the Global Object. Thus, we have two options:
+                this keyword inside a callback is undefined which automatically (in non-strict mode) renders the value of this to be the Global Object. 
+                Thus, we have two options:
                 - use an arrow function which has lexical binding -> here, component context
                 - use bind() to bind the context;
                 so problem of callback rendering this to be undefined -> Global Obj is solved with arrow function or bind()
@@ -177,9 +186,17 @@ Component: basic idea Presentation Fundamental points
 
                 function m() {
                     this.x = 6
+                    console.log(this)
+                    console.log(x)
                     return x
                 }
-                x will refer to global Object not the in m() defined 6
+                m()
+                >> window/Global Obj 
+                >> 6
+                >> 6
+
+                m attaches x propetry to this with value 6 (x: 6)
+
             
             view return as a crucial point of ending the functional scope of m();
             !!!!!! 'this' is just made this way, to always refer to the context and if not -> to global object;
@@ -253,7 +270,7 @@ bind with context by default:
         sayName(); // Output: My name is John
 
     Or you can use an arrow function in the class methods that needs to be passed 
-    as callbacks, since arrow functions have lexical this binding and maintain the 
+    as callbacks, since arrow functions have lexical -this- binding and maintain the 
     correct context even when passed as callbacks or assigned to variables, like this:
 
         class Example {
