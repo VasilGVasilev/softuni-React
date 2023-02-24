@@ -45,7 +45,7 @@ There are two types of forms - uncontrolled and controlled:
                 creates its own state in its component 
                 uses special value prop to signify that the changes in the input field are controlled by React
                 uses onChange prop to update state 
-                chnage of state triggers re-rendering, so updated state is visualised to user
+                change of state triggers re-rendering, so updated state is visualised to user
                 NB -> if you only use value prop and do not update the state with onChange, there will be no re-render for the user and input field will appear locked with the initially set value
 
                     function App() {
@@ -202,7 +202,7 @@ Side notes:
     Checkbox
     by default checked prop on input type="checkbox" button will:
         if checked by user return tac = 'on' in state
-        if unchecked by yser return '' in state (empty field)
+        if unchecked by user return '' in state (empty field)
             <div>
                 <label htmlFor="tac">Terms and Conditions:</label>
                 <input type="checkbox" name="tac" id="tac" checked={values.tac} onChange={changeHandler}/>
