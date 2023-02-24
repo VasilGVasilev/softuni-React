@@ -14,7 +14,7 @@ import { UserCreate } from "./user-create/UserCreate"
 export const UserList = () => {
 
     // // state if user is selected
-    // const [selectedUser, setSelectedUser] = useState(null) //for later logic wiith showing UserDetails
+    // const [selectedUser, setSelectedUser] = useState(null) //for later logic with showing UserDetails
     // // state which action on user is selected
     // const [userAction, setUserAction] = useState(null);
     // BEST PRACTICE: do it in one object since logic is similar, several states scenario -> React sometimes batches them
@@ -98,7 +98,7 @@ export const UserList = () => {
         // execute service with this new Object
         userService.edit(userAction.user._id, userData)
             .then(user => {
-                setUsers(oldUsers => [...oldUsers, user]); //state should always be modified to a new reference, thus, the array [], -...oldUsers- save them BUT, also -,user- add new one
+                setUsers(oldUsers => [...oldUsers, user]); //state should always be modified to a new reference, thus, the array [], -...oldUsers- save unedited users BUT, also -user- add edited user
                 closeClickHandler();
             });
     }

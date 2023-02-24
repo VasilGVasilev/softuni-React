@@ -13,7 +13,7 @@ export const TodoItem = (props) => {
                 <button onClick={() => props.onClick(props)}>Change status</button>
                 {/* onClick is a props */}
                 {/* why do we have an arrow function tho -> onClick={() => props.onClick(props)} */}
-                {/* we have to pass in the id of todo */}
+                {/* we have arrow function to pass in the id of todo */}
                 {/* we cannot say props.onClick(props) bacause it will call the function immediately */}
                 {/* thus, we make it an arrow function see NBCallback in componentBasicIdea */}
                 {/* basically we inject onClick into child component but to make it function we need to pass in an argument and execute onClick not be called with component render */}

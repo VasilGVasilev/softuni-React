@@ -1,5 +1,5 @@
 About Keys and Lists
-    React vDOM is optimises the DOM very efficiently and if
+    React vDOM optimises the DOM very efficiently and if
     we attach <li>s to a <ul> using a for loop, when vDOM transfer
     info to DOM, it will lose this capability of specific update,
     no entire re-render.
@@ -11,7 +11,7 @@ About Keys and Lists
     React understands arrays, even if we did not have <li>s, React will understand 
     the array made via .map() and render it as a list
 
-    each key is has to be unique but just in comparison to other siblings in list
+    each key has to be unique but just in comparison to other siblings in list
 
 
 catch undefined
@@ -25,8 +25,7 @@ useEffect():
         in class -> lifecycle methods
         in function -> hooks: useEffect()
 
-    Example: when we have to render a component, we want the data that comes via this
-        component's useEffect() to be rendered within that very component
+    Example: when we have to render a component, we want the data that comes via this component's useEffect() to be rendered within that very component
 
 2:44:50
 
@@ -119,7 +118,7 @@ Side Notes:
         Problem -> css will be part of one big css file, so the css will be valid for whole ap
 
     CSS Module
-
+        deep-dive-demo/src/components
         Easy solution -> make css into module Book.css => Book.module.css 
         BUT how to import -> import as an object -> import styles from './Book.module.css'
 
@@ -214,3 +213,5 @@ Todo demo
     TodoItem.js:
 
         export const TodoItem = (props) => {}
+
+    Note that onClick in <{...todo} onClick={todoClickHandler}> in TodoList.js is too part of props
