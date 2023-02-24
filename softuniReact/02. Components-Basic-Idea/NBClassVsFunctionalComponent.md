@@ -71,7 +71,7 @@ after useState(), but before useEffect():
             return()
         }
 
-    HERE, useEffect() is executed only after every render cycle (both the render and every re-render)
+    HERE, useEffect() is executed after every render cycle (both the render and every re-render)
 
     To prevent infinite loop side effect, a second argument is called:
 
@@ -139,6 +139,8 @@ full example with useEffect():
     }
 
 The callback function inside the useEffect() hook sets 'isEven' to be false or true and it also uses 'count' in
-the dependency array to ensure that every time 'count' changes the function component useCounter will run. 
+the dependency array to ensure that every time 'count' changes the function component useCounter will run.
+What Dan Abramov means by saying that the mental model for useEffect() is synchronisation not lifecycles is:
 useEffect() does not actively 'watch' for changes, after rendering finishes, useEffect will check the list of
 dependency values against the values from the last render, and will call your effect function if any one of them has changed.
+Thus, focus is not on entire application rather on the list of dependencies, lack of such does not alter the initial idea.

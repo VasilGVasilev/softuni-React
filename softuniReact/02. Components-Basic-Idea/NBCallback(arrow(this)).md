@@ -55,14 +55,17 @@ Component: basic idea Presentation Fundamental points
 
             Revisiting an old issue with class components:
 
-                ?Why is it necessary to bind 'this' in the following code?
+                ?Why is it necessary to bind 'this' in the following code? 
+                 FUNCTION DECLARATION VS FUNCTION EXPRESSION
 
                     class Toggle extends React.Component {
                         constructor(props) {
                             super(props);
                             this.state = {isToggleOn: true};
 
-                            // This binding is necessary to make `this` work in the callback    <--- ?????
+                            // This binding IS NECESSARY to make `this` work in the callback with FUNCTION DECLARATION   <--- 
+                            // Because in function declaration the this keyword refers to the global object, need to bind it to class
+
                             this.handleClick = this.handleClick.bind(this);  
                         }
 
@@ -80,9 +83,38 @@ Component: basic idea Presentation Fundamental points
                         }
                     }
 
-                Beccause via -this- in handleClick() as a cb, we can use all the context of this, namely, this.state
+                Because via -this- in handleClick() as a cb, we can use all the context of this, namely, this.state
+                
+                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                BUT what if we do not have a function declaration as above, rather function expression:
+
+                    class Toggle extends React.Component {
+                        constructor(props) {
+                            super(props);
+                            this.state = {isToggleOn: true};
+
+                            // This binding IS NOT NECESSARY to make `this` work in the callback with FUNCTION EXPRESSION    <--- 
+                            // Because in function expression the this keyword refers to the object that the function is a method of
+
+                            this.handleClick = this.handleClick.bind(this);  
+                        }
+
+                        handleClick = () => {    
+                            this.setState(prevState => ({      
+                                isToggleOn: !prevState.isToggleOn    
+                            }));  
+                        }
+                        render() {
+                            return (
+                                <button onClick={this.handleClick}>        
+                                    {this.state.isToggleOn ? 'ON' : 'OFF'}
+                                </button>
+                            );
+                        }
+                    }
 
 
+                More on function declaration problem above:
                 The problem is that we do not invoke handleClick in <button onClick={this.handleClick'()'}> directly
                 When the app executes the handleClick (wihtout'()') it sort of takes a shallow template of the function
                 This shallow template refers to -this-, which wihtout attached context (via bind()) is practically outside
