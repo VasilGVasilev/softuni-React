@@ -1,15 +1,22 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import Home  from './components/Home'
+import About from './components/About'
+import Pricing from './components/Pricing'
+import Contacts from './components/Contacts'
+
 
 function App() {
   return (
     <div className="App">
       <h1>Hello React Router</h1>
       <Routes>
-        <Route path="/" element={<h2>Home Page</h2>}/>
-        <Route path="/about" element={<h2>About Page</h2>}/>
-        <Route path="/pricing" element={<h2>Pricing Page</h2>}/>
-        <Route path="/contacts" element={<h2>Contacts Page</h2>}/>
+        <Route path="/" element={<Home />}/>
+        <Route path="/about" element={<About />}/>
+        <Route path="/pricing" element={<Pricing />}/>
+        <Route path="/contacts" element={<Contacts />}/>
+        <Route path="/pricing/premium" element={<h2>Premium Pricing</h2>} />
+
 
 
       </Routes>

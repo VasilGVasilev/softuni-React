@@ -48,3 +48,13 @@ App.js
     Route works only within Routes
     <Route path="/" element={}> element rendered on this path specifically
 
+    paths have VERY SPECIFIC SEARCHING AND COMPARING unlike express.Router,
+    /contact and /contacts are specific so even if you put one before other:
+    /contact
+    /contacts
+
+    /contacts will not be ignored!; in v.5 see exact keyword
+    
+    the above example in express.Router may cause for /contacts to be ignored due to syntax similarity between /contact and /contactS 
+
+
