@@ -10,8 +10,41 @@ index.js
             <App />
         </BrowserRouter>
 
+    BrowserRouter official docs:
+        export function BrowserRouter({
+            basename,
+            children,
+            window,
+            }: BrowserRouterProps) {
+            let historyRef = React.useRef<BrowserHistory>();
+            if (historyRef.current == null) {
+                historyRef.current = createBrowserHistory({ window, v5Compat: true });
+            }
+
+            let history = historyRef.current;
+            let [state, setState] = React.useState({
+                action: history.action,
+                location: history.location,
+            });
+
+            React.useLayoutEffect(() => history.listen(setState), [history]);
+
+            return (
+                <Router
+                basename={basename}
+                children={children}
+                location={state.location}
+                navigationType={state.action}
+                navigator={history}
+                />
+            );
+        }
+
+    BrowserRouter uses the HTML5 history API (pushState, replaceState and the popstate event) to keep your UI in sync with the URL. there is no page reload even though there is URL logic
+
 App.js
     import { Routes, Route, Navigate } from 'react-router-dom';
     Routes works only wrapped within BrowserRouter
     Route works only within Routes
     <Route path="/" element={}> element rendered on this path specifically
+
