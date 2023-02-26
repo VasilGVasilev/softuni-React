@@ -12,3 +12,6 @@ index.js
 
 App.js
     import { Routes, Route, Navigate } from 'react-router-dom';
+    Routes works only wrapped within BrowserRouter
+    Route works only within Routes
+    <Route path="/" element={}> element rendered on this path specifically
