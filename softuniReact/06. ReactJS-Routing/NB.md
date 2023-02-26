@@ -59,6 +59,7 @@ App.js
 
     Navigation
     Dont use anchor tags because they page reload by default!
+    Link changes URL without Page Reload
     Thus, instead <a href> use <Link to>:
         import { Link } from 'react-router-dom'
         <Link to="/">Home</Link>
