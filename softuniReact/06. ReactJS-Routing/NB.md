@@ -57,4 +57,10 @@ App.js
     
     the above example in express.Router may cause for /contacts to be ignored due to syntax similarity between /contact and /contactS 
 
+    Navigation
+    Dont use anchor tags because they page reload by default!
+    Thus, instead <a href> use <Link to>:
+        import { Link } from 'react-router-dom'
+        <Link to="/">Home</Link>
+
 

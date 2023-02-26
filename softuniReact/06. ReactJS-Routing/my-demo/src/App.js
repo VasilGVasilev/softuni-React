@@ -5,12 +5,14 @@ import About from './components/About'
 import Pricing from './components/Pricing'
 import Contacts from './components/Contacts'
 import NotFound from './components/NotFound';
+import Navigation from './components/Navigation';
 
 
 function App() {
   return (
     <div className="App">
       <h1>Hello React Router</h1>
+      <Navigation />
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/about" element={<About />}/>
