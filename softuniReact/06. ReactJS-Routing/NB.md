@@ -66,3 +66,7 @@ App.js
 
 
 2:26:00
+
+Parameters
+    deep linking -> path reflects the specific content so that when you share the URL the same specific content is rendered
+    useParams() hook since v6 react-router-dom
