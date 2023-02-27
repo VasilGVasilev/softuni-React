@@ -31,7 +31,8 @@ const Starship = () => {
             </ul>
 {/* whem some link in nav is clicked, it redirects to to={`films/${i + 1}`}*/}
 {/* since it is nested link starships/:specificStarship/films/:specirficFilm */}
-{/* the reactive Route to Link should be in the same component (Starship) */}
+{/* the reactive Route to Link is in the same component (Starship) */}
+{/* But it can also be defined in App as Routes>Route>Route(nested one) */}
             <h3>Movies</h3>
 
             <nav>
