@@ -57,12 +57,13 @@ App.js
     
     the above example in express.Router may cause for /contacts to be ignored due to syntax similarity between /contact and /contactS 
 
-    Navigation
-    Dont use anchor tags because they page reload by default!
-    Link changes URL without Page Reload
-    Thus, instead <a href> use <Link to>:
-        import { Link } from 'react-router-dom'
-        <Link to="/">Home</Link>
+    Navigation  - <Link/> instead of <a>
+        
+        Dont use anchor tags because they page reload by default!
+        Link changes URL without Page Reload
+        Thus, instead <a href> use <Link to>:
+            import { Link } from 'react-router-dom'
+            <Link to="/">Home</Link>
 
 
 2:26:00
@@ -77,3 +78,26 @@ Parameters
     - the basic params example shows how params should be single source of input
     - then we have a useEffect to make a fetch with relevant data
     - then we store the fetched data via useState
+
+Redirects
+    <Navigate to="/home" /> or useNavigate() hook
+
+    useNavigate()
+        uses History API without refresh
+        so that you can update URL based on user input (ex. click),
+        The useNavigate hook returns a FUNCTION that lets you navigate programmatically, for example in an effect:
+
+            import { useNavigate } from "react-router-dom";
+
+            function useLogoutTimer() {
+                const userIsInactive = useFakeInactiveUser();
+                const navigate = useNavigate(); //FUNCTION
+
+                useEffect(() => {
+                    if (userIsInactive) {
+                    fake.logout();
+                    navigate("/session-timed-out"); //FUNCTION
+                    }
+                }, [userIsInactive]);
+            }
+        NB second optional argument in FUNCTION {replace} which if set to true makes the URL be ONLY replaced, namely, History API does not work and you cannot go back and forth via browser buttons

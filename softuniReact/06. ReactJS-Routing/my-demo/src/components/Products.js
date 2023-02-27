@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const Products = () => {
-    const [starship, setStarship] = useState({})
-    const {productId} = useParams()
+    const [starship, setStarship] = useState({});
+    const {productId} = useParams();
+    const navigate = useNavigate(); //function
     useEffect(() => {
         fetch(`https://swapi.dev/api/starships/${productId}/`)
             .then(res=>res.json())
@@ -12,6 +13,9 @@ const Products = () => {
             })
     },[productId])
     const nextProducthandler = () => {
+        navigate(`/products/${Number(productId) + 1}/`)
+        // navigate(`/products/${Number(productId) + 1}/`, {replace:true}) //browser back/forth does not work see NB>Redirects 
+
     }
     return (
         <>
