@@ -57,13 +57,27 @@ App.js
     
     the above example in express.Router may cause for /contacts to be ignored due to syntax similarity between /contact and /contactS 
 
-    Navigation  - <Link/> instead of <a>
+Navigation 
+        
+    <Link/> instead of <a>
         
         Dont use anchor tags because they page reload by default!
         Link changes URL without Page Reload
         Thus, instead <a href> use <Link to>:
             import { Link } from 'react-router-dom'
             <Link to="/">Home</Link>
+    <NavLink>
+
+        NavLink has a very useful isActive property, which can be accessed via obj desctructuring and reflect whether you are currently on the pathname
+
+        <NavLink 
+            to="/about"
+            style={({isActive})=>{
+                return isActive
+                    ? {backgroundColor: 'lightblue'}
+                    : undefined
+            }}
+        >
 
 
 2:26:00
@@ -107,3 +121,8 @@ Redirects
         import { Navigate } from 'react-router-dom';
 
         <Route path="/millennium-falcon" element={<Navigate to="/products/10" replace />} />
+
+        replace is useful here, because clicking back will update the URL to /products/10 to /millennium-falcon, thus, going back will mean to jump from /millenium-falcon to /proucts/10, but this in itself again renders the initial logic, so replace as a tag enables user to just go back to previously selected page
+
+
+
