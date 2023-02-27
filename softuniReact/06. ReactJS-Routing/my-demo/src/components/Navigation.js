@@ -9,6 +9,8 @@ export default function Navigation() {
                 <li><Link to="/contacts">Contacts</Link></li>
                 <li><Link to="/pricing/premium">Premium Pricing</Link></li>
                 <li><Link to="/products/2">Products</Link></li>
+                <li><Link to="/millennium-falcon">Millennium Falcon</Link></li>
+
 
 
             </ul>

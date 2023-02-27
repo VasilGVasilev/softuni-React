@@ -101,3 +101,9 @@ Redirects
                 }, [userIsInactive]);
             }
         NB second optional argument in FUNCTION {replace} which if set to true makes the URL be ONLY replaced, namely, History API does not work and you cannot go back and forth via browser buttons
+
+    <Navigate />    
+
+        import { Navigate } from 'react-router-dom';
+
+        <Route path="/millennium-falcon" element={<Navigate to="/products/10" replace />} />

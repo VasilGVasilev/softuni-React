@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home  from './components/Home'
 import About from './components/About'
 import Pricing from './components/Pricing'
@@ -21,6 +21,7 @@ function App() {
         <Route path="/contacts" element={<Contacts />}/>
         <Route path="/pricing/premium" element={<h2>Premium Pricing</h2>} />
         <Route path="/products/:productId" element={<Products />} />
+        <Route path="/millennium-falcon" element={<Navigate to="/products/10" replace />} />
         <Route path="*" element={<NotFound />} />
 
 
