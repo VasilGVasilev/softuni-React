@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styles from './Navigation.module.css'
 export default function Navigation() {
     const setNavStyle = ({isActive}) => {
@@ -24,7 +24,7 @@ export default function Navigation() {
                 <li><NavLink className={setNavStyle} to="/pricing">Pricing</NavLink></li>
                 <li><NavLink className={setNavStyle} to="/contacts">Contacts</NavLink></li>
                 <li><NavLink className={setNavStyle} to="/pricing/premium">Premium Pricing</NavLink></li>
-                <li><NavLink className={setNavStyle} to="/products/2">Products</NavLink></li>
+                <li><NavLink className={setNavStyle} to="/starships/">Starships</NavLink></li>
                 <li><NavLink className={setNavStyle} to="/millennium-falcon">Millennium Falcon</NavLink></li>
 
 

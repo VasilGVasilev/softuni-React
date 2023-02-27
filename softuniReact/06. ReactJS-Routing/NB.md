@@ -126,3 +126,14 @@ Redirects
 
 
 
+Starships
+    all starships
+        http://localhost:3000/starships/
+    starships rendered as links and if clicked, starship/:params reidrects to specific starship to be rendered
+        http://localhost:3000/starships/5/
+    in it we can have info about a specific film
+
+        http://localhost:3000/starships/5/films/1
+
+    Dont forget to add /* as a placeholder for every nested route back in initial router:
+        <Route path="/starships/:starshipId/*" element={<Starship />} />
