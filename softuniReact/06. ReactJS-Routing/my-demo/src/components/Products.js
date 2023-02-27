@@ -10,17 +10,20 @@ const Products = () => {
             .then(result => {
                 setStarship(result)
             })
-    })
+    },[productId])
+    const nextProducthandler = () => {
+    }
     return (
         <>
-        <h2>Products Page</h2>
-        <h3>Product {productId} Specification</h3>
-        <ul>
-            <li>Name: {starship.name}</li>
-            <li>Model: {starship.model}</li>
-            <li>Manufacturer: {starship.manufacturer}</li>
+            <h2>Products Page</h2>
+            <h3>Product {productId} Specification</h3>
+            <ul>
+                <li>Name: {starship.name}</li>
+                <li>Model: {starship.model}</li>
+                <li>Manufacturer: {starship.manufacturer}</li>
 
-        </ul>
+            </ul>
+            <button onClick={nextProducthandler}>Next</button>
         </>
     )
 }

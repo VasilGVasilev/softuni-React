@@ -70,3 +70,10 @@ App.js
 Parameters
     deep linking -> path reflects the specific content so that when you share the URL the same specific content is rendered
     useParams() hook since v6 react-router-dom
+
+                         BASIC LOGIC BEHIND EVERY SPA
+    ----->useParams to trigger useEffect Fetch to trigger useState storing<-----
+
+    - the basic params example shows how params should be single source of input
+    - then we have a useEffect to make a fetch with relevant data
+    - then we store the fetched data via useState
