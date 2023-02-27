@@ -37,13 +37,18 @@ const Starship = () => {
             <nav>
                 <ul>
                     {starship.films?.map((x, i) => 
-                        <li key={x}><Link to={`films/${i + 1}`}>Film {i + 1}</Link></li>
+                    // <Link> attaches films/{i+1} to /starships/ 
+                    // if you write /films/{i+1} with '/' in front of films
+                    // you will reset to http://localhost:3000/films/2 instead of http://localhost:3000/starships/2/films/2
+                        <li key={x}><Link to={`/films/${i + 1}`}>Film {i + 1}</Link></li>
                     )}
                 </ul>
             </nav>
 
             <section>
                 <Routes>
+                    {/* <Route> reads /starships/films/{i+1} */}
+
                     <Route path="films/:filmId" element={<Film films={starship.films || [] } />} />
                 </Routes>
             </section>

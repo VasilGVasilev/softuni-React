@@ -137,3 +137,8 @@ Starships
 
     Dont forget to add /* as a placeholder for every nested route back in initial router:
         <Route path="/starships/:starshipId/*" element={<Starship />} />
+
+    Also mind that: 
+            <Link> attaches films/{i+1} to /starships/ 
+            if you write /films/{i+1} with '/' in front of films
+            you will reset to http://localhost:3000/films/2 instead of http://localhost:3000/starships/2/films/2
