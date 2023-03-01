@@ -215,3 +215,15 @@ Todo demo
         export const TodoItem = (props) => {}
 
     Note that onClick in <{...todo} onClick={todoClickHandler}> in TodoList.js is too part of props
+
+    you can either use spread and have props:
+        TodoList.js
+            <{...todo} onClick={todoClickHandler}>
+        TodoItem.js
+            export const TodoItem = (props) => {}
+
+    or you can pass in named prop which has to be used in child to access data behind name
+        TodoList.js
+            <todoStuff={todo} onClick={todoClickHandler}>
+        TodoItem.js
+            export const TodoItem = ({todoStuff}) => {}

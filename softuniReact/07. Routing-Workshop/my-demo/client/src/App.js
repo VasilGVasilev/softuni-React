@@ -11,6 +11,7 @@ import Catalog from './components/Catalog/Catalog';
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
+    let games;
     return (
         <div id="box">
             <Header />
@@ -22,7 +23,7 @@ function App() {
                     <Route path='/login' element={<Login />}></Route>
                     <Route path='/register' element={<Register />}></Route>
                     <Route path='/create' element={<CreateGame />}></Route>
-                    <Route path='/catalog' element={<Catalog />}></Route>
+                    <Route path='/catalog' element={<Catalog games={games}/>}></Route>
 
 
                 </Routes>
