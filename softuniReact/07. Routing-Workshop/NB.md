@@ -10,3 +10,8 @@ wrap App in BrowserRouter in index.js and then add Routes/Route logic to App.js
 export { default } from './Home' in index.js for no /Home/Home
 
 2:36:00
+
+This demo is client side orientated, so updates (create, edit) of data does not persist on the server
+the client's correspondance with server is just the inial loading of all data
+This is just for this demo!
+
