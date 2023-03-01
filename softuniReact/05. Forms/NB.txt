@@ -37,6 +37,24 @@ There are two types of forms - uncontrolled and controlled:
                             </div>
                         );
                     }
+
+        With an uncontrolled component, you often want React to specify the initial value, 
+        but leave subsequent updates uncontrolled. To handle this case, you can specify 
+        a defaultValue attribute instead of value:
+                render() {
+                    return (
+                        <form onSubmit={handleSubmit}>
+                        <label>
+                            Name:
+                            <input
+                            defaultValue="Bob"          
+                            type="text"
+                            ref={input} />
+                        </label>
+                        <input type="submit" value="Submit" />
+                        </form>
+                    );
+                }
         
     Controlled
         (React controlls state)
