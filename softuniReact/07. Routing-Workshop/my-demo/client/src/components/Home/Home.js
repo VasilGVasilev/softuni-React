@@ -1,4 +1,4 @@
-import LatestGame from "./LatestGame";
+import LatestGame from "./LatestGame/LatestGame";
 
 const Home = ({games}) => {
 
