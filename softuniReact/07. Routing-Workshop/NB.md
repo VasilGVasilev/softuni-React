@@ -16,3 +16,13 @@ the client's correspondance with server is just the inial loading of all data
 This is just for this demo!
 
 1:45:00
+Always remember to update state with new referance to new object: ...state, [e.target.name]: e.target.value 
+
+    const onChange = (e) => {
+        setComment(state => ({
+            ...state,
+            [e.target.name]: e.target.value // name="username" :  value={comment.username}
+        }))
+    }
+
+In React it is a rule to return new reference when updating state. Thus, arrays and object which are mutable should be treated as immutable primitive values, namely, update to a new referance. 

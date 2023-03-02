@@ -15,13 +15,33 @@ import { Routes, Route } from 'react-router-dom'
 
 function App() {
     const [games, setGames] = useState([])
+
     useEffect(()=>{
         gameService.getAll()
                 .then(result => {
                     setGames(result)
                 })
     },[])
- 
+
+    const addComment = (gameId, comment) => {
+        setGames(state => {
+            // commentedGame
+            const game = state.find(x => x._id == gameId);
+            
+            // comments -> based either on previous comments property if any such, or empty array
+            const comments = game.comments || [];
+            comments.push(comment)
+
+            return [
+                ...state.filter(x => x._id !== gameId),
+                // commentedGame spreaded and comments added to game object
+                {...game, comments}
+            ]
+        })
+
+
+    }
+
     return (
         <div id="box">
             <Header />

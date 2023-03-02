@@ -18,6 +18,7 @@ const GameDetails = ({games}) => {
 
     const addCommentHandler = (e) => {
         e.preventDefault();
+        console.log(comment)
     }
 
     const onChange = (e) => {

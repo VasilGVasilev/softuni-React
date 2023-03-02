@@ -256,3 +256,4 @@ Side notes:
 2:26:00
 
     useCallback() - deals with re-rendering of methods' definitions
+
