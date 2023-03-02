@@ -54,7 +54,7 @@ function App() {
                     <Route path='/register' element={<Register />}></Route>
                     <Route path='/create' element={<CreateGame />}></Route>
                     <Route path='/catalog' element={<Catalog games={games}/>}></Route>
-                    <Route path='/catalog/:gameId' element={<GameDetails games={games}/>}></Route>
+                    <Route path='/catalog/:gameId' element={<GameDetails games={games} addComment={addComment}/>}></Route>
 
 
 

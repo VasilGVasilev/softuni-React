@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const GameDetails = ({games}) => {
+const GameDetails = ({
+    games,
+    addComment,
+
+}) => {
     const { gameId } = useParams();
     // comment logic hardcoding users taht comment
     const [ comment, setComment] = useState({
@@ -18,6 +22,7 @@ const GameDetails = ({games}) => {
 
     const addCommentHandler = (e) => {
         e.preventDefault();
+        addComment(gameId, `${comment.username}: ${comment.comment}`)
         console.log(comment)
     }
 
@@ -48,7 +53,7 @@ const GameDetails = ({games}) => {
                     <h2>Comments:</h2>
                     <ul>
                         {game.comments?.map(x =>
-                            <li key={x._id} className="comment">
+                            <li className="comment">
                                 <p>{x}</p>
                             </li>
                         )}
