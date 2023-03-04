@@ -11,10 +11,11 @@ import GameDetails from './components/GameDetails/GameDetails';
 import uniqid from 'uniqid'
 import { useState, useEffect } from "react";
 import * as gameService from './services/gameServices'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 function App() {
     const [games, setGames] = useState([])
+    const navigate = useNavigate();
 
     useEffect(()=>{
         gameService.getAll()
@@ -49,8 +50,9 @@ function App() {
                 ...gameData,
                 _id: uniqid()
             }
-        ])
-    }
+        ]);
+        navigate('/catalog')
+    };
 
     return (
         <div id="box">
