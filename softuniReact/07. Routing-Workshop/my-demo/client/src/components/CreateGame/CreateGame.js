@@ -4,8 +4,6 @@ const CreateGame = ({addGameHandler}) => {
 
         const gameData = Object.fromEntries(new FormData(e.target));
 
-        console.log(gameData)
-
         addGameHandler(gameData)
     }
 

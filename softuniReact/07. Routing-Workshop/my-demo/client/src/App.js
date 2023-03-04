@@ -8,7 +8,7 @@ import Catalog from './components/Catalog/Catalog';
 import GameDetails from './components/GameDetails/GameDetails';
 
 
-
+import uniqid from 'uniqid'
 import { useState, useEffect } from "react";
 import * as gameService from './services/gameServices'
 import { Routes, Route } from 'react-router-dom'
@@ -45,7 +45,10 @@ function App() {
     const addGameHandler = (gameData) => {
         setGames(state => [ 
             ...state,
-            gameData
+            {
+                ...gameData,
+                _id: uniqid()
+            }
         ])
     }
 
