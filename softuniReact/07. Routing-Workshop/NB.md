@@ -30,3 +30,5 @@ If you update mutable values when dealing with state, you go against the whole i
 
 
 uniqid library -> install, import and just execute function uniqid() where necessary
+
+Comments validation -> if length < 4, onBlur, update special errors state 

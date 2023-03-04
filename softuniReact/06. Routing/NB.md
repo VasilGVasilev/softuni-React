@@ -96,33 +96,33 @@ Parameters
 Redirects
     <Navigate to="/home" /> or useNavigate() hook
 
-    useNavigate()
-        uses History API without refresh
-        so that you can update URL based on user input (ex. click),
-        The useNavigate hook returns a FUNCTION that lets you navigate programmatically, for example in an effect:
+        useNavigate()
+            uses History API without refresh
+            so that you can update URL based on user input (ex. click),
+            The useNavigate hook returns a FUNCTION that lets you navigate programmatically, for example in an effect:
 
-            import { useNavigate } from "react-router-dom";
+                import { useNavigate } from "react-router-dom";
 
-            function useLogoutTimer() {
-                const userIsInactive = useFakeInactiveUser();
-                const navigate = useNavigate(); //FUNCTION
+                function useLogoutTimer() {
+                    const userIsInactive = useFakeInactiveUser();
+                    const navigate = useNavigate(); //FUNCTION
 
-                useEffect(() => {
-                    if (userIsInactive) {
-                    fake.logout();
-                    navigate("/session-timed-out"); //FUNCTION
-                    }
-                }, [userIsInactive]);
-            }
-        NB second optional argument in FUNCTION {replace} which if set to true makes the URL be ONLY replaced, namely, History API does not work and you cannot go back and forth via browser buttons
+                    useEffect(() => {
+                        if (userIsInactive) {
+                        fake.logout();
+                        navigate("/session-timed-out"); //FUNCTION
+                        }
+                    }, [userIsInactive]);
+                }
+            NB second optional argument in FUNCTION {replace} which if set to true makes the URL be ONLY replaced, namely, History API does not work and you cannot go back and forth via browser buttons
 
-    <Navigate />    
+        <Navigate />    
 
-        import { Navigate } from 'react-router-dom';
+            import { Navigate } from 'react-router-dom';
 
-        <Route path="/millennium-falcon" element={<Navigate to="/products/10" replace />} />
+            <Route path="/millennium-falcon" element={<Navigate to="/products/10" replace />} />
 
-        replace is useful here, because clicking back will update the URL to /products/10 to /millennium-falcon, thus, going back will mean to jump from /millenium-falcon to /proucts/10, but this in itself again renders the initial logic, so replace as a tag enables user to just go back to previously selected page
+            replace is useful here, because clicking back will update the URL to /products/10 to /millennium-falcon, thus, going back will mean to jump from /millenium-falcon to /proucts/10, but this in itself again renders the initial logic, so replace as a tag enables user to just go back to previously selected page
 
 
 

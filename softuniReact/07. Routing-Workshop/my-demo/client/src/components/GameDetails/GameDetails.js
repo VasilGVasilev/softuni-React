@@ -33,6 +33,20 @@ const GameDetails = ({
         }))
     }
 
+    const validateUsername = (e) => {
+        const username = e.target.value;
+        let errorMessage = '';
+        if (username.length < 4){
+            errorMessage = 'Username must be minimum 4 characters long!'
+        } else if (username.length > 10) {
+            errorMessage = 'Username must be shorter than 10 characters!'
+        }
+        setError(state => ({
+            ...state,
+            [e.target.name]: errorMessage
+        }))
+
+    }
 
     return(
         <section id="game-details">
@@ -85,8 +99,12 @@ const GameDetails = ({
                         name="username"
                         placeholder="John Doe"
                         onChange={onChange}
+                        onBlur={validateUsername}
                         value={comment.username}
                     />
+                    {error.username && 
+                        <div style={{color: 'red'}}>{error.username}</div>
+                    }
                     <textarea
                         name="comment"
                         placeholder="Comment......"
