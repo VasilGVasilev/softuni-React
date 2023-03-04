@@ -31,4 +31,7 @@ If you update mutable values when dealing with state, you go against the whole i
 
 uniqid library -> install, import and just execute function uniqid() where necessary
 
-Comments validation -> if length < 4, onBlur, update special errors state 
+Comments validation -> if length < 4, onBlur, update special errors state
+
+Code-splitting
+    https://reactjs.org/docs/code-splitting.html#code-splitting
