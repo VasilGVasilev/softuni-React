@@ -35,3 +35,8 @@ Comments validation -> if length < 4, onBlur, update special errors state
 
 Code-splitting
     https://reactjs.org/docs/code-splitting.html#code-splitting
+
+You can split code via dynamic import() but this returns a promise, therefore, you use React.lazy.
+The lazy function automatically handles the promise returned by import() to resolve it before rendering the lazy-loaded component
+
+47:25

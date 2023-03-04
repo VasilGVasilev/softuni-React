@@ -2,16 +2,20 @@ import './App.css';
 import Header from './components/Header/Header';
 import Home from './components/Home';
 import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+// import Register from './components/Register/Register';
 import CreateGame from './components/CreateGame/CreateGame';
 import Catalog from './components/Catalog/Catalog';
 import GameDetails from './components/GameDetails/GameDetails';
 
 
 import uniqid from 'uniqid'
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy } from "react";
 import * as gameService from './services/gameServices'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+
+// lazy load of Register
+const Register = lazy(() => import('./components/Register/Register'))
+
 
 function App() {
     const [games, setGames] = useState([])
