@@ -40,3 +40,17 @@ You can split code via dynamic import() but this returns a promise, therefore, y
 The lazy function automatically handles the promise returned by import() to resolve it before rendering the lazy-loaded component
 
 47:25
+
+        import React, { Suspense } from 'react';
+
+        const OtherComponent = React.lazy(() => import('./OtherComponent'));
+
+        function MyComponent() {
+            return (
+                <div>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <OtherComponent />
+                </Suspense>
+                </div>
+            );
+        }

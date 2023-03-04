@@ -9,7 +9,7 @@ import GameDetails from './components/GameDetails/GameDetails';
 
 
 import uniqid from 'uniqid'
-import { useState, useEffect, lazy } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import * as gameService from './services/gameServices'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
@@ -67,7 +67,11 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home games={games}/>}></Route>
                     <Route path='/login' element={<Login />}></Route>
-                    <Route path='/register' element={<Register />}></Route>
+                    <Route path='/register' element={
+                        <Suspense fallback={<span>Loading...</span>}>
+                            <Register />
+                        </Suspense>
+                    }/>
                     <Route path='/create' element={<CreateGame addGameHandler={addGameHandler}/>}></Route>
                     <Route path='/catalog' element={<Catalog games={games}/>}></Route>
                     <Route path='/catalog/:gameId' element={<GameDetails games={games} addComment={addComment}/>}></Route>
