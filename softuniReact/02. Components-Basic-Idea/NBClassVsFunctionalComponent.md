@@ -3,6 +3,7 @@ on the class components vs function components (state in particular):
     How long the component is attached to the DOM:
         in class -> lifecycle methods
         in function -> hooks: useEffect()
+        BUT hooks are not a lifecycle alternative, it is much more: only one hook integrates lifecycle method logic, but there is an abundance of hooks
 
     - class components do not have hooks, rather lifecycle methods:
         render() <------ obligatory
