@@ -11,3 +11,8 @@ This special function can be expanded for more precise updating (wen depending o
     setValue (oldState => {...oldState, newKey: newValue} ) -> reference type
         why we need new reference, because React updates UI via comparing references, so new info that needs to be displayed on next render is designated by having a new reference to it
 
+Context 
+
+    Passing Data Deeply with Context:
+
+    Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep—without passing it explicitly through props.
