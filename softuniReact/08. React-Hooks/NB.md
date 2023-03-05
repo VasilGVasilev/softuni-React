@@ -2,9 +2,9 @@ Hooks since v16.8
 
 Hooks share functionality, they actually add functionality to otherwise static presentational functional components, hooks also make the functional components go against their nature of pure functionality
 
-State hook lets you persist information stored even during re-render, unlike, a simple variable storing, which will be lost at the moment browser re-renders content; this is accomplished via closures
+useState hook lets you persist information stored even during re-render, unlike, a simple variable storing, which will be lost at the moment browser re-renders content; this is accomplished via closures
 
-State is immutable, thus, you need special function setValue to update state:
+useState is immutable, thus, you need special function setValue to update state:
     const [value, setValue] = useState()
 This special function can be expanded for more precise updating (wen depending on oldState -> to tackle race condition):
     setValue (oldState => oldState + 1 ) -> value type
@@ -16,3 +16,52 @@ Context
     Passing Data Deeply with Context:
 
     Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep—without passing it explicitly through props.
+
+useEffect - usecases: data fetching, subscriptions(events) but also mounting:
+    useEffect bundles three lifecycle methods:
+                                                componentDidMount
+                                                componentDidUpdate
+                                                componentWillUnmount
+
+    needs a dependnecy array (empty or not), because otherwise it will make an infinite loop re-render <-> update of state:
+
+    useEffect(() => {
+        const subscription = props.source;
+        return () => {
+            subscription.unsubscribe();
+        }
+    })
+    
+    //clean up function
+    () => {
+        subscription.unsubscribe();
+    }
+
+    how to unmount(clean up) -> make useEffect return a function 
+
+    TaskItem.js
+
+        useEffect(() => {
+        // console.log('Mount');
+
+            return () => {
+                // console.log('Unmount');
+            };
+        }, []);
+
+        each time we initialise a (new task) component -> useEffect is mounted and logs 'Mount'
+        if we remove a (task) component via deleting from state or stop rendering it as a component in UI -> useEffect knows/tracks that this component is no longer rendered and useEffect return is triggered which logs 'Unmount' 
+
+    MIND that if you have a function in useEffect that has dependencies, they too have to be declared in useEffect's dependencies
+
+
+2:40:00
+
+
+
+
+
+
+Idea for articles -> show which methods return a new reference to an array/object to know what to use in setState()
+
+
