@@ -101,6 +101,7 @@ React philosophy is declarative functional components
                 and applies the operation 'x + y' with the argument '3' passed to 'addTwo(3)', 
                 resulting in '2 + 3 = 5'
 
+            Higher-order functions also use closures under the hood, in fact currying is the name of the method to access variables in a nested composition of higher-order function, but what we have with higher-order functions is a function that returns another function and this other function has access to its surrounding lexical environment, namely the function that returned the other function
 
 
 

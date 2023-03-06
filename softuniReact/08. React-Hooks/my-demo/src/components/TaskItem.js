@@ -10,10 +10,10 @@ const TaskItem = ({
     const { taskDeleteHandler, toggleTask, taskEditHandler } = useContext(TaskContext);
 
     useEffect(() => {
-        // console.log('Mount');
+        console.log('Mount');
 
         return () => {
-            // console.log('Unmount');
+            console.log('Unmount');
         };
     }, []);
 

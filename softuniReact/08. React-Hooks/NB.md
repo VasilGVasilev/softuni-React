@@ -25,19 +25,21 @@ useEffect - usecases: data fetching, subscriptions(events) but also mounting:
 
     needs a dependnecy array (empty or not), because otherwise it will make an infinite loop re-render <-> update of state:
 
-    useEffect(() => {
-        const subscription = props.source;
-        return () => {
+    Return in useEffect - a cleanup method
+
+        useEffect(() => {
+            const subscription = props.source;
+            return () => {
+                subscription.unsubscribe();
+            }
+        })
+        
+        //clean up function
+        () => {
             subscription.unsubscribe();
         }
-    })
-    
-    //clean up function
-    () => {
-        subscription.unsubscribe();
-    }
 
-    how to unmount(clean up) -> make useEffect return a function 
+    How to unmount(clean up) -> make useEffect return a function 
 
     TaskItem.js
 
@@ -50,7 +52,8 @@ useEffect - usecases: data fetching, subscriptions(events) but also mounting:
         }, []);
 
         each time we initialise a (new task) component -> useEffect is mounted and logs 'Mount'
-        if we remove a (task) component via deleting from state or stop rendering it as a component in UI -> useEffect knows/tracks that this component is no longer rendered and useEffect return is triggered which logs 'Unmount' 
+        if we remove a (task) component via deleting from state or stop rendering it as a component in UI -> useEffect knows/tracks that this component is no longer rendered and the function that useEffect returns will come into play, mind that this function (logging 'Unmount') is saved for later
+        see useEffect return
 
     MIND that if you have a function in useEffect that has dependencies, they too have to be declared in useEffect's dependencies
 
