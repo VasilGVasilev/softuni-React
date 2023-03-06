@@ -85,6 +85,23 @@ you can make the function inside the function of useEffect async or .then()
     }, [url]);
 
 
+Hooks rules:
+    Always call hooks at the top level of component
+    Never call hooks in loops, conditions, nested functions
+
+    This is the only way so that React knows what Hooks are and where to find them, remember that React compares nodes for re-rendering, so if else may change the node tree  
+
+    If you do ( custom hook inside component method ):
+    
+        const taskDeleteHandler = async (taskId) => {
+            // update server
+            await useFetch(URL);
+            // update UI
+            setTasks(state => state.filter(x => x._id != taskId));
+        };
+
+        ERROR -> React Hook 'useFetch' is called in function 'taskDeleteHandler' that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter.  
+
 
 Idea for articles -> show which methods return a new reference to an array/object to know what to use in setState()
 

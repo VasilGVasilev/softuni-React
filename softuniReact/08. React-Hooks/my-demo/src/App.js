@@ -7,12 +7,16 @@ import CreateTask from './components/CreateTask';
 import styles from './App.module.css';
 
 function App() {
+    // for initial loading
     const [tasks, setTasks, isLoading] = useFetch('http://localhost:3030/jsonstore/todos', []);
+
     // component App's state is abstracted in useFetch hook so only indirectly in component App
 
         // you can have a function that updates the state 'setTasks' in useFetch be extracted here, 
         // since this is not a different component rather an abstracted hook, the state and function
         // that updates the state is still relating to the App component
+        
+    // for subsequent CRUD
     const { removeTodo, createTodo, updateTodo } = useTodosApi();
 
     const taskCreateHandler = async (newTask) => {
