@@ -67,8 +67,22 @@ Custom hooks -> reusable stateful logic, for example, useFetch for displaying Lo
 
     we can declare other variables in another component and use the same closure template (custom hook) to store other values in them, having in mind that state will stored in each closure accordingly
 
+You cannot make the function of useEffect be async,
+you can make the function inside the function of useEffect async or .then()
+    useEffect( NO ASYNC() => {
+        setIsLoading(true);
+        YES ASYNC OR THEN
+            <!-- (async () => {
+                await 
+            }) -->
+        fetch(url)
+            .then(res => res.json())
+            .then(result => {
+                setIsLoading(false);
 
-
+                setData(Object.values(result));
+            });
+    }, [url]);
 
 
 
