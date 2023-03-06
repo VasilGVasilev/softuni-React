@@ -103,6 +103,11 @@ Hooks rules:
         ERROR -> React Hook 'useFetch' is called in function 'taskDeleteHandler' that is neither a React function component nor a custom React Hook function. React component names must start with an uppercase letter.  
 
 
+1:28:00
+
+
+
+
 Idea for articles -> show which methods return a new reference to an array/object to know what to use in setState()
 
 
