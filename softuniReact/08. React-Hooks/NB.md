@@ -105,6 +105,38 @@ Hooks rules:
 
 1:28:00
 
+Context
+        Context API is not React's inner state management system like Redux, which manages global state
+        Context API manages a state that is not fixed on binary framework global/local, rather it manages an asymethrical state that components get access to not via props but via special function useContext(NameOfContext)
+
+    ChatGTP definition:
+    The Context API in React is a way to share state data between components in a tree-like structure, without the need to pass props down through every level of the component hierarchy.
+
+    While Context can be used for global state management, it is not exclusively designed for that purpose. In fact, the Context API can be used for any kind of shared state that needs to be accessed by multiple components in a React application.
+
+    The state stored within a Context is still referred to as "state," but it is shared and accessible to all components that have access to the Context.
+
+    Context API is part of React since v16.3, before that always redux for global and lifting state
+
+    Applying:
+        -create context:
+
+            import { createContext } from "react";
+            export const TaskContext = createContext();
+
+        -attach context to parent via value:
+
+            <TaskContext.Provider value={{ tasks, taskDeleteHandler, toggleTask, taskEditHandler }}>
+            </TaskContext.Provider>
+
+        -attach context to child and import state declared in parent:
+
+            import { useContext } from "react";
+            import { TaskContext } from "../contexts/TaskContext";
+            const { tasks } = useContext(TaskContext)
+
+
+
 
 
 
