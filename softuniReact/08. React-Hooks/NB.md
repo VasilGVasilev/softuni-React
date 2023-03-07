@@ -119,23 +119,24 @@ Context
     Context API is part of React since v16.3, before that always redux for global and lifting state
 
     Applying:
-        -create context:
+
+        -CREATE context:
 
             import { createContext } from "react";
             export const TaskContext = createContext();
 
-        -attach context to parent via value:
+        -PROVIDE context to parent via value:
 
             <TaskContext.Provider value={{ tasks, taskDeleteHandler, toggleTask, taskEditHandler }}>
             </TaskContext.Provider>
 
-        -attach context to child and import state declared in parent:
+        -USE context to child and import state declared in parent:
 
             import { useContext } from "react";
             import { TaskContext } from "../contexts/TaskContext";
             const { tasks } = useContext(TaskContext)
 
-
+    Context disadvantages: not as fast and efficient as global state management like Redux
 
 
 

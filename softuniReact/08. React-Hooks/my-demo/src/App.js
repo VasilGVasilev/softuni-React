@@ -41,7 +41,7 @@ function App() {
         // update server
         await updateTodo(task._id, updatedTask);
         // update UI
-        setTasks(state => state.map(x => x._id == task._id ? updatedTask : x))
+        setTasks(state => state.map(x => x._id == task._id ? updatedTask : x)) //x._id is the UI task, task._id is the server task
     };
 
     const taskEditHandler = async (task, newTitle) => {

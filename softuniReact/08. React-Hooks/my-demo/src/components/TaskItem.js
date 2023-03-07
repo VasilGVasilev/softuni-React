@@ -10,10 +10,10 @@ const TaskItem = ({
     const { taskDeleteHandler, toggleTask, taskEditHandler } = useContext(TaskContext);
 
     useEffect(() => {
-        console.log('Mount');
+        // console.log('Mount');
 
         return () => {
-            console.log('Unmount');
+            // console.log('Unmount');
         };
     }, []);
 
@@ -24,7 +24,6 @@ const TaskItem = ({
     const onEdit = (e) => {
         e.preventDefault();
         const { title } = Object.fromEntries(new FormData(e.target));
-
         taskEditHandler(task, title);
         setIsEdit(false);
     };
@@ -48,8 +47,8 @@ const TaskItem = ({
                     >
                         {task.title}
                     </span>
-                    <button onClick={() => taskDeleteHandler(task._id)}>x</button>
                     <button onClick={taskEditClickHandler}>edit</button>
+                    <button onClick={() => taskDeleteHandler(task._id)}>x</button>
                 </>
             }
         </li>
