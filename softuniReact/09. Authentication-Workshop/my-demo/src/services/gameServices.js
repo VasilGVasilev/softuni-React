@@ -1,6 +1,9 @@
+import { request } from './util/requester'
+
 const baseUrl = 'http://localhost:3030';
 
-export const getAll = () => {
-    return fetch(`${baseUrl}/data/games`)
-        .then(res=>res.json())
-}
+export const getAll =  () => {
+    let m =  request(`${baseUrl}/data/games`);
+    console.log(m);
+    return m;
+} 
