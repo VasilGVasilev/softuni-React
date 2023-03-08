@@ -3,7 +3,6 @@ import CatalogItem from "./CatalogItem/CatalogItem";
 const Catalog = ({
     games
 }) => {
-    console.log(games)
     return(
             <section id="catalog-page">
                 <h1>All Games</h1>

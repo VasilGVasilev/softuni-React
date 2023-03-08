@@ -7,10 +7,11 @@ import CreateGame from './components/CreateGame/CreateGame';
 import Catalog from './components/Catalog/Catalog';
 import GameDetails from './components/GameDetails/GameDetails';
 
+import * as gameService from './services/gameServices'
+import { AuthContext } from './contexts/AuthContext'
 
 import uniqid from 'uniqid'
 import { useState, useEffect, lazy, Suspense } from "react";
-import * as gameService from './services/gameServices'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // lazy load of Register
@@ -18,7 +19,8 @@ const Register = lazy(() => import('./components/Register/Register'))
 
 
 function App() {
-    const [games, setGames] = useState([])
+    const [games, setGames] = useState([]);
+    const [auth, setAuth] = useState({});
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -28,6 +30,13 @@ function App() {
                 })
     },[])
 
+    // why have this abstraction userLogin wrapping setAuth
+    // we want encapsualtion -> App has responsibility about auth state managment
+    // we pass in setAuth to authContext, but we want to pass in limited verions
+    // thus, encapuslating in a separate function and we pass in this separate function
+    const userLogin = (authData) => {
+        setAuth(authData)
+    }
     const addComment = (gameId, comment) => {
         setGames(state => {
             // commentedGame
@@ -59,63 +68,64 @@ function App() {
     };
 
     return (
-        <div id="box">
-            <Header />
+        <AuthContext.Provider value={{auth, userLogin}}>
+            <div id="box">
+                <Header />
 
-            {/* Main Content */}
-            <main id="main-content">
-                <Routes>
-                    <Route path='/' element={<Home games={games}/>}></Route>
-                    <Route path='/login' element={<Login />}></Route>
-                    <Route path='/register' element={
-                        <Suspense fallback={<span>Loading...</span>}>
-                            <Register />
-                        </Suspense>
-                    }/>
-                    <Route path='/create' element={<CreateGame addGameHandler={addGameHandler}/>}></Route>
-                    <Route path='/catalog' element={<Catalog games={games}/>}></Route>
-                    <Route path='/catalog/:gameId' element={<GameDetails games={games} addComment={addComment}/>}></Route>
-
-
-
-                </Routes>
-            </main>
+                {/* Main Content */}
+                <main id="main-content">
+                    <Routes>
+                        <Route path='/' element={<Home games={games}/>}></Route>
+                        <Route path='/login' element={<Login />}></Route>
+                        <Route path='/register' element={
+                            <Suspense fallback={<span>Loading...</span>}>
+                                <Register />
+                            </Suspense>
+                        }/>
+                        <Route path='/create' element={<CreateGame addGameHandler={addGameHandler}/>}></Route>
+                        <Route path='/catalog' element={<Catalog games={games}/>}></Route>
+                        <Route path='/catalog/:gameId' element={<GameDetails games={games} addComment={addComment}/>}></Route>
 
 
 
-            {/* Edit Page ( Only for the creator )*/}
-            {/* <section id="edit-page" className="auth">
-                <form id="edit">
-                    <div className="container">
-                        <h1>Edit Game</h1>
-                        <label htmlFor="leg-title">Legendary title:</label>
-                        <input type="text" id="title" name="title" defaultValue="" />
-                        <label htmlFor="category">Category:</label>
-                        <input type="text" id="category" name="category" defaultValue="" />
-                        <label htmlFor="levels">MaxLevel:</label>
-                        <input
-                            type="number"
-                            id="maxLevel"
-                            name="maxLevel"
-                            min={1}
-                            defaultValue=""
-                        />
-                        <label htmlFor="game-img">Image:</label>
-                        <input type="text" id="imageUrl" name="imageUrl" defaultValue="" />
-                        <label htmlFor="summary">Summary:</label>
-                        <textarea name="summary" id="summary" defaultValue={""} />
-                        <input className="btn submit" type="submit" defaultValue="Edit Game" />
-                    </div>
-                </form>
-            </section> */}
-            
-            {/*Details Page*/}
- 
-            
-            {/* Catalogue */}
-            
-        </div>
+                    </Routes>
+                </main>
 
+
+
+                {/* Edit Page ( Only for the creator )*/}
+                {/* <section id="edit-page" className="auth">
+                    <form id="edit">
+                        <div className="container">
+                            <h1>Edit Game</h1>
+                            <label htmlFor="leg-title">Legendary title:</label>
+                            <input type="text" id="title" name="title" defaultValue="" />
+                            <label htmlFor="category">Category:</label>
+                            <input type="text" id="category" name="category" defaultValue="" />
+                            <label htmlFor="levels">MaxLevel:</label>
+                            <input
+                                type="number"
+                                id="maxLevel"
+                                name="maxLevel"
+                                min={1}
+                                defaultValue=""
+                            />
+                            <label htmlFor="game-img">Image:</label>
+                            <input type="text" id="imageUrl" name="imageUrl" defaultValue="" />
+                            <label htmlFor="summary">Summary:</label>
+                            <textarea name="summary" id="summary" defaultValue={""} />
+                            <input className="btn submit" type="submit" defaultValue="Edit Game" />
+                        </div>
+                    </form>
+                </section> */}
+                
+                {/*Details Page*/}
+    
+                
+                {/* Catalogue */}
+                
+            </div>
+        </AuthContext.Provider>
     );
 }
 
