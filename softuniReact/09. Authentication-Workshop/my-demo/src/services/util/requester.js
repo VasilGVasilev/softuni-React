@@ -16,6 +16,7 @@ const request = async (method, url, data) => {
 
         const response = await buildRequest;
 
+        // checking due to logout returning error if response is resolved, thus we abandond requester as a whole for logout
         const result = await response.json();
 
         return result;
