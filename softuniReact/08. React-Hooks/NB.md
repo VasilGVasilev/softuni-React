@@ -62,7 +62,7 @@ useEffect - usecases: data fetching, subscriptions(events) but also mounting:
 
 Custom hooks -> reusable stateful logic, for example, useFetch for displaying Loading inbetween fetches
     Closure templates
-    useFetch is like a closure template (custom hook), that we can customize with URL and DefaultFata according to our specific need for fetch. But as it is:
+    useFetch is like a closure template (custom hook), that we can customize with URL and DefaultData according to our specific need for fetch. But as it is:
     const [tasks, setTasks, isLoading] = useFetch('http://localhost:3030/jsonstore/todos', []);
 
     we can declare other variables in another component and use the same closure template (custom hook) to store other values in them, having in mind that state will stored in each closure accordingly

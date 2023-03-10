@@ -10,12 +10,42 @@ Logout problems
     
     authService have no access to token which is in context API -> services do not have access to context vars, which is fundamental difference with Back-End MPA, where service had access to token, mainly due to logic being done on same place server, while with spa, logic is sent to browser for client to do it via scripts
 
-    Solution for service not having access to token, token is passed in to authService in Logout component, or directly in request service, but important part is that request has to become a hook rather than be a normal function as it is now due to a following error if you use useContext directly in request function:
+    Solution for service not having access to token:
+        token is passed in to authService in Logout component, or directly in request service, but the important part is that request.js has to become a hook rather than be a normal function due to a following error if you use useContext directly in request function:
         React Hook "useContext" is called in function "request" that is neither a React function component nor a custom React Hook function.
 
-    MIND that context spreads among components not among whole app, whith MPA, we attached token to req.user, which is express Request, thus, fundametal part of the whole app
+        Reminder that hooks should be top-level declared, so that you use their returned functions, not the custom hooks themselves:
+        
+            If you do custom hook inside component method -> ERROR:
+            
+                const taskDeleteHandler = async (taskId) => {
+                    // update server
+                    await useTodosApi(URL);
+                    // update UI
+                    setTasks(state => state.filter(x => x._id != taskId));
+                };
+
+                ERROR -> React Hook 'useTodosApi' is called in function 'taskDeleteHandler' that is neither a React function component nor a custom React Hook function.
+
+        You have to extract the functionality of custom hooks via top-level declaration and use their returned functions:
+
+                const { removeTodo, createTodo, updateTodo } = useTodosApi();
+
+                const taskDeleteHandler = async (taskId) => {
+                    // update server
+                    await removeTodo(taskId);
+                    // update UI
+                    setTasks(state => state.filter(x => x._id != taskId));
+                };
+
+
+    Another solution would be to clone token from component in localStorage and use it in request function see tokenFromComponentToRegularFunction.png
+    custom hook useRequest
+        creating games requires Authorization token, thus, custom hook to upgrade the requester.js functionality
+
+
+    MIND that context spreads among components not among whole app, whith MPA, we attached token to req.user, which is as Express Request is a fundamental part of the whole app, based on express
 
 2:00:00
 
-custom hook useRequest
-    creating games requires Authorization token, thus, custom hook to upgrade the requester.js functionality
+localStorage to pass in token
