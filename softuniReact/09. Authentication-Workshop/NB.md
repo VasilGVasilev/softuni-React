@@ -48,4 +48,6 @@ Logout problems
 
 2:00:00
 
-localStorage to pass in token
+localStorage to pass in token - why?
+    because the alterantive way of passing token from component via service (deep drilling) or useRequest custom hook + context API is actually a long chain that has to be re-established every time one needs an authorised request,
+    it is better to abstract the authorisation token in localStorage which said plainly is even more abstract than using Context API, the latter can simulate global abstraction, yet, it is still dependant on the component we attach it to, unlike, localStorage which is as abstract as Front-end can be -> Browser storage
