@@ -51,3 +51,15 @@ Logout problems
 localStorage to pass in token - why?
     because the alterantive way of passing token from component via service (deep drilling) or useRequest custom hook + context API is actually a long chain that has to be re-established every time one needs an authorised request,
     it is better to abstract the authorisation token in localStorage which said plainly is even more abstract than using Context API, the latter can simulate global abstraction, yet, it is still dependant on the component we attach it to, unlike, localStorage which is as abstract as Front-end can be -> Browser storage
+    also, localStorage solves problem with persitance, so that refresh does not delelet context and auto logouts you
+
+localStorage will be a useState clone 
+    disadvantage -> writing is slowed a bit (localStorage.set)
+    advanatge -> persistance
+
+useState has a second overload -> function that returns initial value:
+    const [value, setValue] = useState(() => { 
+        const storedData = localStorage.getItem(key);
+
+        return storedData ? JSON.parse(storedData) : defaultValue;
+    });

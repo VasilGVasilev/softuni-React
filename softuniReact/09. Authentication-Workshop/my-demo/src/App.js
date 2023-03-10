@@ -14,6 +14,7 @@ import { AuthContext } from './contexts/AuthContext'
 import uniqid from 'uniqid'
 import { useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 // lazy load of Register
 const Register = lazy(() => import('./components/Register/Register'))
@@ -21,7 +22,7 @@ const Register = lazy(() => import('./components/Register/Register'))
 
 function App() {
     const [games, setGames] = useState([]);
-    const [auth, setAuth] = useState({});
+    const [auth, setAuth] = useLocalStorage('auth', {}); //key hardcoded
     const navigate = useNavigate();
 
     useEffect(()=>{
