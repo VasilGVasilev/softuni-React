@@ -1,10 +1,22 @@
-const CreateGame = ({addGameHandler}) => {
+import * as gameService from '../../services/gameServices'
+import { useContext } from 'react';
+import { GameContext } from '../../contexts/GameContext';
+
+const CreateGame = () => {
+    const { addGame } = useContext(GameContext)
     const onSubmit = (e) => {
         e.preventDefault()
 
         const gameData = Object.fromEntries(new FormData(e.target));
 
-        addGameHandler(gameData)
+        // first update server
+        gameService.create(gameData)
+            .then(result=>{
+                addGame(result) //second pass on data to update client state
+
+            })
+
+        
     }
 
     return(
