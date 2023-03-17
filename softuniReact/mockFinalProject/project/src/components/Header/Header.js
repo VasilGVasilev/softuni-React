@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom'
 const Header = () => {
     const user = {}
     return (
-        <header className='header'>
+      <header className='header'>
         {/* Navigation */}
-        <h1 className='homeContainer'>
+        <h2 className='homeContainer'>
           <a className="home" href="#">
-            GamesPlay
+            Matches
           </a>
-        </h1>
+        </h2>
         <nav className='linksContainer'>
-          <a href="#">All games</a>
+          <a href="#">All matches</a>
           {/* Logged-in users */}
           <div id="user">
-            <a href="#">Create Game</a>
+            <a href="#">Create Match</a>
             <a href="#">Logout</a>
           </div>
           {/* Guest users */}
