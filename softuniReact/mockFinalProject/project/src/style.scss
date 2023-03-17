@@ -1,5 +1,8 @@
 body{
     background-color: #a7bcff;
+    background-image: url('../public/stadium.png');
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 @mixin mobile{
@@ -21,8 +24,9 @@ body{
 }
 
 .header{
-    background-color: #5d5b8d;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #1f6c11;
+    font-family: impact;
+    font-size: 26px;
 
     height: 100vh;
     display: flex;
@@ -31,25 +35,37 @@ body{
     padding: 10px;
     width: auto;
     height: 80px;
+    border-bottom: #1e1d45 solid 7px;
 
     
     .homeContainer{
         display: flex;
         flex-direction: row;
         gap: 20px;
+        animation: glow 1s ease-in-out infinite alternate;
 
+        @keyframes glow {
+            from {
+              text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #1ba6c9, 0 0 40px #1ba6c9, 0 0 50px #1ba6c9, 0 0 60px #1ba6c9, 0 0 70px #1ba6c9;
+            }
+            
+            to {
+              text-shadow: 0 0 20px #fff, 0 0 30px #1989a4, 0 0 40px #1989a4, 0 0 50px #1989a4, 0 0 60px #1989a4, 0 0 70px #1989a4, 0 0 80px #ff4da6;
+            }
+          }
 
         a {
             padding: 0px 10px;
             cursor: pointer;
             text-decoration: none;
             font-weight: bold;
-            color: inherit;
+            color: #1e1d45;
 
             &:hover{
-                color: white;
+                color:white;
             }
         }
+
     }
     
     .linksContainer{
@@ -62,7 +78,7 @@ body{
             cursor: pointer;
             text-decoration: none;
             font-weight: bold;
-            color: inherit;
+            color: #1e1d45;
 
             &:hover{
                 color: white;
