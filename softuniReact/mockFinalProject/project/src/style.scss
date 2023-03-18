@@ -41,7 +41,7 @@ body{
 .header{
     background-color: #19500f;
     font-family: impact;
-    font-size: 24px;
+    font-size: 25px;
 
     height: 100vh;
     display: flex;
@@ -49,8 +49,9 @@ body{
     justify-content: space-between;
     padding: 10px;
     width: auto;
-    height: 80px;
-    border-bottom: #1e1d45 solid 4px;
+    height: 70px;
+    border-top: #2b6022 groove 5px;
+    border-bottom: #2b6022 groove 5px;
 
     
     .homeContainer{
@@ -68,6 +69,7 @@ body{
 
             &:hover{
                 color:white;
+                transition: color 0.2s;
             }
         }
 
@@ -88,6 +90,7 @@ body{
 
             &:hover{
                 color: white;
+                transition: color 0.2s;
             }
         }
     }
