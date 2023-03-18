@@ -8,9 +8,9 @@ const Register = () => {
                 <span className='logo'>User</span>
                 <span className='title'>Register</span>
                 <form>
-                    <input type="text" placeholder='display name'/>
-                    <input type="email" placeholder='email'/>
-                    <input type="password" placeholder='******'/>
+                    <input type="email" name="email" placeholder='email'/>
+                    <input type="password" name="password" placeholder='password'/>
+                    <input type="password" name="confirm-password" placeholder='repeat password'/>
                     {/* display none for input so that label is decorated */}
                     <label htmlFor="file">
                         <img src={Add} alt="" />
