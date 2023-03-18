@@ -7,21 +7,21 @@ const Header = () => {
       <header className='header'>
         {/* Navigation */}
         <h2 className='homeContainer'>
-          <a className="home" href="#">
+          <Link className="home" to="/">
             Matches
-          </a>
+          </Link>
         </h2>
         <nav className='linksContainer'>
-          <a href="#">All matches</a>
+          <Link to="/catalog">All matches</Link>
           {/* Logged-in users */}
           <div id="user">
-            <a href="#">Create Match</a>
-            <a href="#">Logout</a>
+            <Link to="/create">Create Match</Link>
+            <Link to="/logout">Logout</Link>
           </div>
           {/* Guest users */}
           <div id="guest">
-            <a href="#">Login</a>
-            <a href="#">Register</a>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </div>
         </nav>
       </header>
