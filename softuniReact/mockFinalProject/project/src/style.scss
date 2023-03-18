@@ -48,9 +48,9 @@ body{
     justify-content: space-between;
     padding: 10px;
     width: auto;
-    height: 70px;
-    border-top: #2b6022 groove 3px;
-    border-bottom: #2b6022 groove 3px;
+    height: 60px;
+    border-top: #2b6022 solid 10px;
+    border-bottom: #2b6022 solid 10px;
 
     
     .homeContainer{
@@ -100,7 +100,6 @@ body{
 .authFormContainer{
 
     font-family: Georgia, 'Times New Roman', Times, serif;
-
     height: 100vh;
     display: flex;
     align-items: center;
@@ -108,17 +107,19 @@ body{
     // SASS allows nesting children in parents for conflict prevention
     .formWrapper{
         background-color: white;
-        padding: 20px 50px;
+        padding: 40px 50px;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
         gap: 10px;
         align-items: center;
+        box-shadow: 2px 2px 3px;
+
 
         .logo{
             color: #5d5b8d;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 26px;
         }
 
         .title{
@@ -155,7 +156,7 @@ body{
                 align-items: center;
                 gap: 10px;
                 color: #8da4f1;
-                font-size: 12px;
+                font-size: 18px;
                 cursor: pointer;
             }
         }
@@ -171,7 +172,6 @@ body{
 .loggedFormContainer{
 
     font-family: Georgia, 'Times New Roman', Times, serif;
-
     height: 100vh;
     display: flex;
     align-items: center;
@@ -183,14 +183,14 @@ body{
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 40px;
         align-items: center;
         box-shadow: 2px 2px 3px;
 
         .logo{
             color: white;
             font-weight: bold;
-            font-size: 22px;
+            font-size: 26px;
         }
 
         form{
@@ -202,20 +202,26 @@ body{
                 align-items: center;
                 color: white;
                 font-size: 18px;
-                cursor: pointer;
+                
             }
 
             input{
-                padding: 15px;
+                padding: 10px;
                 border: none;
                 width: 250px;
-                border-bottom: 1px solid #a7bcff;
+                
                 &::placeholder{
                     color: rgb(175,175,175);
                 }
             }
 
+            // .circlePicker{
+            //     width: 200px;
+            //     height: 100px;
+            // }
+
             button{
+                margin-top: 20px;
                 background-color: #2b6022;
                 color: white;
                 padding: 10px;

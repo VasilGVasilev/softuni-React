@@ -6,8 +6,8 @@ const Login = () => {
     return(
         <section className='authFormContainer'>
             <div className='formWrapper'>
-                <span className='logo'>User</span>
-                <span className='title'>Login</span>
+                <span className='logo'>Login</span>
+                <span className='title'>form</span>
                 <form>
                     <input type="email" name="email" placeholder='email'/>
                     <input type="password" name="password" placeholder='password'/>
