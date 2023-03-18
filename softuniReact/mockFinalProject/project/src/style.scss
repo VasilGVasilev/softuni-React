@@ -27,11 +27,11 @@ body{
 
     @keyframes glow {
         from {
-          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #1ba6c9, 0 0 40px #1ba6c9, 0 0 50px #1ba6c9;
+          text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #1ba6c9;
         }
         
         to {
-          text-shadow: 0 0 20px #fff, 0 0 30px #1989a4, 0 0 40px #1989a4, 0 0 50px #1989a4, 0 0 60px #1989a4;
+          text-shadow: 0 0 20px #fff, 0 0 30px #1989a4, 0 0 40px #1989a4;
         }
       }
 
@@ -97,7 +97,7 @@ body{
 
 
 
-.formContainer{
+.authFormContainer{
 
     font-family: Georgia, 'Times New Roman', Times, serif;
 
@@ -167,6 +167,74 @@ body{
         }
     }
 }
+
+.loggedFormContainer{
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // SASS allows nesting children in parents for conflict prevention
+    .formWrapper{
+        background-color: #262462;
+        padding: 40px 50px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        box-shadow: 2px 2px 3px;
+
+        .logo{
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            label{
+                align-items: center;
+                color: white;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            input{
+                padding: 15px;
+                border: none;
+                width: 250px;
+                border-bottom: 1px solid #a7bcff;
+                &::placeholder{
+                    color: rgb(175,175,175);
+                }
+            }
+
+            button{
+                background-color: #2b6022;
+                color: white;
+                padding: 10px;
+                font-weight: bold;
+                border: none;
+                cursor: pointer;
+            }
+
+
+        }
+
+        p{
+            color: #5d5b8d;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    }
+}
+
 
 // .home{
 //     background-color: #a7bcff;

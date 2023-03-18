@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
     return(
-        <div className='formContainer'>
+        <section className='authFormContainer'>
             <div className='formWrapper'>
                 <span className='logo'>User</span>
                 <span className='title'>Register</span>
@@ -22,7 +22,7 @@ const Register = () => {
                 </form>
                 <p>If you already have profile click <Link to="/login">here</Link></p>
             </div>
-        </div>
+        </section>
     )
 } 
 

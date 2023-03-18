@@ -4,7 +4,7 @@ const Login = () => {
 
     
     return(
-        <section className='formContainer'>
+        <section className='authFormContainer'>
             <div className='formWrapper'>
                 <span className='logo'>User</span>
                 <span className='title'>Login</span>
