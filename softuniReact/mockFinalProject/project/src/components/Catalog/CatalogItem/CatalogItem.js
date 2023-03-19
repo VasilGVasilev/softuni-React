@@ -4,8 +4,8 @@ const CatalogItem = ({game}) => {
     return(
         <div className="game">
             <div className="allGames-info">
-                <h6>{game.category}</h6>
-                <h2>{game.title}</h2>
+                <p>{game.category}</p>
+                <p>{game.title}</p>
                 <Link to={`/catalog/${game._id}`} className="details-button">Details</Link>
             </div>
         </div>

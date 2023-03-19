@@ -31,7 +31,11 @@
     height: auto;
 }
 
-
+.allGames-info {
+    padding: 30px;
+    position: relative;
+    width: 100%;
+}
 
 .allGames-info>img {
     margin-top: -10px;
