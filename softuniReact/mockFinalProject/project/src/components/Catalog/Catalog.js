@@ -6,7 +6,7 @@ const Catalog = ({
     return(
             <section className="catalogPage">
                 <div className="container">
-                    <div className="allMatchesInfo">
+
                         <div className="title">
                             <h1>All Games</h1>
                         </div>
@@ -16,7 +16,7 @@ const Catalog = ({
                                 : <h3 className="noMatches">No matches yet</h3>
                             }
                         </div>
-                    </div>
+
                 </div>
             </section>
     );

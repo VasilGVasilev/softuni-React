@@ -251,7 +251,7 @@ body{
 
     .container{
         height: 600px;
-        width: 80%;
+        width: 90%;
         border: 1px solid white;
         background-color: transparent;
         box-shadow: 0px 0px 40px 0px;
@@ -259,50 +259,42 @@ body{
         border-radius: 10px;
 
 
-        .allMatchesInfo{
-            height: auto;
-            width: auto;
+        .title{
+            position: relative;
+            top: 10px;
+            font-size: 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        
+        .allMatches {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
+            flex-direction: row;
             overflow-y: scroll;
-
-            .title{
-                position: relative;
-                top: 10px;
-                font-size: 28px;
-                font-weight: 700;
-                text-transform: uppercase;
-                text-align: center;
-            }
+            padding: 20px;
             
-            .allMatches{
-                display: flex;
-                flex-direction: row;
-                
-                .match{
-                    height: 300px;
-                    width: 300px;
-                    background-color: rgba(231, 226, 226);
-                    box-shadow: 0px 0px 40px 0px;
-                    backdrop-filter: blur(10px);
-                    border-radius: 10px;
-                    text-align: center;
-                    font-size: 18px;
-                    margin: 10px;
-                    padding: 10px;
+            .match{
 
-    
-                    .teamSides{
-                        display: flex;
-                        justify-content: space-between;
-                        padding: 0px 50px;
-                    }
+                height: 300px;
+                width: 20%;
+                background-color: rgba(231, 226, 226);
+                box-shadow: 0px 0px 40px 0px;
+                backdrop-filter: blur(10px);
+                border-radius: 10px;
+                text-align: center;
+                font-size: 18px;
+                margin: 10px;
+                padding: 10px;
+
+                .teamSides{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0px 50px;
                 }
             }
         }
+        
     }
     
 }
