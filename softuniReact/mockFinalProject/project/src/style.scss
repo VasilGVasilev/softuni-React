@@ -257,42 +257,49 @@ body{
         box-shadow: 0px 0px 40px 0px;
         backdrop-filter: blur(10px);
         border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: white;
 
-        .title{
-            flex: 1;
-            margin-bottom: 20px;
-            font-size: 20px;
-            border-bottom: #19500f solid 2px;
-            h1{
-                position: relative;
-                top: 25px;
-            }
-        }
-        .games{
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            max-width: 100%;
-            margin: 15px;
-            overflow: hidden;
-            width: 600px auto;
-            min-height: 210px;
+
+        .allMatchesInfo{
             height: auto;
-            
-            .game{
-                background-color: #e8e4e4;
-                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+            width: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-y: scroll;
 
-                .allGames-info {
-                    padding: 30px;
-                    position: relative;
-                    width: 100%;
+            .title{
+                position: relative;
+                top: 10px;
+                font-size: 28px;
+                font-weight: 700;
+                text-transform: uppercase;
+                text-align: center;
+            }
+            
+            .allMatches{
+                display: flex;
+                flex-direction: row;
+                
+                .match{
+                    height: 300px;
+                    width: 300px;
+                    background-color: rgba(231, 226, 226);
+                    box-shadow: 0px 0px 40px 0px;
+                    backdrop-filter: blur(10px);
+                    border-radius: 10px;
+                    text-align: center;
+                    font-size: 18px;
+                    margin: 10px;
+                    padding: 10px;
+
+    
+                    .teamSides{
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 0px 50px;
+                    }
                 }
             }
         }
