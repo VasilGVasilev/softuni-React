@@ -251,9 +251,9 @@ body{
 
     .container{
         height: 600px;
-        width: 90%;
-        border: 1px solid white;
-        background-color: transparent;
+        width: 70%;
+        border: 7px solid white;
+        background-color: rgba(9, 136, 62, 0.705);
         box-shadow: 0px 0px 40px 0px;
         backdrop-filter: blur(10px);
         border-radius: 10px;
@@ -266,34 +266,127 @@ body{
             font-weight: 700;
             text-transform: uppercase;
             text-align: center;
+            color: white;
+        }
+
+        .carousel {
+            height: 350px;
+            width: auto;
+            position: relative;
+
+            .switchLeft, .switchRight{
+                color: white;
+                font-weight: bold;
+                height: 90%;
+                width: 45px;
+                line-height: 250px;
+                font-size: 25px;
+                text-align: center;
+                padding-top: 30px;
+                background-color: lightgreen;
+                font-family: sans-serif;
+                top: 0;
+                z-index: 3;
+            }
+
+            .switchLeft {
+                position: absolute;
+                align-items: center;
+                background-color: white;
+                color: black;
+                border-radius: 40px 0px 0px 40px;
+                left: -49px;
+            }
+
+            .switchRight {
+                position: absolute;
+                background-color: white;
+                color: black;
+                border-radius: 0px 40px 40px 0px;
+                right: -49px;
+            }
+            
+            .carouselBox{
+
+                height: 350px;
+                width: auto;
+                overflow-y: scroll;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                // justify-content: center;
+
+                .match {
+                    min-width: 247px;
+                    max-width: 247px;
+                    height: 250px;
+                    background-size: cover;
+                    background-color: lightgreen;
+                    margin: 5px 10px;
+                    transition: 0.3s ease;
+                    z-index: 2;
+
+                    .teamSides{
+                        border: 1px solid white;
+
+                    }
+
+                    .detailsButton{
+                        background-color: #2A265F;
+                        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+                        color: #fff;
+                        font-size: 20px;
+                        letter-spacing: 1px;
+                        position: relative;
+                        top: 40px;
+                        padding: 5px;
+                        text-decoration: none;
+                        cursor: pointer;
+
+                    }
+
+                    &:hover{
+                        box-shadow: 0px 0px 20px 0px;
+                        backdrop-filter: blur(1px);
+                        transform: scale(1.4);
+                        z-index: 5;
+                    }
+                }
+
+            }
+
+
         }
         
-        .allMatches {
-            display: flex;
-            flex-direction: row;
-            overflow-y: scroll;
-            padding: 20px;
+        // .allMatches {
+        //     display: flex;
+        //     overflow-y: scroll;
+        //     justify-content: space-between; //if you center, you lose some cards when you overflow
+        //     padding: 20px;
             
-            .match{
+        //     .match{
 
-                height: 300px;
-                width: 20%;
-                background-color: rgba(231, 226, 226);
-                box-shadow: 0px 0px 40px 0px;
-                backdrop-filter: blur(10px);
-                border-radius: 10px;
-                text-align: center;
-                font-size: 18px;
-                margin: 10px;
-                padding: 10px;
+        //         height: 300px;
+        //         width: 180px;
+        //         background-color: rgba(231, 226, 226);
+        //         box-shadow: 0px 0px 40px 0px;
+        //         backdrop-filter: blur(10px);
+        //         border-radius: 10px;
+        //         font-size: 18px;
+        //         margin: 5px;
+        //         padding: 10px;
 
-                .teamSides{
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 0px 50px;
-                }
-            }
-        }
+        //         .teamSides{
+        //             text-align: center;
+        //             display: flex;
+        //             flex-direction: column;
+        //             justify-content: center;
+        //             align-items: center;
+        //             margin: 20px 0;
+        //             padding: 0px 60px;
+        //         }
+        //     }
+        // }
         
     }
     

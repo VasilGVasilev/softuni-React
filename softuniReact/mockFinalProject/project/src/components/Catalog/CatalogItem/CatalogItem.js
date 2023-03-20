@@ -5,9 +5,12 @@ const CatalogItem = ({game}) => {
         <div className="match">
             <div className="teamSides">
                 <p>{game.category}</p>
+                <h5>VS</h5>
                 <p>{game.title}</p>
             </div>
-            <Link to={`/catalog/${game._id}`} className="details-button">Details</Link>
+            <div className="buttons">
+                <Link to={`/catalog/${game._id}`} className="detailsButton">Details</Link>
+            </div>
         </div>
     );
 };
