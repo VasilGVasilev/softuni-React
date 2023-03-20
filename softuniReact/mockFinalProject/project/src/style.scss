@@ -319,7 +319,7 @@ body{
                 text-align: center;
                 display: flex;
                 align-items: center;
-                // justify-content: center;
+                white-space: nowrap; //full line without breaks of text due to spaces in text
 
                 .match {
                     min-width: 247px;
@@ -405,13 +405,49 @@ body{
     justify-content: center;
 
     .container{
-        height: 600px;
         width: 30%;
         border: 7px solid white;
         background-color: rgba(9, 136, 62, 0.705);
         box-shadow: 0px 0px 40px 0px;
         backdrop-filter: blur(10px);
         border-radius: 10px;
+
+        .title{
+            position: relative;
+            top: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            color: white;
+        }
+
+        .infoSection{
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .gameHeader{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: center;
+                font-size: 10px;
+                padding: 10px;
+                gap: 10px;
+                white-space: pre-line; //Sequences of white space are preserved. Lines are broken at newline characters, at <br>, and as necessary to fill line boxes.
+            }
+
+            .detailsComments{
+
+
+                .detailsCommentsOne{
+                    overflow: scroll;
+                }
+            }
+        }
     }
 }
 

@@ -65,12 +65,12 @@ const GameDetails = ({
                 <div className='infoSection'>
                     <div className='gameHeader'>
                         <h1 className='teamOne'>{game.teamOne}</h1>
-                        <h3>VS</h3>
+                        <h1>VS</h1>
                         <h1 className='teamTwo'>{game.teamTwo}</h1>
                     </div>
-                    <p className='date'>
+                    <div className='date'>
                         {game.date}
-                    </p>
+                    </div>
 
                     <div className='detailsComments'>
                         <h2>Comments:</h2>
@@ -82,7 +82,11 @@ const GameDetails = ({
                             )}
                         </ul>
                         {!game.comments &&
-                            <p className='noComment'>No comments.</p>
+                            <div className='detailsCommentsOne'>
+
+                                <p className='noComment'>No comments.</p>
+
+                            </div>
                         }
                     </div>
 
