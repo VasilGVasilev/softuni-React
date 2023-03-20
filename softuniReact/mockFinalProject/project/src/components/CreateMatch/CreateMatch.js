@@ -3,18 +3,18 @@ import { GithubPicker } from 'react-color'
 
 
 const CreateMatch = () => {
-    const [colorTeamOne, setColorTeamOne] = useState('#B80000')
-    const [colorTeamTwo, setColorTeamTwo] = useState('#5300EB')
+    const [teamOneColor, setTeamOneColor] = useState('#B80000')
+    const [teamTwoColor, setTeamTwoColor] = useState('#5300EB')
 
     const onSubmit = (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
         const date = formData.get('date');
-        const firstTeam = formData.get('firstTeam');
-        const secondTeam = formData.get('secondTeam');
+        const teamOne = formData.get('teamOne');
+        const teamTwo = formData.get('teamTwo');
         
-        let info = {date, firstTeam, secondTeam, colorTeamOne, colorTeamTwo}
+        let info = {date, teamOne, teamTwo, teamOneColor, teamTwoColor}
         console.log(info);
         
 
@@ -27,18 +27,18 @@ const CreateMatch = () => {
             <form onSubmit={onSubmit}>
                 <label htmlFor="date">Date:</label>
                 <input type="date" name="date" id='date'/>
-                <label htmlFor="firstTeam">Team 1:</label>
-                <input type="text" name="firstTeam" id='firstTeam' placeholder='Enter Team 1'/>
-                <label htmlFor="secondTeamColor">Color: <span style={{color: colorTeamOne}}>{colorTeamOne}</span></label>
+                <label htmlFor="teamOne">Team 1:</label>
+                <input type="text" name="teamOne" id='teamOne' placeholder='Enter Team 1'/>
+                <label htmlFor="teamOneColor">Color: <span style={{color: teamOneColor}}>{teamOneColor}</span></label>
                 <GithubPicker
-                    color={colorTeamOne}
-                    onChangeComplete={(color) => {setColorTeamOne(color.hex)}}
+                    color={teamOneColor}
+                    onChangeComplete={(color) => {setTeamOneColor(color.hex)}}
                 />
-                <label htmlFor="secondTeam">Team 2:</label>
-                <input type="text" name="secondTeam" id='secondTeam' placeholder='Enter Team 2'/>
-                <label htmlFor="secondTeamColor">Color: <span style={{color: colorTeamTwo}}>{colorTeamTwo}</span></label>
+                <label htmlFor="teamTwo">Team 2:</label>
+                <input type="text" name="teamTwo" id='teamTwo' placeholder='Enter Team 2'/>
+                <label htmlFor="teamTwoColor">Color: <span style={{color: teamTwoColor}}>{teamTwoColor}</span></label>
                 <GithubPicker
-                    onChangeComplete={(color) => {setColorTeamTwo(color.hex)}}
+                    onChangeComplete={(color) => {setTeamTwoColor(color.hex)}}
                 />
                 <button>Create</button>
             </form>

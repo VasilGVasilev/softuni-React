@@ -180,12 +180,17 @@ body{
     .formWrapper{
         background-color: #262462;
         padding: 40px 50px;
-        border-radius: 10px;
         display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 10px;
         align-items: center;
-        box-shadow: 2px 2px 3px;
+        
+
+        border: 7px solid white;
+        background-color: rgba(9, 136, 62, 0.705);
+        box-shadow: 0px 0px 40px 0px;
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
 
         .logo{
             color: white;
@@ -327,7 +332,7 @@ body{
                     z-index: 2;
 
                     .teamSides{
-                        border: 1px solid white;
+                        border: 10px solid white;
 
                     }
 
@@ -390,6 +395,24 @@ body{
         
     }
     
+}
+
+.detailsPage{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container{
+        height: 600px;
+        width: 30%;
+        border: 7px solid white;
+        background-color: rgba(9, 136, 62, 0.705);
+        box-shadow: 0px 0px 40px 0px;
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+    }
 }
 
 // .home{

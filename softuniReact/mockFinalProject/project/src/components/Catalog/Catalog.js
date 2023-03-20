@@ -11,7 +11,7 @@ const Catalog = ({
                             <h1>All matches</h1>
                         </div>
                         <div className="carousel">
-                            <div className="carouselBox">
+                            <div className="carouselBox" style={games?.length < 4 ? {justifyContent:'center'} : {}}>
                                 {games?.length > 0
                                     ? games.map(game => <CatalogItem key={game._id} game={game}/>)
                                     : <h3 className="noMatches">No matches yet</h3>

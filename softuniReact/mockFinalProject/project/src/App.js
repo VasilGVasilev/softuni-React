@@ -5,6 +5,8 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import CreateMatch from './components/CreateMatch/CreateMatch';
 import Catalog from './components/Catalog/Catalog';
+import MatchDetails from './components/MatchDetails/MatchDetails';
+
 
 import * as gameService from './services/gameServices'
 
@@ -29,7 +31,9 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/create' element={<CreateMatch />}></Route>
-        <Route path='/Catalog' element={<Catalog games={games}/>}></Route>
+        <Route path='/catalog' element={<Catalog games={games} />}></Route>
+        <Route path='/catalog/:matchId' element={<MatchDetails />}></Route>
+
 
       </Routes>
 
