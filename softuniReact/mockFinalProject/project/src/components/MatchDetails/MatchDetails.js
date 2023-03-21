@@ -8,6 +8,8 @@ const GameDetails = ({
 
 }) => {
     const [game, setGame] = useState({});
+    const [teamOneVotes, setTeamOneVotes] = useState(4);
+    const [teamTwoVotes, setTeamTwoVotes] = useState(1);
     const { matchId } = useParams();
 
     useEffect(()=>{
@@ -56,14 +58,19 @@ const GameDetails = ({
     //     }))
 
     // }
-    let teamOneVotes = 4;
-    let totalVotes = 5;
-    let totalChartHeight = 240;
 
 
-    let currentPerc = teamOneVotes / totalVotes;
-    let currentChartHeight = totalChartHeight * currentPerc;
-    console.log(currentChartHeight)
+
+    const handleTeamOne = () => {
+        console.log(teamOneVotes)
+        setTeamOneVotes(s => s + 1)
+    }
+
+    const handleTeamTwo = () => {
+        console.log(teamTwoVotes)
+        setTeamTwoVotes(s => s + 1)
+    }
+
 
 
     return(
@@ -78,15 +85,25 @@ const GameDetails = ({
 
                     <div className='matchHeader'>
                         <div className='teamOne'>
-                            <Link className='teamOneGraphic' style={{height:`${currentChartHeight}px`}}></Link>
-                            <span className='teamOneName'>{game.teamOne}</span>
+                            <div className='teamOneChart'>
+                                <Link className='teamOneChartEmpty' style={{flex:`${teamTwoVotes}`}}></Link>
+                                <Link className='teamOneChartFull' onClick={()=>{handleTeamOne()}} style={{flex:`${teamOneVotes}`}}>{teamOneVotes}</Link>
+                            </div>
                         </div>
 
                         <div className='teamTwo'>
-                            <div className='teamTwoGraphic'></div>
-                            <span className='teamTwoName'>{game.teamTwo}</span>
+                            <div className='teamTwoChart'>
+                                <Link className='teamTwoChartEmpty' style={{flex:`${teamOneVotes}`}}></Link>
+                                <Link className='teamTwoChartFull' onClick={()=>{handleTeamTwo()}} style={{flex:`${teamTwoVotes}`}}>{teamTwoVotes}</Link>
+                            </div>
                         </div>
                     </div>
+                    <div className='matchNames'>
+                        <p className='teamOneName'>{game.teamOne}</p>
+                        <p className='teamTwoName'>{game.teamTwo}</p>
+                    </div>
+
+
 
 
                     <div className='buttonsDelEdit'>
