@@ -207,6 +207,22 @@ useRef() hook - enables controlling a browser DOM element via reference, BUT thi
     Use case: 
         import a video player and make useRef to attach to browser DOM click automatically 1.25 speed of video
 
+    Uses useState vs useRef:
+    MAIN difference - useRef does not cause re-render even tho it stores state as useState 
+        For useState:
+
+            Allows functional components to have their own state.
+            Allows us to update the state inside components.
+            It causes components to re-render after state updates.
+            Returns the current state.
+            Has an updater function that updates the state.
+
+        For useRef:
+
+            Returns an object with a property containing the initial value.
+            Doesn't cause a component to re-render when the value or state changes.
+            Data is persisted between renders.
+            Allows referencing DOM elements.
 
 
 Side notes:
