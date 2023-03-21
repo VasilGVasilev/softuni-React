@@ -56,6 +56,15 @@ const GameDetails = ({
     //     }))
 
     // }
+    let teamOneVotes = 4;
+    let totalVotes = 5;
+    let totalChartHeight = 240;
+
+
+    let currentPerc = teamOneVotes / totalVotes;
+    let currentChartHeight = totalChartHeight * currentPerc;
+    console.log(currentChartHeight)
+
 
     return(
         <section className='detailsPage'>
@@ -69,7 +78,7 @@ const GameDetails = ({
 
                     <div className='matchHeader'>
                         <div className='teamOne'>
-                            <div className='teamOneGraphic'></div>
+                            <Link className='teamOneGraphic' style={{height:`${currentChartHeight}px`}}></Link>
                             <span className='teamOneName'>{game.teamOne}</span>
                         </div>
 
