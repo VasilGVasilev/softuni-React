@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import * as gameService from '../../services/gameServices'
 
 const GameDetails = ({
@@ -63,13 +63,30 @@ const GameDetails = ({
 
                 <h1 className='title'>Match Details</h1>
                 <div className='infoSection'>
-                    <div className='gameHeader'>
-                        <h1 className='teamOne'>{game.teamOne}</h1>
-                        <h1>VS</h1>
-                        <h1 className='teamTwo'>{game.teamTwo}</h1>
-                    </div>
                     <div className='date'>
                         {game.date}
+                    </div>
+
+                    <div className='matchHeader'>
+                        <div className='teamOne'>
+                            <div className='teamOneGraphic'></div>
+                            <span className='teamOneName'>{game.teamOne}</span>
+                        </div>
+
+                        <div className='teamTwo'>
+                            <div className='teamTwoGraphic'></div>
+                            <span className='teamTwoName'>{game.teamTwo}</span>
+                        </div>
+                    </div>
+
+
+                    <div className='buttonsDelEdit'>
+                        <Link href='#' className='button'>
+                            Edit
+                        </Link>
+                        <Link href='#' className='button'>
+                            Delete
+                        </Link>
                     </div>
 
                     <div className='detailsComments'>
@@ -91,14 +108,6 @@ const GameDetails = ({
                     </div>
 
 
-                    <div className='buttons'>
-                        <a href='#' className='button'>
-                            Edit
-                        </a>
-                        <a href='#' className='button'>
-                            Delete
-                        </a>
-                    </div>
                 </div>
             </div>
 
