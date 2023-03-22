@@ -1,7 +1,7 @@
 const request = async (method, url, data) => {
     try {
         const user = localStorage.getItem('auth');
-        const auth = JSON.parse(user || '{}') ;//if user is undefined || logic
+        const auth = JSON.parse(user || '{}') ;// user || '{}' -> catches if user is undefined
 
         let headers = {}
 
@@ -26,7 +26,7 @@ const request = async (method, url, data) => {
 
         const response = await buildRequest;
 
-        // checking due to logout returning error if response is resolved, thus we abandond requester as a whole for logout
+        // checking due to logout returning error if response is resolved, thus we abandon requester as a whole for logout
         const result = await response.json();
 
         return result;
