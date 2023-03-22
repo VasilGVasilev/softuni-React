@@ -18,6 +18,14 @@ export const useLocalStorage = (key, defaultValue) => {
         setLocalStorageValue,
     ];
 }
+// this custom hook has too parts, the first is the setting function which makes it so that 
+// first, we set values both on browser via localStorage and on our local App component
+// second, we initialize our local value for state via using localStorage which is:
+// either persisting data from previous refresh cycle
+// or we set a hardcoded init value -> 'auth' : {} 
+
+
+
 // useLocalStorage is a template so when you call setAuth in App.js
 // you call setLocalStorageValue which after setting localStroage.setItem()
 // calls setValue
