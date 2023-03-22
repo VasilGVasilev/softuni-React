@@ -53,6 +53,26 @@ localStorage to pass in token - why?
     it is better to abstract the authorisation token in localStorage which said plainly is even more abstract than using Context API, the latter can simulate global abstraction, yet, it is still dependant on the component we attach it to, unlike, localStorage which is as abstract as Front-end can be -> Browser storage
     also, localStorage solves problem with persitance, so that refresh does not delelet context and auto logouts you
 
+    persisting auth state via LocalStorage because otherwise the auth data will perish with each refresh:
+
+        useLocalStorage is a template so when you call setAuth in App.js
+        you call setLocalStorageValue which after setting localStroage.setItem()
+        calls setValue
+
+        the quintessence is const setLocalStorageValue
+        it sets values (email, id, accessToken) localStorage for Browser and sets values to keep in component state
+
+        Thus, when you have logged-in, you setAuth, ultimatelly, setting values both for component to use and browser to store
+
+        The whole idea to persist is that when you click on refresh useState(initialValue) is initilised
+        which in this case searches for data in localStorage -> const storedData = localStorage.getItem(key);
+        Since refresh re-initilizes component, but browser stores values and when we refresh, we in fact re-initialize the state,
+        but with info set in localStorage previously via first part of const setLocalStorageValue -> localStorage.setItem()
+
+
+
+
+
 localStorage will be a useState clone 
     disadvantage -> writing is slowed a bit (localStorage.set)
     advanatge -> persistance

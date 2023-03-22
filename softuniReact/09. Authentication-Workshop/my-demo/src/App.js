@@ -25,7 +25,7 @@ const Register = lazy(() => import('./components/Register/Register'))
 
 function App() {
     const [games, setGames] = useState([]);
-    const [auth, setAuth] = useLocalStorage('auth', {}); //key hardcoded
+    const [auth, setAuth] = useLocalStorage('auth', {}); // 'auth' is a hardcoded key
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -36,7 +36,7 @@ function App() {
     },[])
 
     // why have this abstraction userLogin wrapping setAuth
-    // we want encapsualtion -> App has responsibility about auth state managment
+    // we want encapsualtion -> App has responsibility about auth state management
     // we pass in setAuth to authContext, but we want to pass in limited verions
     // thus, encapuslating in a separate function and we pass in this separate function
     const userLogin = (authData) => {
