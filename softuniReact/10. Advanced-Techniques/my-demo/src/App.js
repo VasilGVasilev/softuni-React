@@ -10,14 +10,13 @@ import GameDetails from './components/GameDetails/GameDetails';
 import Logout from './components/Logout/Logout'
 
 import * as gameService from './services/gameServices'
-import { AuthContext } from './contexts/AuthContext'
+import { AuthContext, AuthProvider } from './contexts/AuthContext'
 import { GameContext } from './contexts/GameContext'
 
 
 
 import { useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useLocalStorage } from './hooks/useLocalStorage';
 
 // lazy load of Register
 const Register = lazy(() => import('./components/Register/Register'))
@@ -25,7 +24,6 @@ const Register = lazy(() => import('./components/Register/Register'))
 
 function App() {
     const [games, setGames] = useState([]);
-    const [auth, setAuth] = useLocalStorage('auth', {}); // 'auth' is a hardcoded key
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -35,20 +33,7 @@ function App() {
                 })
     },[])
 
-    // why have this abstraction userLogin wrapping setAuth
-    // we want encapsualtion -> App has responsibility about auth state management
-    // we pass in setAuth to authContext, but we want to pass in limited verions
-    // thus, encapuslating in a separate function and we pass in this separate function
 
-    // we use returned from login fetch data to set it in localStorage and component state
-    const userLogin = (authData) => {
-        setAuth(authData)
-    }
-
-    // we use remove data from localStorage and component state
-    const userLogout = () => {
-        setAuth({})
-    }
 
     const addComment = (gameId, comment) => {
         setGames(state => {
@@ -78,7 +63,7 @@ function App() {
     };
 
     return (
-        <AuthContext.Provider value={{user: auth, userLogin, userLogout}}>
+        <AuthProvider>
             <div id="box">
                 <Header />
 
@@ -112,7 +97,7 @@ function App() {
                 {/* Catalogue */}
                 
             </div>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }
 
