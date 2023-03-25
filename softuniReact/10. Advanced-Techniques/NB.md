@@ -1,0 +1,1 @@
+Anti-pattern for App component to manage all states due to being the highest in the hierarchy
