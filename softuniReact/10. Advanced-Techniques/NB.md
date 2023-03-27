@@ -44,3 +44,4 @@ HOC - function that takes a component and returns a new component, the above hoo
     see Register.md + HOC alternative in AuthContext.js
 
     NB - HOC is an outdated concept unpopular in modern React !!!!
+    It is applicable where you cannot use hooks only -> there are class components, if the project is only functional components -> custom hooks are enough
