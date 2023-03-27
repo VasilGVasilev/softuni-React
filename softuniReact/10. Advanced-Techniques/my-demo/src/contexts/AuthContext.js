@@ -1,8 +1,9 @@
 import { createContext, useContext } from "react";
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(); //export const AuthContext = createContext({user: ''}); - default value so that intellisense suggests what values to expect for future developers
 
+// this component stores and manages auth state only
 export const AuthProvider = ({
     children,
 }) => {
