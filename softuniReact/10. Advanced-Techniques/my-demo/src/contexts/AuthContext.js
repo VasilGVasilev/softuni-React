@@ -40,10 +40,10 @@ export const useAuthContext = () => {
 }
 
 // HOC Alternative
-export const withAuth = (Component) => {
+export const withAuth = (WrappedComponent) => {
     const WrapperComponent = (props) => {
         const context = useContext(AuthContext)
-        return <Component {...props} auth={context} />
+        return <WrappedComponent {...props} auth={context} />
     }
     return WrapperComponent;
 }
