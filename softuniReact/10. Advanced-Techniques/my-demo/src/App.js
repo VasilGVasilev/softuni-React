@@ -10,7 +10,7 @@ import GameDetails from './components/GameDetails/GameDetails';
 import Logout from './components/Logout/Logout'
 
 import * as gameService from './services/gameServices'
-import { AuthContext, AuthProvider } from './contexts/AuthContext'
+import { AuthProvider } from './contexts/AuthContext'
 import { GameContext } from './contexts/GameContext'
 
 
