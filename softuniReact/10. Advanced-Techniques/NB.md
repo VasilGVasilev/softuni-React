@@ -33,6 +33,7 @@ HOC - function that takes a component and returns a new component, the above hoo
     - accepts a reference to a Component (with capital C so that React knows it is a component) 
     - creates a new WrapperComponent that when executed
     - returns the initially accepted Component
+    basically a DECORATOR
 
     export const withAuth = (Component) => {
         const WrapperComponent = (props) => {
