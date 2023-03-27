@@ -46,3 +46,37 @@ HOC - function that takes a component and returns a new component, the above hoo
 
     NB - HOC is an outdated concept unpopular in modern React !!!!
     It is applicable where you cannot use hooks only -> there are class components, if the project is only functional components -> custom hooks are enough
+
+useReducer()
+    useReducer is very similar to useState, but it lets you move the state update logic from event handlers into a single function outside of your component
+    More importantly, useReducer provides us with the ability to update more complex state -> we have games collection that has a comments subcollection, to edit the comments within games we use useReducer
+
+    import { useReducer } from 'react';
+
+    function reducer(state, action) {
+    if (action.type === 'incremented_age') {
+            return {
+            age: state.age + 1
+            };
+        }
+        throw Error('Unknown action.');
+    }
+
+    export default function Counter() {
+    const [state, dispatch] = useReducer(reducer, { age: 42 });
+
+    return (
+            <>
+            <button onClick={() => {
+                dispatch({ type: 'incremented_age' })
+            }}>
+                Increment age
+            </button>
+            <p>Hello! You are {state.age}.</p>
+            </>
+        );
+    }
+
+
+
+
