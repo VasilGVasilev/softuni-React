@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 
 import * as gameService from '../../services/gameService';
 
+// odd logic by Papazov to have two separate states
+// one for games and comments in App.js and one here
+// these are independent from one another, so setComment sets comments in state here, while addComment adds the same comment to the App component state
 const GameDetails = ({
     addComment,
 }) => {
