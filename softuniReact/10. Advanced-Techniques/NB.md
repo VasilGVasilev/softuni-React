@@ -48,7 +48,7 @@ HOC - function that takes a component and returns a new component, the above hoo
     It is applicable where you cannot use hooks only -> there are class components, if the project is only functional components -> custom hooks are enough
 
 useReducer()
-    useReducer is very similar to useState, but it lets you move the state update logic from event handlers into a single function outside of your component
+    useReducer is very similar to useState, but it lets you move the state update logic from event handlers into a single function outside of your component. THAT  IS ACTUALLY BEST PRACTICE DUE TO COMPONENT BEING RE-RENDERED EVERY TIME, SO RULE OF THUMB - DECLARE REDUCING FUNCTION OUTSIDE OF FUNCTION
     More importantly, useReducer provides us with the ability to update more complex state -> we have games collection that has a comments subcollection, to edit the comments within games we use useReducer
 
     import { useReducer } from 'react';
@@ -106,3 +106,6 @@ useReducer()
             type: 'ADD_GAMES',
             payload: resultFromFetch
         } 
+    
+    Main Advantage -> state modifications are all in one place, easier to read code, also singe responsibility principle 
+    

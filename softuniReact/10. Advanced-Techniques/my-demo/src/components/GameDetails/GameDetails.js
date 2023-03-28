@@ -1,126 +1,110 @@
-import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useGameContext } from '../../contexts/GameContext'
 
+import * as gameService from '../../services/gameServices';
+import * as commentService from '../../services/commentService';
 
+// We render the game stored in GameProvider state, but we have a separate fetching of data 
 const GameDetails = () => {
-    const { games, addComment } = useGameContext();
+    const navigate = useNavigate();
 
+    const { addComment, fetchGameDetails, selectGame, gameRemove } = useGameContext();
     const { gameId } = useParams();
-    // comment logic hardcoding users taht comment
-    const [ comment, setComment] = useState({
-        username: '',
-        comment: '',
-    });
 
-    const [error, setError] = useState({
-        username: '',
-        comment: '',
-    });
+    const currentGame = selectGame(gameId);
 
-    const game = games.find(x => x._id == gameId) || {}; //to not crash due to useReducer initial example 
-    
+    useEffect(() => {
+        (async () => {
+            const gameDetails = await gameService.getOne(gameId);
+            console.log(gameDetails);
+            const gameComments = await commentService.getByGameId(gameId);
+
+            fetchGameDetails(gameId, { ...gameDetails, comments: gameComments.map(x => `${x.user.email}: ${x.text}`) });
+        })();
+    }, [])
 
     const addCommentHandler = (e) => {
         e.preventDefault();
-        addComment(gameId, `${comment.username}: ${comment.comment}`)
-        console.log(comment)
-    }
+        const formData = new FormData(e.target);
 
-    const onChange = (e) => {
-        setComment(state => ({
-            ...state,
-            [e.target.name]: e.target.value // name="username" :  value={comment.username}
-        }))
-    }
+        const comment = formData.get('comment');
+        // update server
+        commentService.create(gameId, comment)
+            .then(result => {
+        // update state
+                addComment(gameId, comment);
+            });
+    };
 
-    const validateUsername = (e) => {
-        const username = e.target.value;
-        let errorMessage = '';
-        if (username.length < 4){
-            errorMessage = 'Username must be minimum 4 characters long!'
-        } else if (username.length > 10) {
-            errorMessage = 'Username must be shorter than 10 characters!'
+    const gameDeleteHandler = () => {
+        const confirmation = window.confirm('Are you sure you want to delete this game?');
+
+        if (confirmation) {
+            gameService.remove(gameId)
+                .then(() => {
+                    gameRemove(gameId);
+                    navigate('/catalog');
+                })
         }
-        setError(state => ({
-            ...state,
-            [e.target.name]: errorMessage
-        }))
-
     }
 
-    return(
+    return (
         <section id="game-details">
             <h1>Game Details</h1>
             <div className="info-section">
                 <div className="game-header">
-                    <img className="game-img" src={game.imageUrl} />
-                    <h1>{game.title}</h1>
-                    <span className="levels">MaxLevel: {game.maxLevel}</span>
-                    <p className="type">{game.category}</p>
+                    <img className="game-img" src={currentGame.imageUrl} />
+                    <h1>{currentGame.title}</h1>
+                    <span className="levels">MaxLevel: {currentGame.maxLevel}</span>
+                    <p className="type">{currentGame.category}</p>
                 </div>
                 <p className="text">
-                {game.summary}
+                    {currentGame.summary}
                 </p>
-
 
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
-                        {game.comments?.map(x =>
-                            <li className="comment">
+                        {currentGame.comments?.map(x =>
+                            <li key={x} className="comment">
                                 <p>{x}</p>
                             </li>
                         )}
                     </ul>
-                    {!game.comments &&
-                        <p className='no-comment'>No comments.</p>
+
+                    {!currentGame.comments &&
+                        <p className="no-comment">No comments.</p>
                     }
-
                 </div>
-
 
                 <div className="buttons">
                     <Link to={`/games/${gameId}/edit`} className="button">
                         Edit
                     </Link>
-                    <a href="#" className="button">
+                    <button onClick={gameDeleteHandler} className="button">
                         Delete
-                    </a>
+                    </button>
                 </div>
             </div>
-
-
 
             <article className="create-comment">
                 <label>Add new comment:</label>
                 <form className="form" onSubmit={addCommentHandler}>
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="John Doe"
-                        onChange={onChange}
-                        onBlur={validateUsername}
-                        value={comment.username}
-                    />
-                    {error.username && 
-                        <div style={{color: 'red'}}>{error.username}</div>
-                    }
                     <textarea
                         name="comment"
                         placeholder="Comment......"
-                        onChange={onChange}
-                        value={comment.comment}
-                        
                     />
+
                     <input
                         className="btn submit"
                         type="submit"
-                        defaultValue="Add Comment"
+                        value="Add Comment"
                     />
                 </form>
             </article>
         </section>
-    )
-}
+    );
+};
+
 export default GameDetails;
