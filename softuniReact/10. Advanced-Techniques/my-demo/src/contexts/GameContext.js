@@ -44,10 +44,13 @@ export const GameProvider = ({children}) => {
         navigate('/catalog')
     };
 
+    const gameEdit = (gameId, gameData) => {
+        setGames(state => state.map(x => x._id === gameId ? gameData : x));
+    }
 
 
     return(
-        <GameContext.Provider value={{games, addComment, gameAdd}}>
+        <GameContext.Provider value={{games, addComment, gameAdd, gameEdit}}>
             {children}
         </GameContext.Provider>
     )

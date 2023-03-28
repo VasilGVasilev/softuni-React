@@ -14,7 +14,7 @@ import { GameProvider } from './contexts/GameContext'
 
 
 
-import { useEffect, lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Routes, Route } from 'react-router-dom'
 
 // lazy load of Register
