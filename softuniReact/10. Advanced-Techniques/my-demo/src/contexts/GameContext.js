@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { useNavigate } from 'react-router-dom'
 import * as gameService from '../services/gameServices'
 
@@ -6,46 +6,53 @@ import * as gameService from '../services/gameServices'
 export const GameContext = createContext();
 
 export const GameProvider = ({children}) => {
-    const [games, setGames] = useState([]);
+
+    const gameReducer = (state, action) => {
+        console.log(state);
+        console.log(action);
+        return action;
+    }
+
+    const [games, dispatcher] = useReducer(gameReducer, []);
     const navigate = useNavigate();
 
     useEffect(()=>{
         gameService.getAll()
                 .then(result => {
-                    setGames(result)
+                    dispatcher(result)
                 })
     },[])
 
     const addComment = (gameId, comment) => {
-        setGames(state => {
-            // commentedGame
-            const game = state.find(x => x._id == gameId);
+        // setGames(state => {
+        //     // commentedGame
+        //     const game = state.find(x => x._id == gameId);
             
-            // comments -> based either on previous comments property if any such, or empty array
-            const comments = game.comments || [];
-            comments.push(comment)
+        //     // comments -> based either on previous comments property if any such, or empty array
+        //     const comments = game.comments || [];
+        //     comments.push(comment)
 
-            return [
-                ...state.filter(x => x._id !== gameId),
-                // commentedGame spreaded and comments added to game object
-                {...game, comments}
-            ]
-        })
+        //     return [
+        //         ...state.filter(x => x._id !== gameId),
+        //         // commentedGame spreaded and comments added to game object
+        //         {...game, comments}
+        //     ]
+        // })
 
 
     }
 
 
     const gameAdd = (gameData) => {
-        setGames(state => [ 
-            ...state,
-            gameData
-        ]);
+        // setGames(state => [ 
+        //     ...state,
+        //     gameData
+        // ]);
         navigate('/catalog')
     };
 
     const gameEdit = (gameId, gameData) => {
-        setGames(state => state.map(x => x._id === gameId ? gameData : x));
+        // setGames(state => state.map(x => x._id === gameId ? gameData : x));
     }
 
 

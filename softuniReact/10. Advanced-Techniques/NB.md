@@ -54,29 +54,49 @@ useReducer()
     import { useReducer } from 'react';
 
     function reducer(state, action) {
-    if (action.type === 'incremented_age') {
-            return {
-            age: state.age + 1
-            };
-        }
+        if (action.type === 'incremented_age') {
+                return {
+                    age: state.age + 1
+                };
+            }
         throw Error('Unknown action.');
     }
 
     export default function Counter() {
-    const [state, dispatch] = useReducer(reducer, { age: 42 });
 
-    return (
-            <>
-            <button onClick={() => {
-                dispatch({ type: 'incremented_age' })
-            }}>
-                Increment age
-            </button>
-            <p>Hello! You are {state.age}.</p>
-            </>
-        );
+        const [state, dispatch] = useReducer(reducer, { age: 42 });
+
+        return (
+                <>
+                    <button onClick={() => {
+                        dispatch({ type: 'incremented_age' })
+                    }}>
+                        Increment age
+                    </button>
+                    <p>Hello! You are {state.age}.</p>
+                </>
+            );
     }
 
 
 
+    const gameReducer = (state, action) => {
+        console.log(state); // []
+        console.log(action); // Pesho
+        return state;
+    }
 
+    const [games, dispatcher] = useReducer(gameReducer, []);
+
+    Thus, state comes from useReducer(null, initialState), action comes from dispatcher(arg)
+
+    Comparison between useState and useReducer, basically, identical:
+
+
+        setState(state => ...state, newData)
+        
+        reducer(state, action) => {
+            <!-- state is old state -->
+            <!-- action is new value -->
+            return action
+        }

@@ -18,7 +18,8 @@ const GameDetails = () => {
         comment: '',
     });
 
-    const game = games.find(x => x._id == gameId);
+    const game = games.find(x => x._id == gameId) || {}; //to not crash due to useReducer initial example 
+    
 
     const addCommentHandler = (e) => {
         e.preventDefault();
