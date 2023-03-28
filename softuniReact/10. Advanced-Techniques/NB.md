@@ -94,9 +94,15 @@ useReducer()
 
 
         setState(state => ...state, newData)
-        
+
         reducer(state, action) => {
             <!-- state is old state -->
             <!-- action is new value -->
             return action
         }
+
+    The basic pattern updates state to have a new reference automatically. But there are patterns to have detailed control over state management. Action is crucial - action is an object (not obligatory with vanilla React, obligatory object with Redux) that has at the very minium - type of action and values (payload) that come with this type of action as properties (type and payload are conventions):
+        const action = {
+            type: 'ADD_GAMES',
+            payload: resultFromFetch
+        } 

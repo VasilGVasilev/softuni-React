@@ -8,18 +8,26 @@ export const GameContext = createContext();
 export const GameProvider = ({children}) => {
 
     const gameReducer = (state, action) => {
-        console.log(state);
-        console.log(action);
-        return action;
+        switch (action.type) {
+            case 'ADD_GAMES':
+                return action.payload.slice() // Safety check - if we expect an array, easiest way to have a new reference -> someValue.slice() || [...someValue]
+        
+            default:
+                return state; //if no valid action is inputed into dispatch
+        }
     }
 
-    const [games, dispatcher] = useReducer(gameReducer, []);
+    const [games, dispatch] = useReducer(gameReducer, []);
     const navigate = useNavigate();
 
     useEffect(()=>{
         gameService.getAll()
                 .then(result => {
-                    dispatcher(result)
+                    const action = {
+                        type: 'ADD_GAMES',
+                        payload: result
+                    }
+                    dispatch(action)
                 })
     },[])
 
