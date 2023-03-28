@@ -9,58 +9,24 @@ import Catalog from './components/Catalog/Catalog';
 import GameDetails from './components/GameDetails/GameDetails';
 import Logout from './components/Logout/Logout'
 
-import * as gameService from './services/gameServices'
 import { AuthProvider } from './contexts/AuthContext'
-import { GameContext } from './contexts/GameContext'
+import { GameProvider } from './contexts/GameContext'
 
 
 
-import { useState, useEffect, lazy, Suspense } from "react";
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { useEffect, lazy, Suspense } from "react";
+import { Routes, Route } from 'react-router-dom'
 
 // lazy load of Register
 const Register = lazy(() => import('./components/Register/Register'))
 
 
 function App() {
-    const [games, setGames] = useState([]);
-    const navigate = useNavigate();
-
-    useEffect(()=>{
-        gameService.getAll()
-                .then(result => {
-                    setGames(result)
-                })
-    },[])
 
 
 
-    const addComment = (gameId, comment) => {
-        setGames(state => {
-            // commentedGame
-            const game = state.find(x => x._id == gameId);
-            
-            // comments -> based either on previous comments property if any such, or empty array
-            const comments = game.comments || [];
-            comments.push(comment)
-
-            return [
-                ...state.filter(x => x._id !== gameId),
-                // commentedGame spreaded and comments added to game object
-                {...game, comments}
-            ]
-        })
 
 
-    }
-
-    const gameAdd = (gameData) => {
-        setGames(state => [ 
-            ...state,
-            gameData
-        ]);
-        navigate('/catalog')
-    };
 
     return (
         <AuthProvider>
@@ -68,10 +34,10 @@ function App() {
                 <Header />
 
                 {/* Main Content */}
-                <GameContext.Provider value={{games, gameAdd}}>
+                <GameProvider >
                     <main id="main-content">
                         <Routes>
-                            <Route path='/' element={<Home games={games}/>}></Route>
+                            <Route path='/' element={<Home />}></Route>
                             <Route path='/login' element={<Login />}></Route>
                             <Route path='/register' element={
                                 <Suspense fallback={<span>Loading...</span>}>
@@ -80,15 +46,15 @@ function App() {
                             }/>
                             <Route path='/logout' element={<Logout />}></Route>
                             <Route path='/create' element={<CreateGame />}></Route>
-                            <Route path='/catalog' element={<Catalog games={games}/>}></Route>
-                            <Route path='/catalog/:gameId' element={<GameDetails games={games} addComment={addComment}/>}></Route>
+                            <Route path='/catalog' element={<Catalog />}></Route>
+                            <Route path='/catalog/:gameId' element={<GameDetails />}></Route>
                             <Route path="/games/:gameId/edit" element={<EditGame />} />
 
 
 
                         </Routes>
                     </main>
-                </GameContext.Provider>
+                </GameProvider>
 
                 
                 {/*Details Page*/}

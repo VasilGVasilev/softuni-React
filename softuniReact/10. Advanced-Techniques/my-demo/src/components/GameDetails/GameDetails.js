@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useGameContext } from '../../contexts/GameContext'
 
-const GameDetails = ({
-    games,
-    addComment,
 
-}) => {
+const GameDetails = () => {
+    const { games, addComment } = useGameContext();
+
     const { gameId } = useParams();
     // comment logic hardcoding users taht comment
     const [ comment, setComment] = useState({
