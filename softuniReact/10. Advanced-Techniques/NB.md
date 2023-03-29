@@ -108,4 +108,33 @@ useReducer()
         } 
     
     Main Advantage -> state modifications are all in one place, easier to read code, also singe responsibility principle 
+
+
+On children, why do we return directly in PrivateRoute and in a destructured object in AuthProvider?
+
+    AuthProvider
+
+        return(
+            <AuthContext.Provider value={{
+                user: auth, 
+                userLogin, 
+                userLogout, 
+                isAuthenticated: !!auth.accessToken //!! makes the auth.accessToken a Boolean, if truthy -> false -> true; if falsy -> true -> false, thus, the double !!
+            }}>
+                {children}
+            </AuthContext.Provider>
+        )
     
+    PrivateRoute
+
+    const PrivateRoute = ({ children }) => {
+        const { isAuthenticated } = useAuthContext();
+
+        if (!isAuthenticated) {
+            return <Navigate to="/login" replace /> //replace so that we do not add /login, but replaces with /loign for History API to work
+        }
+
+        return children
+    };
+
+because in the former case we return a component, in the latter not, NB if return a fragment in the latter, we have to pass on children in  curly braces
