@@ -19,6 +19,8 @@ const gameReducer = (state, action) => {
             return state.map(x => x._id === action.gameId ? action.payload : x)
         case 'ADD_COMMENT':
             return state.map(x => x._id === action.gameId ? {...x, comments: [...x.comments, action.payload]} : x) //add to old comments, new one [...x.comments, action.payload]
+        case 'REMOVE_GAME':
+            return state.filter(x => x._id !== action.gameId);
         default:
             return state; //if no valid action is inputed into dispatch
     }
@@ -32,6 +34,7 @@ export const GameProvider = ({children}) => {
     useEffect(()=>{
         gameService.getAll()
                 .then(result => {
+                    console.log(result);
                     const action = {
                         type: 'ADD_GAMES',
                         payload: result

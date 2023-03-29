@@ -5,19 +5,28 @@ import { useGameContext } from '../../contexts/GameContext'
 import * as gameService from '../../services/gameServices';
 import * as commentService from '../../services/commentService';
 
-// We render the game stored in GameProvider state, but we have a separate fetching of data 
+// Render cycles:
+// - render currentGame out of global games state
+// - add comment, which attaches updated games collection within which we have comments array to global games state
+// - update of state due to comment add triggers render here
+
+// Note that we have comments and games in separate collections on DB
+// thus, the initial 'render currentGame out of global games state' happens via return from
+// fetch of games and commments collection, inputed into fetchGameDetails, which as sa function
+// plays the role of providing any subsequent to the initial render denominated in reducer as ADD_GAMES action
 const GameDetails = () => {
     const navigate = useNavigate();
 
     const { addComment, fetchGameDetails, selectGame, gameRemove } = useGameContext();
     const { gameId } = useParams();
 
+    // this is done for rendering game down in return()
     const currentGame = selectGame(gameId);
 
+    // use self-executing function async() => {}() so that we can have two resolved fetches to input into third function, alternative is Promise.all()
     useEffect(() => {
         (async () => {
             const gameDetails = await gameService.getOne(gameId);
-            console.log(gameDetails);
             const gameComments = await commentService.getByGameId(gameId);
 
             fetchGameDetails(gameId, { ...gameDetails, comments: gameComments.map(x => `${x.user.email}: ${x.text}`) });

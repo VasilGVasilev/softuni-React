@@ -5,7 +5,7 @@ const baseUrl = 'http://localhost:3030/data/games';
 // no need for promise resolve in services since they just pass on 
 // promise wrapped in request to be resolved in App useEffect
 
-export const getAll = () => request.get(baseUrl)
+export const getAll = () => request.get(baseUrl);
 
 export const getOne = (gameId) => request.get(`${baseUrl}/${gameId}`);
 
