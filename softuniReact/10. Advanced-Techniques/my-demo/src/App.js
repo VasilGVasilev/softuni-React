@@ -25,11 +25,6 @@ const Register = lazy(() => import('./components/Register/Register'))
 
 function App() {
 
-
-
-
-
-
     return (
         <AuthProvider>
             <div id="box">
@@ -51,7 +46,8 @@ function App() {
                                     <CreateGame />
                                 </PrivateRoute>
                             )}></Route>
-                            <Route element={<PrivateGuard />}>
+                            {/* using Outlet makes it possible to have nested Routes with path="" transferred down into the nested Routes */}
+                            <Route element={<PrivateGuard />}> 
                                 <Route path="/games/:gameId/edit" element={<EditGame />} />
                                 <Route path="/logout" element={<Logout />} />
                             </Route>
