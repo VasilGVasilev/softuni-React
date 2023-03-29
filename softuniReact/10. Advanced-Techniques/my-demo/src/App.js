@@ -11,6 +11,8 @@ import Logout from './components/Logout/Logout'
 
 import { AuthProvider } from './contexts/AuthContext'
 import { GameProvider } from './contexts/GameContext'
+import PrivateRoute from "./components/common/PrivateRoute";
+import PrivateGuard from "./components/common/PrivateGuard";
 
 
 
@@ -44,11 +46,17 @@ function App() {
                                     <Register />
                                 </Suspense>
                             }/>
-                            <Route path='/logout' element={<Logout />}></Route>
-                            <Route path='/create' element={<CreateGame />}></Route>
+                            <Route path='/create' element={(
+                                <PrivateRoute>
+                                    <CreateGame />
+                                </PrivateRoute>
+                            )}></Route>
+                            <Route element={<PrivateGuard />}>
+                                <Route path="/games/:gameId/edit" element={<EditGame />} />
+                                <Route path="/logout" element={<Logout />} />
+                            </Route>
                             <Route path='/catalog' element={<Catalog />}></Route>
                             <Route path='/catalog/:gameId' element={<GameDetails />}></Route>
-                            <Route path="/games/:gameId/edit" element={<EditGame />} />
 
 
 

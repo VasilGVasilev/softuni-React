@@ -25,7 +25,12 @@ export const AuthProvider = ({
     }
 
     return(
-        <AuthContext.Provider value={{user: auth, userLogin, userLogout}}>
+        <AuthContext.Provider value={{
+            user: auth, 
+            userLogin, 
+            userLogout, 
+            isAuthenticated: !!auth.accessToken //!! makes the auth.accessToken a Boolean, if truthy -> false -> true; if falsy -> true -> false, thus, the double !!
+        }}>
             {children}
         </AuthContext.Provider>
     )
