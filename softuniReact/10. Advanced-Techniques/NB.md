@@ -138,3 +138,22 @@ On children, why do we return directly in PrivateRoute and in a destructured obj
     };
 
 because in the former case we return a component, in the latter not, NB if return a fragment in the latter, we have to pass on children in  curly braces
+
+
+why does we have to put update of state within update of DB:
+
+            gameService.remove(gameId)
+                .then(() => {
+                    gameRemove(gameId);
+                    navigate('/catalog');
+                })
+
+In React, when you update the global state using a state management library like Redux or Context API, any component that depends on that state will automatically be updated with the new state values, regardless of whether it's currently being rendered on the screen or not.
+
+So, if a component on a specific route depends on the global state that you've updated from another component, it will receive the updated state values the next time it's rendered, even if you haven't navigated to that route yet.
+
+This is because React uses a unidirectional data flow, where the state flows from parent components to child components, and any changes to the state trigger re-renders of the affected components. So as long as your component is subscribed to the relevant state updates, it will receive the updated values whenever they change, regardless of the current route.
+
+Thus, even if I navigate to a new route, when I update the global state, all components that use this state get the update and if we have some data manipulation in a child component such as const currentGame = selectGame(gameId); in GameDetails that uses .find() to select one specific game and it is in fact deleted from state, so absent, when we use currentGame, it will be undefined and crash the whole app.
+
+Summary: updating global state, updates all child components and executes the respective data manipulation even if you have navigated to default component.
