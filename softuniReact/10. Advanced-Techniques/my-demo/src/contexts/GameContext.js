@@ -12,7 +12,7 @@ const gameReducer = (state, action) => {
         case 'ADD_GAMES':
             return action.payload.map( x => ({  ...x, comments: [] }))
             // return action.payload.slice() // Safety check - if we expect an array, easiest way to have a new reference -> someValue.slice() || [...someValue]
-        case 'GAME_ADD':
+        case 'ADD_GAME':
             return [...state, action.payload];
         case 'FETCH_GAME_DETAILS': //since we want the same return, namely, set updated state with comment in first case and edited in second case, we can stack them and put only one return for both
         case 'EDIT_GAME':

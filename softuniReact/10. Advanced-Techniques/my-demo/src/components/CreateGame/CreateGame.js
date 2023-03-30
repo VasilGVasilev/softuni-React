@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { GameContext } from '../../contexts/GameContext';
 
 const CreateGame = () => {
-    const { addGame } = useContext(GameContext)
+    const { gameAdd } = useContext(GameContext)
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -12,8 +12,7 @@ const CreateGame = () => {
         // first update server
         gameService.create(gameData)
             .then(result=>{
-                addGame(result) //second pass on data to update client state
-
+                gameAdd(result) //second pass on data to update client state
             })
 
         
