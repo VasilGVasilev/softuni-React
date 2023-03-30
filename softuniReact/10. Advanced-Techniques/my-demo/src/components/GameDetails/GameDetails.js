@@ -52,9 +52,9 @@ const GameDetails = () => {
         if (confirmation) {
             gameService.remove(gameId)
                 .then(() => {
+                    gameRemove(gameId);
+                    navigate('/catalog');
                 })
-            gameRemove(gameId);
-            navigate('/catalog');
         }
     }
 
