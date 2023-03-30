@@ -45,7 +45,8 @@ export const GameProvider = ({children}) => {
 
 
     const selectGame = (gameId) => {
-        return games.find(x => x._id === gameId) || {};
+        return games.find(x => x._id === gameId) || {}; //so that deleting game from state does not crash due to undefined if updating state is outside fetch of updateing DB
+
     };
 
     const fetchGameDetails = (gameId, gameDetails) => {
