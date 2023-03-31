@@ -157,3 +157,33 @@ This is because React uses a unidirectional data flow, where the state flows fro
 Thus, even if I navigate to a new route, when I update the global state, all components that use this state get the update and if we have some data manipulation in a child component such as const currentGame = selectGame(gameId); in GameDetails that uses .find() to select one specific game and it is in fact deleted from state, so absent, when we use currentGame, it will be undefined and crash the whole app.
 
 Summary: updating global state, updates all child components and executes the respective data manipulation even if you have navigated to default component.
+
+
+PrivateGuard - Outlet from react-dom-router allows nested UI to show up when child routes are rendered:
+
+        function Dashboard() {
+            return (
+                <div>
+                <h1>Dashboard</h1>
+
+                {/* This element will render either <DashboardMessages> when the URL is
+                    "/messages", <DashboardTasks> at "/tasks", or null if it is "/"
+                */}
+                <Outlet />
+                </div>
+            );
+        }
+
+        function App() {
+            return (
+                <Routes>
+                <Route path="/" element={<Dashboard />}>
+                    <Route
+                    path="messages"
+                    element={<DashboardMessages />}
+                    />
+                    <Route path="tasks" element={<DashboardTasks />} />
+                </Route>
+                </Routes>
+            );
+        }
