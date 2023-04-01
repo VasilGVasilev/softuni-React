@@ -36,12 +36,14 @@ class TaskList extends Component {
     newTaskChangeHandler(e) { 
         // unlike, useState where each new keyboard click will reinstate a letter, namely, update state so abc will be state: a->b->c
         // this.setState merges old state, instead of updating fully with a new reference
+        // see addNewTaskHandler
         this.setState({ newTask: e.target.value }); //will crash if 'this' down in render is not set properly, due to default context being the event, with the following code 'this' is properly set this.taskClickHandler.bind(this)
     }
 
     addNewTaskHandler(e) {
         e.preventDefault();
-
+        // one can use a callback function in this.setState to update old state to new as useState does by default
+        // in reality we here update to e new reference, but using the [...state] spread of old state, we effectively, merge just with a new reference
         this.setState((state) => ({
             tasks: [...state.tasks, { title: state.newTask, isCompleted: false }],
             newTask: '',
