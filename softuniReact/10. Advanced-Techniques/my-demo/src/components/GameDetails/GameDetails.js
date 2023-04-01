@@ -22,7 +22,6 @@ const GameDetails = () => {
 
     // this is done for rendering game down in return()
     const currentGame = selectGame(gameId);
-
     // use self-executing function async() => {}() so that we can have two resolved fetches to input into third function, alternative is Promise.all()
     useEffect(() => {
         (async () => {

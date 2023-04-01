@@ -30,18 +30,16 @@ export const GameProvider = ({children}) => {
 
     const [games, dispatch] = useReducer(gameReducer, []);
     const navigate = useNavigate();
-
     useEffect(()=>{
         gameService.getAll()
                 .then(result => {
-                    console.log(result);
                     const action = {
                         type: 'ADD_GAMES',
                         payload: result
                     }
                     dispatch(action)
                 })
-    },[])
+    }, [])
 
 
     const selectGame = (gameId) => {
