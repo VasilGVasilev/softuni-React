@@ -18,7 +18,7 @@ class TaskList extends Component {
             character: {},
         };
 
-        this.newTaskChangeHandler = this.newTaskChangeHandler.bind(this);
+        this.newTaskChangeHandler = this.newTaskChangeHandler.bind(this); // instead of repeating, just set context to current class instance however the method is called
     }
 
     componentDidMount() {
@@ -33,8 +33,10 @@ class TaskList extends Component {
         // console.log('Did update');
     }
 
-    newTaskChangeHandler(e) {
-        this.setState({ newTask: e.target.value });
+    newTaskChangeHandler(e) { 
+        // unlike, useState where each new keyboard click will reinstate a letter, namely, update state so abc will be state: a->b->c
+        // this.setState merges old state, instead of updating fully with a new reference
+        this.setState({ newTask: e.target.value }); //will crash if 'this' down in render is not set properly, due to default context being the event, with the following code 'this' is properly set this.taskClickHandler.bind(this)
     }
 
     addNewTaskHandler(e) {
@@ -71,7 +73,7 @@ class TaskList extends Component {
                             key={x.title}
                             title={x.title}
                             isCompleted={x.isCompleted}
-                            onClick={this.taskClickHandler.bind(this)}
+                            onClick={this.taskClickHandler.bind(this)} //bind(this) makes the current class instance the context for the taskClickHandler function, too
                         />
                     )}
                 </ul>
