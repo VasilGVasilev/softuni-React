@@ -10,7 +10,8 @@ Class TaskList extends Component {
     }
 }
 
-    Constructor runs before anything else in the class-based code in react.js to the life-cycle of the component. Constructor code runs once, and only once, for the entire life-cycle of this component in react
+    Constructor runs before anything else in the class-based code in react.js to the life-cycle of the component. Constructor code runs once, and only once, for the entire life-cycle of this component in react.
+    Constructor is an initialization field for among many - state
 
     super() calls contructor() which initializes the component, NB - dont pollute with external data (fetch) the constructor of a react class component
 
