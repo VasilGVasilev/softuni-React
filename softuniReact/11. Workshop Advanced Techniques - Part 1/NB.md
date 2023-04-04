@@ -38,4 +38,4 @@ Class TaskList extends Component {
 
 WORKSHOP PART II
 
-Error Boundries done with Class components
+Error Boundries done with Class components only
