@@ -34,3 +34,8 @@ Class TaskList extends Component {
     Very good article on the issue:
     https://overreacted.io/why-do-we-write-super-props/
 
+2:55:00
+
+WORKSHOP PART II
+
+Error Boundries done with Class components
