@@ -144,3 +144,4 @@ Context
 Idea for articles -> show which methods return a new reference to an array/object to know what to use in setState()
 
 
+A service could be used wherever you want, a custom hook only inside a React component
