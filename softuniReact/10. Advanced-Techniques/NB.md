@@ -13,6 +13,8 @@ children prop:
 
     Children is used as a placeholder for the children components that will be wrapped
 
+    But how does it actually work? Remember the pipeline example img. Using children actually creates a pipeline. The children are sematically not the best work, because it is not only what comes after the use of the 'pipeline'. Children are also at the entrance ---export const AuthProvider = ({children})---, then in the RETURN ---AuthContext.Provider>{children}</AuthContext.Provider>---. What is happening is that in App.js when you actually use AuthProvider, you wrap an element and that element enters via the ---export const AuthProvider = ({children})--- of the pipeline, thus, the need to mention children as arguments on component definition.
+
 instead of calling useContext and AuthContext in Header we can make a custom hook, NOT ALWAYS BEST PRACTICE:
     export const useAuthContext = () => {
         const context = useContext(AuthContext);
